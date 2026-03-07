@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans">
 
-    <!-- BARRE DE NAVIGATION (Simplifiée pour l'article) -->
+    <!-- BARRE DE NAVIGATION -->
     <header class="bg-slate-900 text-white py-4 shadow-lg">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <a href="index.html" class="text-xl font-bold"><span class="text-cyan-400">basta</span>-InfosTech</a>
@@ -19,7 +19,6 @@
 
     <!-- CONTENU DE L'ARTICLE -->
     <article class="container mx-auto px-4 py-12 max-w-4xl">
-        <!-- En-tête de l'article -->
         <header class="mb-8">
             <span class="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-sm font-bold uppercase">National</span>
             <h1 class="text-4xl md:text-5xl font-extrabold mt-4 mb-6 leading-tight">La transformation numérique au service du développement local</h1>
@@ -27,59 +26,56 @@
             <div class="flex items-center text-gray-500 text-sm border-y border-gray-200 py-4">
                 <span class="mr-4"><i class="fas fa-user mr-2"></i>Par Rédaction Basta-InfosTech</span>
                 <span class="mr-4"><i class="fas fa-calendar-alt mr-2"></i>7 Mars 2024</span>
-                <span><i class="fas fa-clock mr-2"></i>Lecture : 5 min</span>
             </div>
         </header>
 
-        <!-- Image principale -->
         <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80" alt="Transformation numérique" class="w-full h-96 object-cover rounded-xl shadow-lg mb-8">
 
-        <!-- Corps de l'article -->
         <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6 text-lg">
-            <p class="font-semibold text-xl text-gray-800">
-                Le paysage numérique national connaît une mutation sans précédent. Entre innovations technologiques et intégration locale, les TIC deviennent le moteur principal de l'économie.
-            </p>
-            
-            <p>
-                L'accès à l'information et aux outils digitaux n'est plus un luxe, mais une nécessité pour les entrepreneurs locaux. Dans cet article, nous explorons comment les nouvelles infrastructures de télécommunications modifient la donne sur le terrain...
-            </p>
+            <p>Le paysage numérique national connaît une mutation sans précédent. Les TIC deviennent le moteur principal de l'économie.</p>
 
-            <h2 class="text-2xl font-bold text-slate-900 mt-8">Un enjeu stratégique pour le pays</h2>
-            <p>
-                Les autorités ont récemment annoncé de nouveaux investissements dans la fibre optique. Cette décision marque un tournant majeur pour la connectivité nationale, permettant enfin de réduire la fracture numérique entre les zones urbaines et rurales.
-            </p>
+            <!-- SECTION INTERACTIVE (L'effet de clic que vous vouliez) -->
+            <div class="bg-cyan-50 p-6 rounded-lg border-2 border-cyan-200 my-8 shadow-sm">
+                <h3 class="text-xl font-bold text-slate-800 mb-3">Chiffres clés du numérique</h3>
+                <p class="text-gray-600 mb-4">Cliquez ci-dessous pour découvrir les statistiques de cette année :</p>
+                
+                <!-- Le bouton qui déclenche l'action -->
+                <button onclick="afficherTexte()" class="bg-cyan-600 text-white px-6 py-2 rounded-full font-bold hover:bg-cyan-700 transition shadow-md">
+                    <i class="fas fa-chart-line mr-2"></i>Voir les statistiques
+                </button>
 
-            <blockquote class="border-l-4 border-cyan-500 pl-4 italic text-gray-600 my-8">
-                "Le numérique est le socle sur lequel nous bâtissons l'avenir de notre économie locale." — Un expert en TIC.
-            </blockquote>
-
-            <p>
-                En conclusion, **basta-InfosTech** continuera de suivre de près ces évolutions pour vous apporter une analyse précise des enjeux technologiques de demain.
-            </p>
-        </div>
-
-        <!-- Partage et Tags -->
-        <div class="mt-12 pt-8 border-t border-gray-200">
-            <div class="flex flex-wrap gap-2 mb-6">
-                <span class="bg-gray-200 px-3 py-1 rounded text-xs font-semibold">#TIC</span>
-                <span class="bg-gray-200 px-3 py-1 rounded text-xs font-semibold">#Digital</span>
-                <span class="bg-gray-200 px-3 py-1 rounded text-xs font-semibold">#Innovation</span>
+                <!-- Le texte qui est caché au départ (classe 'hidden') -->
+                <div id="zoneStatistiques" class="hidden mt-6 p-4 bg-white rounded-lg border border-cyan-100 animate-fade-in">
+                    <ul class="list-disc pl-5 space-y-2 text-cyan-900">
+                        <li><strong>+45%</strong> d'utilisateurs internet en zone rurale.</li>
+                        <li><strong>1200</strong> nouvelles entreprises digitales créées.</li>
+                        <li><strong>98%</strong> du territoire bientôt couvert par la 4G/5G.</li>
+                    </ul>
+                </div>
             </div>
-            <div class="flex space-x-4">
-                <span class="font-bold">Partager :</span>
-                <a href="#" class="text-blue-600 hover:scale-110 transition"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-blue-400 hover:scale-110 transition"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-green-500 hover:scale-110 transition"><i class="fab fa-whatsapp"></i></a>
-            </div>
+
+            <p>En conclusion, l'accès aux outils digitaux n'est plus un luxe mais une nécessité pour les entrepreneurs.</p>
         </div>
     </article>
 
-    <!-- FOOTER (Identique à l'accueil) -->
-    <footer class="bg-gray-900 text-white py-8 mt-12">
-        <div class="container mx-auto px-4 text-center text-sm text-gray-400">
-            &copy; 2024 basta-InfosTech. Tous droits réservés.
-        </div>
+    <footer class="bg-gray-900 text-white py-8 text-center text-sm text-gray-400">
+        &copy; 2024 basta-InfosTech. Tous droits réservés.
     </footer>
+
+    <!-- LE SCRIPT (C'est ce qui fait fonctionner le clic) -->
+    <script>
+        function afficherTexte() {
+            // On récupère l'élément qui contient les statistiques
+            const zone = document.getElementById('zoneStatistiques');
+            
+            // Si la zone est cachée, on l'affiche. Sinon, on la cache.
+            if (zone.classList.contains('hidden')) {
+                zone.classList.remove('hidden');
+            } else {
+                zone.classList.add('hidden');
+            }
+        }
+    </script>
 
 </body>
 </html>
