@@ -3,46 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil | basta-InfosTech</title>
+    <title>basta-InfosTech | Média Numérique & TIC</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        .category-card:hover { transform: translateY(-5px); transition: all 0.3s; cursor: pointer; }
+        .tech-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+        /* Animation pour la modal */
+        .modal-active { display: flex !important; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans">
-code
-Code
-<header class="bg-slate-900 text-white py-6 shadow-lg">
-    <div class="container mx-auto px-4">
-        <h1 class="text-3xl font-bold"><span class="text-cyan-400">basta</span>-InfosTech</h1>
-    </div>
-</header>
 
-<main class="container mx-auto px-4 py-12">
-    <h2 class="text-2xl font-bold mb-8">Dernières Actualités</h2>
+    <!-- HEADER / NAVIGATION -->
+    <header class="tech-gradient text-white sticky top-0 z-50 shadow-xl">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-2xl font-extrabold tracking-tighter">
+                <span class="text-cyan-400">BASTA</span>-INFOTECH
+            </h1>
+            <nav class="flex space-x-6 mt-4 md:mt-0 overflow-x-auto pb-2 md:pb-0">
+                <a href="#international" class="hover:text-cyan-400 transition">International</a>
+                <a href="#national" class="hover:text-cyan-400 transition">National</a>
+                <a href="#local" class="hover:text-cyan-400 transition">Local</a>
+                <a href="#innovation" class="hover:text-cyan-400 transition">Innovation</a>
+            </nav>
+        </div>
+    </header>
 
-    <!-- CARTE DE L'ARTICLE CLIQUABLE -->
-    <div class="max-w-md bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl hover:shadow-2xl transition duration-300">
-        <div class="md:flex">
-            <div class="md:shrink-0">
-                <img class="h-48 w-full object-cover md:h-full md:w-48" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80" alt="Numérique">
+    <!-- BARRE D'ACCÈS RAPIDE -->
+    <section class="bg-cyan-700 text-white py-2 shadow-inner sticky top-[72px] md:top-[64px] z-40">
+        <div class="container mx-auto px-4 flex justify-center space-x-4 md:space-x-8 text-xs md:text-sm font-semibold overflow-x-auto whitespace-nowrap">
+            <a href="#international" class="hover:bg-cyan-600 px-3 py-1 rounded-full transition"><i class="fas fa-globe mr-1"></i> Monde</a>
+            <a href="#national" class="hover:bg-cyan-600 px-3 py-1 rounded-full transition"><i class="fas fa-flag mr-1"></i> Pays</a>
+            <a href="#local" class="hover:bg-cyan-600 px-3 py-1 rounded-full transition"><i class="fas fa-map-marker-alt mr-1"></i> Proximité</a>
+            <a href="#innovation" class="hover:bg-cyan-600 px-3 py-1 rounded-full transition"><i class="fas fa-microchip mr-1"></i> IA & Tech</a>
+        </div>
+    </section>
+
+    <!-- HERO SECTION -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row mb-12 border border-gray-100">
+            <div class="md:w-2/3 relative group">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Tech News" class="h-80 md:h-full w-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </div>
+            <div class="p-8 md:w-1/3 flex flex-col justify-center bg-white">
+                <span class="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-xs font-bold w-fit">À LA UNE</span>
+                <h2 class="text-3xl font-black mt-4 leading-tight">L'impact de l'IA sur l'économie numérique locale en 2024.</h2>
+                <p class="mt-4 text-gray-600">Découvrez comment les algorithmes transforment les marchés africains et créent de nouveaux emplois...</p>
+                <button onclick="openModal('L\'impact de l\'IA en 2024', 'L\'intelligence artificielle n\'est plus un concept futuriste mais une réalité tangible. En 2024, les startups locales utilisent l\'IA pour optimiser les paiements mobiles, prédire les récoltes agricoles et améliorer l\'accès aux soins de santé. Cette révolution technologique pourrait augmenter le PIB régional de 15% d\'ici 2030.')" 
+                class="mt-6 bg-slate-900 text-white px-6 py-3 rounded-xl font-bold hover:bg-cyan-600 transition shadow-lg">Lire l'article</button>
+            </div>
+        </div>
+
+        <!-- SECTION : INTERNATIONAL -->
+        <section id="international" class="mb-16">
+            <div class="flex items-center mb-8">
+                <h3 class="text-2xl font-bold border-b-4 border-blue-600 pb-1 uppercase tracking-wider">🌍 International</h3>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div onclick="openModal('Régulation des GAFAM', 'Le Parlement Européen a durci le ton avec le Digital Markets Act (DMA). Désormais, les géants comme Google et Apple doivent permettre l\'installation de boutiques d\'applications tierces, changeant à jamais l\'écosystème mobile mondial.')" 
+                class="bg-white rounded-xl shadow-lg category-card overflow-hidden border border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h4 class="font-bold text-lg mb-2">Régulation mondiale des GAFAM : Ce qui change.</h4>
+                        <p class="text-sm text-gray-500">Le Parlement Européen vote de nouvelles lois...</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div onclick="openModal('Cybersécurité Globale', 'Une cyberattaque massive par déni de service (DDoS) a visé les principaux fournisseurs d\'accès internet aux USA et en Asie ce matin. Les experts pointent du doigt une faille dans les protocoles de routage anciens.')" 
+                class="bg-white rounded-xl shadow-lg category-card overflow-hidden border border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=80" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h4 class="font-bold text-lg mb-2">Cybersécurité : Menace globale sur les infrastructures.</h4>
+                        <p class="text-sm text-gray-500">Une vague d'attaques sans précédent touche les serveurs mondiaux.</p>
+                    </div>
+                </div>
+                <div class="bg-cyan-50 rounded-xl border-2 border-dashed border-cyan-200 flex items-center justify-center p-8">
+                    <p class="text-cyan-700 font-bold">Plus de news mondiales bientôt...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION : NATIONAL & LOCAL -->
+        <div class="grid md:grid-cols-2 gap-12 mb-16">
+            <!-- National -->
+            <section id="national">
+                <h3 class="text-2xl font-bold border-l-8 border-green-600 pl-4 mb-8 uppercase">🇨🇩 Actualité Nationale</h3>
+                <div class="space-y-6">
+                    <div onclick="openModal('Plan National Numérique', 'Le ministère des PT-NTIC a annoncé une enveloppe de 50 millions de dollars pour booster l\'entrepreneuriat numérique. L\'objectif est de former 100 000 jeunes aux métiers du code d\'ici la fin de l\'année.')" 
+                    class="flex bg-white p-4 rounded-xl shadow hover:shadow-xl transition cursor-pointer border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=150&q=80" class="w-24 h-24 rounded-lg object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-bold text-md">Plan National Numérique : Les nouveaux objectifs.</h4>
+                            <span class="text-xs text-green-600 font-bold">Ministère des TIC</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Local -->
+            <section id="local">
+                <h3 class="text-2xl font-bold border-l-8 border-orange-600 pl-4 mb-8 uppercase">📍 Proximité & Local</h3>
+                <div class="space-y-6">
+                    <div onclick="openModal('Basta-Tech : Innovation', 'La startup Basta-Tech vient de lancer une application de transfert de crédit inter-opérateurs sans frais. Une première dans la région qui facilite les échanges pour les petits commerçants.')" 
+                    class="flex bg-white p-4 rounded-xl shadow hover:shadow-xl transition cursor-pointer border border-gray-100">
+                        <div class="w-24 h-24 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600">
+                            <i class="fas fa-rocket fa-2x"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-md">Basta-Tech révolutionne le paiement mobile local.</h4>
+                            <span class="text-xs text-orange-600 font-bold">Succès Local</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SECTION : INNOVATION & DIGITAL -->
+        <section id="innovation" class="bg-slate-900 text-white p-8 md:p-12 rounded-3xl mb-12 shadow-2xl">
+            <h3 class="text-3xl font-black text-cyan-400 mb-8 flex items-center">
+                <i class="fas fa-bolt mr-4"></i> INNOVATION & FUTUR
+            </h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div onclick="openModal('L\'IA et nos langues', 'Des chercheurs locaux développent des modèles de langage (LLM) basés sur nos dialectes nationaux pour rendre la technologie accessible à ceux qui ne parlent ni français ni anglais.')" 
+                class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-cyan-400 transition cursor-pointer">
+                    <h5 class="text-cyan-300 font-bold mb-3">Intelligence Artificielle</h5>
+                    <p class="text-sm text-slate-400">Les modèles de langage qui parlent nos langues locales.</p>
+                </div>
+                <div onclick="openModal('Blockchain 101', 'La blockchain n\'est pas que le Bitcoin. Elle permet de sécuriser les titres fonciers et de lutter contre la fraude documentaire de manière décentralisée.')" 
+                class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-cyan-400 transition cursor-pointer">
+                    <h5 class="text-cyan-300 font-bold mb-3">Blockchain</h5>
+                    <p class="text-sm text-slate-400">Comprendre la décentralisation des données.</p>
+                </div>
+                <div onclick="openModal('Sécurité Sociale Digitale', 'Conseil du jour : Activez la double authentification (2FA) sur tous vos comptes. C\'est la barrière la plus efficace contre le piratage de compte Facebook et WhatsApp.')" 
+                class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-cyan-400 transition cursor-pointer">
+                    <h5 class="text-cyan-300 font-bold mb-3">Vie Digitale</h5>
+                    <p class="text-sm text-slate-400">Guide : Protéger sa vie privée sur les réseaux.</p>
+                </div>
+                <div onclick="openModal('Domotique Tropicale', 'Des capteurs connectés permettent désormais de réguler la consommation d\'énergie des climatiseurs en fonction de l\'humidité réelle, réduisant les factures de 30%.')" 
+                class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-cyan-400 transition cursor-pointer">
+                    <h5 class="text-cyan-300 font-bold mb-3">Objets Connectés</h5>
+                    <p class="text-sm text-slate-400">La domotique adaptée aux climats tropicaux.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white py-12 border-t border-slate-800">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-4 text-cyan-400">BASTA-INFOTECH</h2>
+            <p class="text-slate-400 max-w-md mx-auto mb-8">Votre média de référence pour comprendre les enjeux du numérique, du local à l'international.</p>
+            <div class="flex justify-center space-x-6 mb-10">
+                <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-cyan-600 transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-cyan-600 transition"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-cyan-600 transition"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="text-xs text-slate-500 uppercase tracking-widest">&copy; 2024 basta-InfosTech. Propulsé par la passion technologique.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL (FENÊTRE D'ARTICLE) -->
+    <div id="articleModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl">
+            <div class="p-6 border-b flex justify-between items-center bg-gray-50">
+                <h3 id="modalTitle" class="text-xl font-bold text-slate-900">Titre de l'article</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 text-2xl transition">&times;</button>
             </div>
             <div class="p-8">
-                <div class="uppercase tracking-wide text-sm text-cyan-500 font-semibold">National</div>
-                <a href="article-1.html" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-                    La transformation numérique au service du développement local
-                </a>
-                <p class="mt-2 text-slate-500">Découvrez comment les TIC deviennent le moteur principal de l'économie nationale...</p>
-                
-                <!-- BOUTON POUR LIRE -->
-                <a href="article-1.html" class="mt-4 inline-block bg-cyan-600 text-white px-4 py-2 rounded hover:bg-cyan-700 transition">
-                    Lire l'article
-                </a>
+                <p id="modalContent" class="text-gray-700 leading-relaxed text-lg">
+                    Le contenu s'affichera ici...
+                </p>
+                <div class="mt-8 pt-6 border-t flex justify-end">
+                    <button onclick="closeModal()" class="bg-cyan-600 text-white px-8 py-2 rounded-lg font-bold hover:bg-cyan-700 transition">Fermer</button>
+                </div>
             </div>
         </div>
     </div>
-</main>
 
-<footer class="bg-gray-900 text-white py-8 mt-12 text-center text-sm text-gray-400">
-    &copy; 2024 basta-InfosTech. Tous droits réservés.
-</footer>
+    <!-- SCRIPT POUR L'INTERACTIVITÉ -->
+    <script>
+        const modal = document.getElementById('articleModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+
+        function openModal(title, text) {
+            modalTitle.innerText = title;
+            modalContent.innerText = text;
+            modal.classList.add('modal-active');
+            document.body.style.overflow = 'hidden'; // Empêche le scroll derrière
+        }
+
+        function closeModal() {
+            modal.classList.remove('modal-active');
+            document.body.style.overflow = 'auto'; // Réactive le scroll
+        }
+
+        // Fermer si on clique en dehors de la boîte blanche
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) closeModal();
+        });
+    </script>
+
 </body>
 </html>
