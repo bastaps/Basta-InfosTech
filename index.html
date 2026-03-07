@@ -58,15 +58,16 @@
             <div class="space-y-6">
                 <h3 class="text-xl font-bold border-l-4 border-cyan-500 pl-3 mb-6">DERNIÈRES INFOS</h3>
                 
-                <div onclick="openModal('Régulation GAFAM', 'Contenu...')" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition cursor-pointer flex gap-4">
-                    <div class="w-20 h-20 bg-slate-200 rounded-xl overflow-hidden flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=150" class="object-cover h-full w-full">
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-sm mb-1 leading-snug">Régulation des GAFAM : Ce qui change cette année.</h4>
-                        <span class="text-[10px] text-cyan-600 font-bold uppercase">International</span>
-                    </div>
-                </div>
+              <!-- Bloc Sommet 2026 -->
+<a href="global-africa-tech.html" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition cursor-pointer flex gap-4 group">
+    <div class="w-20 h-20 bg-indigo-100 rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center text-indigo-600">
+        <i class="fas fa-globe-africa fa-2x"></i>
+    </div>
+    <div>
+        <h4 class="font-bold text-sm mb-1 leading-snug group-hover:text-cyan-600">Global Africa Tech 2026 : Le sommet à Alger.</h4>
+        <span class="text-[10px] text-indigo-600 font-bold uppercase">Souveraineté</span>
+    </div>
+</a>
 
                 <div onclick="openModal('Plan Numérique', 'Contenu...')" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition cursor-pointer flex gap-4">
                     <div class="w-20 h-20 bg-slate-200 rounded-xl overflow-hidden flex-shrink-0">
@@ -110,26 +111,40 @@
             </section>
 
             <!-- SECTION NATIONAL -->
-            <section id="national">
-                <div class="flex items-center justify-between mb-8">
-                    <h3 class="text-2xl font-black uppercase tracking-tighter italic">National</h3>
-                    <div class="h-[2px] flex-grow mx-4 bg-slate-200"></div>
-                </div>
-                <div class="space-y-4">
-                    <div class="group flex bg-white p-4 rounded-2xl border border-slate-100 hover:border-cyan-200 transition-all card-hover shadow-sm">
-                        <div class="w-24 h-24 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 flex-shrink-0">
-                            <i class="fas fa-rocket fa-2x"></i>
-                        </div>
-                        <div class="ml-5">
-                            <span class="text-[10px] font-bold text-orange-600 uppercase">Succès Local</span>
-                            <h4 class="font-bold text-lg leading-snug group-hover:text-cyan-600 transition">Basta-Tech révolutionne le paiement mobile local.</h4>
-                            <p class="text-xs text-slate-400 mt-1">Application de transfert de crédit sans frais...</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <!-- SECTION NATIONAL -->
+<section id="national">
+    <div class="flex items-center justify-between mb-8">
+        <h3 class="text-2xl font-black uppercase tracking-tighter italic">National</h3>
+        <div class="h-[2px] flex-grow mx-4 bg-slate-200"></div>
+    </div>
+    <div class="space-y-4">
+        <!-- NOUVEL ARTICLE : GLOBAL AFRICA TECH -->
+        <div class="group flex bg-white p-4 rounded-2xl border border-slate-100 hover:border-indigo-200 transition-all card-hover shadow-sm">
+            <div class="w-24 h-24 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 flex-shrink-0">
+                <i class="fas fa-satellite fa-2x"></i>
+            </div>
+            <div class="ml-5">
+                <span class="text-[10px] font-bold text-indigo-600 uppercase">Événement Stratégique</span>
+                <h4 class="font-bold text-lg leading-snug group-hover:text-indigo-600 transition">
+                    <a href="global-africa-tech.html">Global Africa Tech : L'avenir numérique de l'Afrique se dessine à Alger.</a>
+                </h4>
+                <p class="text-xs text-slate-400 mt-1">Souveraineté, 5G et infrastructures spatiales au programme du CIC en 2026.</p>
+            </div>
         </div>
 
+        <!-- Ton article existant Basta-Tech (gardé en dessous) -->
+        <div class="group flex bg-white p-4 rounded-2xl border border-slate-100 hover:border-cyan-200 transition-all card-hover shadow-sm opacity-75">
+            <div class="w-24 h-24 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 flex-shrink-0">
+                <i class="fas fa-rocket fa-2x"></i>
+            </div>
+            <div class="ml-5">
+                <span class="text-[10px] font-bold text-orange-600 uppercase">Succès Local</span>
+                <h4 class="font-bold text-lg leading-snug group-hover:text-cyan-600 transition">Basta-Tech révolutionne le paiement mobile local.</h4>
+            </div>
+        </div>
+    </div>
+</section>
+            
     </main>
 
     <!-- FOOTER MODERNE -->
