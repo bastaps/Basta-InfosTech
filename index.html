@@ -29,7 +29,6 @@
             </div>
 
             <div class="flex items-center space-x-4">
-                <!-- LA BARRE DE RECHERCHE -->
                 <div class="relative hidden sm:block">
                     <input type="text" id="searchInput" placeholder="Rechercher..." 
                            class="bg-slate-800 text-white text-xs rounded-full py-2 px-4 pl-10 focus:ring-2 focus:ring-cyan-500 outline-none w-32 focus:w-48 transition-all">
@@ -40,12 +39,13 @@
         </div>
     </nav>
 
-    <!-- CONTENU PRINCIPAL -->
+    <!-- CONTENU PRINCIPAL (VOTRE TEXTE EST ICI) -->
     <main class="container mx-auto px-6 py-10" id="mainContent">
         
         <!-- SECTION À LA UNE -->
         <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 searchable">
             <div class="lg:col-span-2 relative group overflow-hidden rounded-3xl shadow-2xl bg-black">
+                <!-- PHOTO PRINCIPALE -->
                 <img src="img/zerrouki-mwc.jpg" alt="Sid Ali Zerrouki" class="w-full h-[500px] object-cover opacity-80 group-hover:scale-105 transition duration-700">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent"></div>
                 <div class="absolute bottom-0 p-8 md:p-12">
@@ -75,7 +75,7 @@
             </div>
         </section>
 
-        <!-- GRILLE DES SECTIONS -->
+        <!-- GRILLE DES SECTIONS (VOTRE TEXTE INTERNATIONAL/NATIONAL) -->
         <div class="grid md:grid-cols-2 gap-12">
             <!-- MONDIAL -->
             <section id="international" class="searchable">
@@ -120,7 +120,7 @@
         <p class="text-center text-slate-500 text-[10px] uppercase tracking-widest">© 2024 Basta-InfosTech • Excellence Numérique</p>
     </footer>
 
-    <!-- SCRIPT DE RECHERCHE CORRIGÉ -->
+    <!-- SCRIPT DE RECHERCHE AVEC RÉPARATION DU BUG "PAGE VIDE" -->
     <script>
         const searchInput = document.getElementById('searchInput');
         const searchables = document.querySelectorAll('.searchable');
@@ -129,21 +129,19 @@
             const filter = searchInput.value.toLowerCase();
             searchables.forEach(el => {
                 const text = el.innerText.toLowerCase();
-                // Si le texte contient la recherche, on affiche, sinon on cache
                 el.style.display = text.includes(filter) ? "" : "none";
             });
         }
 
-        // Écoute la saisie au clavier
         searchInput.addEventListener('input', filterElements);
 
-        // RÉPARATION DU PROBLÈME "RETOUR"
-        // 'pageshow' s'exécute même quand on revient en arrière via le cache du navigateur
+        // CETTE PARTIE RÉPARE LE PROBLÈME DU RETOUR ARRIÈRE
         window.addEventListener('pageshow', function(event) {
-            // On vide la barre de recherche au retour pour éviter les bugs d'affichage vide
+            // On vide la recherche pour que tout s'affiche à nouveau
             searchInput.value = "";
-            // On s'assure que tout est visible
-            searchables.forEach(el => el.style.display = "");
+            searchables.forEach(el => {
+                el.style.display = ""; 
+            });
         });
     </script>
 </body>
