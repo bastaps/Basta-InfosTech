@@ -121,28 +121,33 @@
     </footer>
 
     <!-- SCRIPT DE RECHERCHE AVEC RÉPARATION DU BUG "PAGE VIDE" -->
-    <script>
-        const searchInput = document.getElementById('searchInput');
-        const searchables = document.querySelectorAll('.searchable');
+  <script>
+    // 1. Fonction de recherche
+    const searchInput = document.getElementById('searchInput');
+    const items = document.querySelectorAll('.searchable');
 
-        function filterElements() {
-            const filter = searchInput.value.toLowerCase();
-            searchables.forEach(el => {
-                const text = el.innerText.toLowerCase();
-                el.style.display = text.includes(filter) ? "" : "none";
-            });
-        }
-
-        searchInput.addEventListener('input', filterElements);
-
-        // CETTE PARTIE RÉPARE LE PROBLÈME DU RETOUR ARRIÈRE
-        window.addEventListener('pageshow', function(event) {
-            // On vide la recherche pour que tout s'affiche à nouveau
-            searchInput.value = "";
-            searchables.forEach(el => {
-                el.style.display = ""; 
-            });
+    function filter() {
+        const val = searchInput.value.toLowerCase();
+        items.forEach(el => {
+            el.style.display = el.innerText.toLowerCase().includes(val) ? "" : "none";
         });
-    </script>
+    }
+
+    if(searchInput) {
+        searchInput.addEventListener('input', filter);
+    }
+
+    // 2. RÉPARATION DU BUG "RETOUR" (FORCE L'AFFICHAGE)
+    function forceShowAll() {
+        if(searchInput) searchInput.value = ""; // Vide la barre de recherche
+        items.forEach(el => {
+            el.style.display = ""; // Force l'affichage de chaque bloc
+        });
+    }
+
+    // Exécute la réparation quand on arrive sur la page
+    window.addEventListener('pageshow', forceShowAll);
+    window.addEventListener('load', forceShowAll);
+</script>
 </body>
 </html>
