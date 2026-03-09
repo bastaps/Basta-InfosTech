@@ -30,7 +30,8 @@
 
             <div class="flex items-center space-x-4">
                 <div class="relative hidden sm:block">
-                    <input type="text" id="searchInput" placeholder="Rechercher..." 
+                    <!-- AJOUT DE autocomplete="off" ICI -->
+                    <input type="text" id="searchInput" placeholder="Rechercher..." autocomplete="off"
                            class="bg-slate-800 text-white text-xs rounded-full py-2 px-4 pl-10 focus:ring-2 focus:ring-cyan-500 outline-none w-32 focus:w-48 transition-all">
                     <i class="fas fa-search absolute left-3 top-2.5 text-slate-400 text-xs"></i>
                 </div>
@@ -39,13 +40,12 @@
         </div>
     </nav>
 
-    <!-- CONTENU PRINCIPAL (VOTRE TEXTE EST ICI) -->
+    <!-- CONTENU PRINCIPAL -->
     <main class="container mx-auto px-6 py-10" id="mainContent">
         
         <!-- SECTION À LA UNE -->
         <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 searchable">
             <div class="lg:col-span-2 relative group overflow-hidden rounded-3xl shadow-2xl bg-black">
-                <!-- PHOTO PRINCIPALE -->
                 <img src="img/zerrouki-mwc.jpg" alt="Sid Ali Zerrouki" class="w-full h-[500px] object-cover opacity-80 group-hover:scale-105 transition duration-700">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent"></div>
                 <div class="absolute bottom-0 p-8 md:p-12">
@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-            <!-- DERNIÈRES INFOS (SIDEBAR) -->
+            <!-- DERNIÈRES INFOS -->
             <div class="space-y-6">
                 <h3 class="text-xl font-bold border-l-4 border-cyan-500 pl-3 mb-6">DERNIÈRES INFOS</h3>
                 
@@ -75,9 +75,8 @@
             </div>
         </section>
 
-        <!-- GRILLE DES SECTIONS (VOTRE TEXTE INTERNATIONAL/NATIONAL) -->
+        <!-- GRILLE DES SECTIONS -->
         <div class="grid md:grid-cols-2 gap-12">
-            <!-- MONDIAL -->
             <section id="international" class="searchable">
                 <div class="flex items-center justify-between mb-8">
                     <h3 class="text-2xl font-black uppercase tracking-tighter italic">Mondial</h3>
@@ -93,7 +92,6 @@
                 </div>
             </section>
 
-            <!-- NATIONAL -->
             <section id="national" class="searchable">
                 <div class="flex items-center justify-between mb-8">
                     <h3 class="text-2xl font-black uppercase tracking-tighter italic">National</h3>
@@ -120,34 +118,35 @@
         <p class="text-center text-slate-500 text-[10px] uppercase tracking-widest">© 2024 Basta-InfosTech • Excellence Numérique</p>
     </footer>
 
-    <!-- SCRIPT DE RECHERCHE AVEC RÉPARATION DU BUG "PAGE VIDE" -->
-  <script>
-    // 1. Fonction de recherche
-    const searchInput = document.getElementById('searchInput');
-    const items = document.querySelectorAll('.searchable');
+    <!-- SCRIPT DE RECHERCHE CORRIGÉ -->
+    <script>
+        const input = document.getElementById('searchInput');
+        
+        function filter() {
+            const val = input.value.toLowerCase();
+            // On récupère les éléments à chaque fois pour être sûr
+            const items = document.querySelectorAll('.searchable');
+            items.forEach(el => {
+                const text = el.innerText.toLowerCase();
+                el.style.display = text.includes(val) ? "" : "none";
+            });
+        }
 
-    function filter() {
-        const val = searchInput.value.toLowerCase();
-        items.forEach(el => {
-            el.style.display = el.innerText.toLowerCase().includes(val) ? "" : "none";
+        if(input) {
+            input.addEventListener('input', filter);
+        }
+
+        // SOLUTION AU BUG "PAGE BLANCHE"
+        // On force la réinitialisation quand la page est affichée (chargement ou bouton retour)
+        window.addEventListener('pageshow', function(event) {
+            if (input) {
+                input.value = ""; // Vide la barre de recherche
+            }
+            const items = document.querySelectorAll('.searchable');
+            items.forEach(el => {
+                el.style.display = ""; // Réaffiche tout le contenu
+            });
         });
-    }
-
-    if(searchInput) {
-        searchInput.addEventListener('input', filter);
-    }
-
-    // 2. RÉPARATION DU BUG "RETOUR" (FORCE L'AFFICHAGE)
-    function forceShowAll() {
-        if(searchInput) searchInput.value = ""; // Vide la barre de recherche
-        items.forEach(el => {
-            el.style.display = ""; // Force l'affichage de chaque bloc
-        });
-    }
-
-    // Exécute la réparation quand on arrive sur la page
-    window.addEventListener('pageshow', forceShowAll);
-    window.addEventListener('load', forceShowAll);
-</script>
+    </script>
 </body>
 </html>
