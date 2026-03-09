@@ -46,7 +46,6 @@
         <!-- SECTION À LA UNE -->
         <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 searchable">
             <div class="lg:col-span-2 relative group overflow-hidden rounded-3xl shadow-2xl bg-black">
-                <!-- Lien image réparé : img/ -->
                 <img src="img/zerrouki-mwc.jpg" alt="Sid Ali Zerrouki" class="w-full h-[500px] object-cover opacity-80 group-hover:scale-105 transition duration-700">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent"></div>
                 <div class="absolute bottom-0 p-8 md:p-12">
@@ -54,7 +53,6 @@
                     <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
                         L’Algérie au cœur de l’innovation mondiale : Sid Ali Zerrouki au MWC de Barcelone
                     </h2>
-                    <!-- Lien article réparé : presse/ -->
                     <a href="presse/article-mwc.html" class="inline-flex items-center bg-white text-slate-900 px-8 py-4 rounded-full font-bold hover:bg-cyan-400 hover:text-white transition-all transform hover:scale-105">
                         LIRE L'ARTICLE COMPLET <i class="fas fa-arrow-right ml-3"></i>
                     </a>
@@ -67,7 +65,6 @@
                 
                 <a href="presse/global-africa-tech.html" class="searchable bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition cursor-pointer flex gap-4 group">
                     <div class="w-20 h-20 bg-slate-100 rounded-xl overflow-hidden flex-shrink-0">
-                        <!-- Lien image réparé : img/ -->
                         <img src="img/Sigle-global-africa-tech.jpg" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
                     </div>
                     <div>
@@ -123,20 +120,30 @@
         <p class="text-center text-slate-500 text-[10px] uppercase tracking-widest">© 2024 Basta-InfosTech • Excellence Numérique</p>
     </footer>
 
-    <!-- LE SCRIPT JAVASCRIPT POUR LA RECHERCHE -->
+    <!-- SCRIPT DE RECHERCHE CORRIGÉ -->
     <script>
-        document.getElementById('searchInput').addEventListener('keyup', function() {
-            let filter = this.value.toLowerCase();
-            let elements = document.querySelectorAll('.searchable');
-            
-            elements.forEach(el => {
-                let text = el.innerText.toLowerCase();
-                if(text.includes(filter)) {
-                    el.style.display = ""; // Affiche si trouvé
-                } else {
-                    el.style.display = "none"; // Cache si pas trouvé
-                }
+        const searchInput = document.getElementById('searchInput');
+        const searchables = document.querySelectorAll('.searchable');
+
+        function filterElements() {
+            const filter = searchInput.value.toLowerCase();
+            searchables.forEach(el => {
+                const text = el.innerText.toLowerCase();
+                // Si le texte contient la recherche, on affiche, sinon on cache
+                el.style.display = text.includes(filter) ? "" : "none";
             });
+        }
+
+        // Écoute la saisie au clavier
+        searchInput.addEventListener('input', filterElements);
+
+        // RÉPARATION DU PROBLÈME "RETOUR"
+        // 'pageshow' s'exécute même quand on revient en arrière via le cache du navigateur
+        window.addEventListener('pageshow', function(event) {
+            // On vide la barre de recherche au retour pour éviter les bugs d'affichage vide
+            searchInput.value = "";
+            // On s'assure que tout est visible
+            searchables.forEach(el => el.style.display = "");
         });
     </script>
 </body>
