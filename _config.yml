@@ -6,3 +6,4 @@ future: true
 # Force GitHub à utiliser Jekyll
 whitelist: [jekyll-feed, jekyll-seo-tag]
 future: true
+markdown: kramdown
