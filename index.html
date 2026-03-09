@@ -120,11 +120,12 @@
 
     <!-- SCRIPT DE RECHERCHE CORRIGÉ -->
     <script>
-        const input = document.getElementById('searchInput');
+    // On attend que le document soit prêt
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById('searchInput');
         
         function filter() {
-            const val = input.value.toLowerCase();
-            // On récupère les éléments à chaque fois pour être sûr
+            const val = searchInput.value.toLowerCase();
             const items = document.querySelectorAll('.searchable');
             items.forEach(el => {
                 const text = el.innerText.toLowerCase();
@@ -132,21 +133,26 @@
             });
         }
 
-        if(input) {
-            input.addEventListener('input', filter);
+        if(searchInput) {
+            searchInput.addEventListener('input', filter);
         }
 
-        // SOLUTION AU BUG "PAGE BLANCHE"
-        // On force la réinitialisation quand la page est affichée (chargement ou bouton retour)
-        window.addEventListener('pageshow', function(event) {
-            if (input) {
-                input.value = ""; // Vide la barre de recherche
-            }
+        // FORCE L'AFFICHAGE AU CHARGEMENT ET AU RETOUR
+        function resetDisplay() {
+            if (searchInput) searchInput.value = "";
             const items = document.querySelectorAll('.searchable');
             items.forEach(el => {
-                el.style.display = ""; // Réaffiche tout le contenu
+                el.style.setProperty('display', '', 'important');
+                el.style.opacity = "1";
+                el.style.visibility = "visible";
             });
-        });
-    </script>
+        }
+
+        // Se déclenche à chaque fois que la page devient visible
+        window.addEventListener('pageshow', resetDisplay);
+        window.addEventListener('load', resetDisplay);
+        resetDisplay();
+    });
+</script>
 </body>
 </html>
