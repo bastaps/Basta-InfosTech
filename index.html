@@ -11,7 +11,6 @@
         body { font-family: 'Inter', sans-serif; }
         .glass-nav { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); }
         .card-hover:hover { transform: translateY(-8px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .gradient-text { background: linear-gradient(90deg, #22d3ee, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
@@ -19,91 +18,70 @@
     <!-- NAVIGATION -->
     <nav class="glass-nav text-white sticky top-0 z-50 border-b border-slate-700">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-black tracking-tighter">
+            <a href="index.html" class="text-2xl font-black tracking-tighter">
                 <span class="text-cyan-400">BASTA</span><span class="text-slate-200">-INFOTECH</span>
             </a>
-     <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
-    <a href="#international" class="hover:text-cyan-400 transition">International</a>
-    <a href="#national" class="hover:text-cyan-400 transition">National</a>
-    <a href="#innovation" class="hover:text-cyan-400 transition">Innovation</a>
-    <a href="global-africa-tech.html" class="text-cyan-400 font-bold hover:text-white transition">Sommet 2026 🚀</a>
-</div>
+            
+            <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
+                <a href="#international" class="hover:text-cyan-400 transition">International</a>
+                <a href="#national" class="hover:text-cyan-400 transition">National</a>
+                <a href="presse/global-africa-tech.html" class="text-cyan-400 font-bold hover:text-white transition">Sommet 2026 🚀</a>
+            </div>
+
             <div class="flex items-center space-x-4">
-                <i class="fas fa-search text-slate-400 cursor-pointer hover:text-white"></i>
+                <!-- LA BARRE DE RECHERCHE -->
+                <div class="relative hidden sm:block">
+                    <input type="text" id="searchInput" placeholder="Rechercher..." 
+                           class="bg-slate-800 text-white text-xs rounded-full py-2 px-4 pl-10 focus:ring-2 focus:ring-cyan-500 outline-none w-32 focus:w-48 transition-all">
+                    <i class="fas fa-search absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                </div>
                 <button class="bg-cyan-600 hover:bg-cyan-500 px-4 py-2 rounded-full text-xs font-bold transition">S'ABONNER</button>
             </div>
         </div>
     </nav>
 
-    <!-- MAIN CONTENT -->
-    <main class="container mx-auto px-6 py-10">
+    <!-- CONTENU PRINCIPAL -->
+    <main class="container mx-auto px-6 py-10" id="mainContent">
         
-        <!-- TOP HERO SECTION (À LA UNE) -->
-        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        <!-- SECTION À LA UNE -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 searchable">
             <div class="lg:col-span-2 relative group overflow-hidden rounded-3xl shadow-2xl bg-black">
-                <img src="zerrouki-mwc.jpg" alt="Sid Ali Zerrouki" class="w-full h-[500px] object-cover opacity-80 group-hover:scale-105 transition duration-700">
+                <!-- Lien image réparé : img/ -->
+                <img src="img/zerrouki-mwc.jpg" alt="Sid Ali Zerrouki" class="w-full h-[500px] object-cover opacity-80 group-hover:scale-105 transition duration-700">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent"></div>
                 <div class="absolute bottom-0 p-8 md:p-12">
                     <span class="bg-cyan-500 text-white px-4 py-1 rounded-full text-xs font-bold mb-4 inline-block">À LA UNE</span>
                     <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
                         L’Algérie au cœur de l’innovation mondiale : Sid Ali Zerrouki au MWC de Barcelone
                     </h2>
-                    <a href="article-mwc.html" class="inline-flex items-center bg-white text-slate-900 px-8 py-4 rounded-full font-bold hover:bg-cyan-400 hover:text-white transition-all transform hover:scale-105">
+                    <!-- Lien article réparé : presse/ -->
+                    <a href="presse/article-mwc.html" class="inline-flex items-center bg-white text-slate-900 px-8 py-4 rounded-full font-bold hover:bg-cyan-400 hover:text-white transition-all transform hover:scale-105">
                         LIRE L'ARTICLE COMPLET <i class="fas fa-arrow-right ml-3"></i>
                     </a>
                 </div>
             </div>
 
-            <!-- SIDEBAR NEWS -->
+            <!-- DERNIÈRES INFOS (SIDEBAR) -->
             <div class="space-y-6">
                 <h3 class="text-xl font-bold border-l-4 border-cyan-500 pl-3 mb-6">DERNIÈRES INFOS</h3>
                 
-                <!-- DÉBUT BLOC GLOBAL AFRICA TECH -->
-<a href="global-africa-tech.html" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition cursor-pointer flex gap-4 group mb-6">
-    <div class="w-20 h-20 bg-slate-100 rounded-xl overflow-hidden flex-shrink-0">
-        <img src="Sigle-global-africa-tech.jpg" alt="Logo GAT" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
-    </div>
-    <div>
-        <h4 class="font-bold text-sm mb-1 leading-snug group-hover:text-cyan-600">Global Africa Tech 2026 : Le sommet à Alger.</h4>
-        <span class="text-[10px] text-indigo-600 font-bold uppercase">Souveraineté</span>
-    </div>
-</a>
-<!-- FIN BLOC GLOBAL AFRICA TECH -->
-              <!-- Bloc Sommet 2026 -->
-<a href="global-africa-tech.html" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition cursor-pointer flex gap-4 group">
-    <div class="w-20 h-20 bg-indigo-100 rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center text-indigo-600">
-        <i class="fas fa-globe-africa fa-2x"></i>
-    </div>
-    <div>
-        <h4 class="font-bold text-sm mb-1 leading-snug group-hover:text-cyan-600">Global Africa Tech 2026 : Le sommet à Alger.</h4>
-        <span class="text-[10px] text-indigo-600 font-bold uppercase">Souveraineté</span>
-    </div>
-</a>
-
-                <div onclick="openModal('Plan Numérique', 'Contenu...')" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition cursor-pointer flex gap-4">
-                    <div class="w-20 h-20 bg-slate-200 rounded-xl overflow-hidden flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=150" class="object-cover h-full w-full">
+                <a href="presse/global-africa-tech.html" class="searchable bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition cursor-pointer flex gap-4 group">
+                    <div class="w-20 h-20 bg-slate-100 rounded-xl overflow-hidden flex-shrink-0">
+                        <!-- Lien image réparé : img/ -->
+                        <img src="img/Sigle-global-africa-tech.jpg" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
                     </div>
                     <div>
-                        <h4 class="font-bold text-sm mb-1 leading-snug">Plan National : 50M$ pour les startups.</h4>
-                        <span class="text-[10px] text-green-600 font-bold uppercase">National</span>
+                        <h4 class="font-bold text-sm mb-1 leading-snug group-hover:text-cyan-600">Global Africa Tech 2026 : Le sommet à Alger.</h4>
+                        <span class="text-[10px] text-indigo-600 font-bold uppercase">Souveraineté</span>
                     </div>
-                </div>
-
-                <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-3xl text-white">
-                    <h4 class="font-bold mb-2">Newsletter</h4>
-                    <p class="text-xs text-slate-400 mb-4">Recevez le meilleur de la tech chaque matin.</p>
-                    <input type="email" placeholder="votre@email.com" class="w-full bg-slate-700 border-none rounded-lg px-4 py-2 text-sm mb-3 focus:ring-2 focus:ring-cyan-500">
-                    <button class="w-full bg-cyan-600 py-2 rounded-lg text-sm font-bold">S'INSCRIRE</button>
-                </div>
+                </a>
             </div>
         </section>
 
-        <!-- SECTIONS GRID -->
+        <!-- GRILLE DES SECTIONS -->
         <div class="grid md:grid-cols-2 gap-12">
-            
-            <!-- SECTION INTERNATIONAL -->
-            <section id="international">
+            <!-- MONDIAL -->
+            <section id="international" class="searchable">
                 <div class="flex items-center justify-between mb-8">
                     <h3 class="text-2xl font-black uppercase tracking-tighter italic">Mondial</h3>
                     <div class="h-[2px] flex-grow mx-4 bg-slate-200"></div>
@@ -113,107 +91,53 @@
                     <div class="p-6">
                         <span class="text-cyan-600 text-xs font-bold">CYBERSÉCURITÉ</span>
                         <h4 class="text-xl font-bold mt-2 mb-3 leading-tight">Vague d'attaques DDoS sur les serveurs DNS.</h4>
-                        <p class="text-slate-500 text-sm mb-4">Les experts alertent sur une faille critique touchant les protocoles mondiaux...</p>
-                        <button onclick="openModal('Cyber-Attaque', 'Contenu détaillé...')" class="text-slate-900 font-bold text-sm flex items-center hover:text-cyan-600 transition">
-                            LIRE LA SUITE <i class="fas fa-chevron-right ml-2 text-xs"></i>
-                        </button>
+                        <p class="text-slate-500 text-sm mb-4">Les experts alertent sur une faille critique...</p>
                     </div>
                 </div>
             </section>
 
-            <!-- SECTION NATIONAL -->
-            <!-- SECTION NATIONAL -->
-<section id="national">
-    <div class="flex items-center justify-between mb-8">
-        <h3 class="text-2xl font-black uppercase tracking-tighter italic">National</h3>
-        <div class="h-[2px] flex-grow mx-4 bg-slate-200"></div>
-    </div>
-    <div class="space-y-4">
-        <!-- NOUVEL ARTICLE : GLOBAL AFRICA TECH -->
-        <div class="group flex bg-white p-4 rounded-2xl border border-slate-100 hover:border-indigo-200 transition-all card-hover shadow-sm">
-            <div class="w-24 h-24 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 flex-shrink-0">
-                <i class="fas fa-satellite fa-2x"></i>
-            </div>
-            <div class="ml-5">
-                <span class="text-[10px] font-bold text-indigo-600 uppercase">Événement Stratégique</span>
-                <h4 class="font-bold text-lg leading-snug group-hover:text-indigo-600 transition">
-                    <a href="global-africa-tech.html">Global Africa Tech : L'avenir numérique de l'Afrique se dessine à Alger.</a>
-                </h4>
-                <p class="text-xs text-slate-400 mt-1">Souveraineté, 5G et infrastructures spatiales au programme du CIC en 2026.</p>
-            </div>
-        </div>
-
-        <!-- Ton article existant Basta-Tech (gardé en dessous) -->
-        <div class="group flex bg-white p-4 rounded-2xl border border-slate-100 hover:border-cyan-200 transition-all card-hover shadow-sm opacity-75">
-            <div class="w-24 h-24 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 flex-shrink-0">
-                <i class="fas fa-rocket fa-2x"></i>
-            </div>
-            <div class="ml-5">
-                <span class="text-[10px] font-bold text-orange-600 uppercase">Succès Local</span>
-                <h4 class="font-bold text-lg leading-snug group-hover:text-cyan-600 transition">Basta-Tech révolutionne le paiement mobile local.</h4>
-            </div>
-        </div>
-    </div>
-</section>
-            
-    </main>
-
-    <!-- FOOTER MODERNE -->
-    <footer class="bg-slate-900 text-white pt-20 pb-10">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12 mb-16 border-b border-slate-800 pb-16">
-                <div class="col-span-1 md:col-span-2">
-                    <h2 class="text-3xl font-black mb-6 italic"><span class="text-cyan-400">BASTA</span>-INFOTECH</h2>
-                    <p class="text-slate-400 max-w-sm">Le média qui décrypte l'actualité technologique pour une Afrique connectée et souveraine.</p>
+            <!-- NATIONAL -->
+            <section id="national" class="searchable">
+                <div class="flex items-center justify-between mb-8">
+                    <h3 class="text-2xl font-black uppercase tracking-tighter italic">National</h3>
+                    <div class="h-[2px] flex-grow mx-4 bg-slate-200"></div>
                 </div>
-                <div>
-                    <h4 class="font-bold mb-6 uppercase text-xs tracking-widest text-slate-500">Navigation</h4>
-                    <ul class="space-y-4 text-sm text-slate-400 font-medium">
-                        <li><a href="#" class="hover:text-cyan-400 transition">Accueil</a></li>
-                        <li><a href="#international" class="hover:text-cyan-400 transition">Monde</a></li>
-                        <li><a href="#national" class="hover:text-cyan-400 transition">Algérie</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-6 uppercase text-xs tracking-widest text-slate-500">Suivez-nous</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-cyan-600 transition"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-cyan-600 transition"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-cyan-600 transition"><i class="fab fa-linkedin-in"></i></a>
+                <div class="space-y-4">
+                    <div class="group flex bg-white p-4 rounded-2xl border border-slate-100 hover:border-indigo-200 transition-all card-hover shadow-sm">
+                        <div class="w-24 h-24 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 flex-shrink-0">
+                            <i class="fas fa-satellite fa-2x"></i>
+                        </div>
+                        <div class="ml-5">
+                            <span class="text-[10px] font-bold text-indigo-600 uppercase">Événement Stratégique</span>
+                            <h4 class="font-bold text-lg leading-snug group-hover:text-indigo-600 transition">
+                                <a href="presse/global-africa-tech.html">Global Africa Tech : Alger 2026.</a>
+                            </h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <p class="text-center text-slate-500 text-[10px] uppercase tracking-widest">© 2024 Basta-InfosTech • Conçu avec passion.</p>
+            </section>
         </div>
+    </main>
+
+    <footer class="bg-slate-900 text-white pt-10 pb-10">
+        <p class="text-center text-slate-500 text-[10px] uppercase tracking-widest">© 2024 Basta-InfosTech • Excellence Numérique</p>
     </footer>
 
-    <!-- MODAL (Même logique que précédemment) -->
-    <div id="articleModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/90 backdrop-blur-md">
-        <div class="bg-white w-full max-w-xl rounded-3xl overflow-hidden shadow-2xl">
-            <div class="p-6 border-b flex justify-between items-center bg-slate-50">
-                <h3 id="modalTitle" class="font-black text-slate-900 uppercase italic">Titre</h3>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-red-500 transition text-2xl">&times;</button>
-            </div>
-            <div class="p-8">
-                <p id="modalContent" class="text-slate-600 leading-relaxed"></p>
-                <button onclick="closeModal()" class="mt-8 w-full bg-slate-900 text-white py-3 rounded-xl font-bold hover:bg-cyan-600 transition">FERMER</button>
-            </div>
-        </div>
-    </div>
-
+    <!-- LE SCRIPT JAVASCRIPT POUR LA RECHERCHE -->
     <script>
-        function openModal(title, text) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalContent').innerText = text;
-            document.getElementById('articleModal').classList.add('flex');
-            document.getElementById('articleModal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeModal() {
-            document.getElementById('articleModal').classList.add('hidden');
-            document.getElementById('articleModal').classList.remove('flex');
-            document.body.style.overflow = 'auto';
-        }
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let filter = this.value.toLowerCase();
+            let elements = document.querySelectorAll('.searchable');
+            
+            elements.forEach(el => {
+                let text = el.innerText.toLowerCase();
+                if(text.includes(filter)) {
+                    el.style.display = ""; // Affiche si trouvé
+                } else {
+                    el.style.display = "none"; // Cache si pas trouvé
+                }
+            });
+        });
     </script>
 </body>
 </html>
