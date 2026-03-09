@@ -3,236 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Africa Tech 2026 - Basta-InfosTech</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome pour les icônes -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <title>Article : Global Africa Tech 2026 - Alger</title>
     <style>
         :root {
-            --primary: #6366f1; /* Violet Tech */
-            --secondary: #06b6d4; /* Bleu Cyan */
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --gray: #64748b;
+            --primary-color: #6b46c1; /* Violet institutionnel */
+            --dark-color: #1a202c;
+            --light-bg: #f7fafc;
+            --text-gray: #4a5568;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: #ffffff;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: var(--dark-color);
             margin: 0;
             padding: 0;
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--dark) 0%, #1e1b4b 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
+            background-color: var(--light-bg);
         }
 
         .container {
-            max-width: 900px;
-            margin: -3rem auto 3rem;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
             background: white;
-            padding: 3rem;
-            border-radius: 1rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-radius: 8px;
         }
 
-        .badge {
-            background: var(--primary);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.8rem;
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
             font-weight: bold;
-            text-transform: uppercase;
+        }
+
+        header {
+            border-bottom: 2px solid #edf2f7;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
         }
 
         h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-top: 1.5rem;
-            color: var(--dark);
+            font-size: 2.2em;
             line-height: 1.2;
+            color: var(--dark-color);
+            margin-top: 10px;
         }
 
-        .meta {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 1rem;
+        .article-meta {
+            color: var(--text-gray);
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .intro {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--primary);
-            margin-bottom: 2rem;
+        .featured-image {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin: 20px 0 30px 0;
         }
 
-        /* Grille des 4 piliers */
-        .pillars-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-
-        .pillar-card {
-            background: var(--light);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            border-left: 4px solid var(--secondary);
-        }
-
-        .pillar-card i {
-            font-size: 1.5rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-
-        .pillar-card h3 {
-            margin: 0;
-            font-size: 1.1rem;
-        }
-
-        /* Stats */
-        .stats-bar {
-            display: flex;
-            justify-content: space-around;
-            background: var(--dark);
-            color: white;
-            padding: 2rem;
-            border-radius: 0.75rem;
-            margin: 3rem 0;
-            text-align: center;
-        }
-
-        .stat-item span {
-            display: block;
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--secondary);
-        }
-
-        .cta-box {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            padding: 2.5rem;
-            border-radius: 1rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background: white;
-            color: var(--primary);
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
+        .lead {
+            font-size: 1.2em;
             font-weight: bold;
-            margin-top: 1rem;
-            transition: transform 0.2s;
+            color: var(--dark-color);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 20px;
+            margin-bottom: 30px;
         }
 
-        .btn:hover {
-            transform: scale(1.05);
+        h2 {
+            color: var(--primary-color);
+            margin-top: 40px;
+            font-size: 1.6em;
         }
 
-        @media (max-width: 768px) {
-            .container { padding: 1.5rem; margin-top: -1rem; }
-            h1 { font-size: 1.8rem; }
-            .stats-bar { flex-direction: column; gap: 1.5rem; }
+        .pillar-list {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            list-style: none;
+        }
+
+        .pillar-list li {
+            margin-bottom: 15px;
+        }
+
+        .pillar-list strong {
+            color: var(--primary-color);
+        }
+
+        .stats-highlight {
+            background: var(--dark-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #edf2f7;
+            font-size: 0.9em;
+            color: var(--text-gray);
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; margin: 10px; }
+            h1 { font-size: 1.6em; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="badge">Événement Tech 2026</div>
-    <h1>Global Africa Tech 2026 : Alger devient la capitale de la souveraineté numérique africaine</h1>
-</header>
-
 <div class="container">
-    <div class="meta">
-        <i class="far fa-calendar-alt"></i> 8 Mars 2026 | 
-        <i class="fas fa-map-marker-alt"></i> Alger, Algérie |
-        <i class="fas fa-user"></i> Par Basta-InfosTech
+    <a href="../index.html" class="back-link">← Retour à l'accueil</a>
+
+    <header>
+        <div class="article-meta">Communiqué de Presse | Mars 2026</div>
+        <h1>Global Africa Tech 2026 : Alger devient la capitale de la souveraineté numérique africaine</h1>
+    </header>
+
+    <!-- Photo insérée ici -->
+    <img src="../img/Sigle-global-africa-tech.jpg" alt="Sigle Global Africa Tech" class="featured-image">
+
+    <div class="lead">
+        Du 28 au 30 mars 2026, le Centre International des Conférences (CIC) d’Alger accueillera le sommet « Global Africa Tech ». Un événement stratégique pour l’autonomie technologique du continent.
     </div>
 
-    <p class="intro">
-        Du 28 au 30 mars 2026, le Centre International des Conférences (CIC) d’Alger accueillera le Sommet « Global Africa Tech ». Un événement historique pour l'autonomie technologique du continent.
-    </p>
+    <p>« Tous les réseaux, une seule convergence. » Le ton est donné. Alors que les télécommunications sont devenues un enjeu géopolitique majeur, l’Afrique entend reprendre le contrôle de son destin numérique. Le sommet Global Africa Tech 2026, organisé sous le haut patronage de la Présidence de la République, se fixe une mission claire : aligner les politiques publiques et l’innovation autour d’une vision africaine commune.</p>
 
-    <p>
-        À l’heure où la maîtrise des données devient un enjeu géopolitique majeur, l’Afrique s’apprête à franchir une étape décisive. Sous le slogan <strong>« Tous les réseaux, une seule convergence »</strong>, ce sommet réunira plus de 5 000 participants.
-    </p>
-
-    <h2>Une architecture en quatre piliers</h2>
-    <div class="pillars-grid">
-        <div class="pillar-card">
-            <i class="fas fa-mountain"></i>
-            <h3>TERRE</h3>
-            <p>Fibre optique, 5G et Data Centers régionaux.</p>
-        </div>
-        <div class="pillar-card">
-            <i class="fas fa-plane"></i>
-            <h3>AIR</h3>
-            <p>Satellites de communication et connectivité 5G.</p>
-        </div>
-        <div class="pillar-card">
-            <i class="fas fa-anchor"></i>
-            <h3>MER</h3>
-            <p>Résilience des câbles sous-marins et ports intelligents.</p>
-        </div>
-        <div class="pillar-card">
-            <i class="fas fa-rocket"></i>
-            <h3>ESPACE</h3>
-            <h3>CONVERGENCE</h3>
-            <p>Intégration stratégique Terre-Air-Mer.</p>
-        </div>
-    </div>
-
-    <div class="stats-bar">
-        <div class="stat-item">
-            <span>50</span>
-            Ministres
-        </div>
-        <div class="stat-item">
-            <span>5000+</span>
-            Participants
-        </div>
-        <div class="stat-item">
-            <span>45</span>
-            Pays
-        </div>
-        <div class="stat-item">
-            <span>150</span>
-            Experts
-        </div>
-    </div>
+    <h2>Une architecture structurée en quatre piliers</h2>
+    <p>Pour répondre aux défis de la connectivité, le sommet s'articule autour de l’intégration <strong>« Terre-Air-Mer-Espace »</strong> :</p>
+    
+    <ul class="pillar-list">
+        <li><strong>01. AIR :</strong> Développement de satellites africains et coopération sous l’égide de l’Agence spatiale africaine.</li>
+        <li><strong>02. MER :</strong> Sécurité des câbles sous-marins et transformation des ports en zones connectées.</li>
+        <li><strong>03. TERRE :</strong> Corridors panafricains de fibre optique et connectivité rurale inclusive.</li>
+        <li><strong>04. ESPACE :</strong> Interopérabilité totale entre les réseaux pour garantir une souveraineté à long terme.</li>
+    </ul>
 
     <h2>Un rassemblement de haut niveau</h2>
-    <p>
-        Piloté par le <strong>Ministère de la Poste et des Télécommunications</strong> algérien, l'événement verra la participation de figures clés comme <strong>Sid Ali Zerrouki</strong> (Ministre), <strong>Hassanein Hiridjee</strong> (Groupe AXIAN) et <strong>Lacina Koné</strong> (Smart Africa).
-    </p>
-
-    <div class="cta-box">
-        <h3>Rejoignez la conversation numérique</h3>
-        <p>Ne manquez pas ce tournant historique pour la technologie africaine.</p>
-        <a href="https://register.globalafricatech.com/fr" class="btn" target="_blank">S'inscrire au Sommet</a>
+    <p>L’ampleur de l’événement se reflète dans les chiffres annoncés : plus de <strong>5 000 participants</strong> en provenance de 45 pays sont attendus. Le sommet réunira un collège décisionnel sans précédent :</p>
+    
+    <div class="stats-highlight">
+        <strong>50 MINISTRES AFRICAINS</strong><br>
+        10 Institutions Internationales | 150 Experts Mondiaux
     </div>
 
-    <div style="margin-top: 3rem; text-align: center; color: var(--gray); font-size: 0.8rem;">
-        <a href="../index.html" style="color: var(--primary);">← Retour à Basta-InfosTech</a>
-    </div>
+    <p>Parmi les intervenants de prestige, on retrouve <strong>M. Sid Ali Zerrouki</strong>, Ministre de la Poste et des Télécommunications, ainsi que des dirigeants de Smart Africa et du Groupe AXIAN.</p>
+
+    <h2>Trois jours pour dessiner l’avenir</h2>
+    <p>Le programme couvrira l'ensemble de l'écosystème : les réseaux terrestres (Jour 1), la 5G et les satellites (Jour 2), pour finir sur les câbles sous-marins et les villes intelligentes (Jour 3). L’objectif final est l'établissement d'un <strong>Plan d’Action Continental</strong>.</p>
+
+    <footer>
+        <p><strong>Informations pratiques :</strong><br>
+        Global Africa Tech 2026 | 28-30 Mars 2026 | CIC Alger, Algérie<br>
+        Site officiel : <a href="https://globalafricatech.com" style="color:var(--primary-color);">globalafricatech.com</a></p>
+    </footer>
 </div>
 
 </body>
