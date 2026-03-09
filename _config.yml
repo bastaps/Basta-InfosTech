@@ -1,0 +1,15 @@
+# Configuration de Basta-InfosTech
+title: Basta-InfosTech
+email: ton-email@exemple.com
+description: Excellence Numérique et Actualités Tech.
+
+# Paramètres importants pour tes dossiers
+include: [presse, img]
+encoding: "utf-8"
+
+# Configuration des liens
+baseurl: "" # Laisse vide si ton site est sur basta-infostech.github.io
+url: "https://votre-pseudo.github.io" # Remplace par ton URL GitHub Pages
+
+# Markdown engine
+markdown: kramdown
