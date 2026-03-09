@@ -1,7 +1,10 @@
 ---
 layout: article
-title: "Tech4Connect : Immersion au cœur de l'innovation et des technologies de demain"
-image: "../img/huawei-connect.jpg"
+title: "Tech4Connect Hackathon : L'innovation pour l'inclusion"
+date: 2026-03-09
+image: ../img/huawei-connect.jpg
+category: National
+description: "Le hackathon Tech4Connect a réuni les meilleurs talents..."
 ---
 
 ### Le voyage vers l'innovation commence ici
