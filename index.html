@@ -1,3 +1,6 @@
+---
+layout: default
+---
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,19 +21,18 @@
     <!-- NAVIGATION -->
     <nav class="glass-nav text-white sticky top-0 z-50 border-b border-slate-700">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-black tracking-tighter">
+            <a href="{{ '/' | relative_url }}" class="text-2xl font-black tracking-tighter">
                 <span class="text-cyan-400">BASTA</span><span class="text-slate-200">-INFOTECH</span>
             </a>
             
             <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
                 <a href="#international" class="hover:text-cyan-400 transition">International</a>
                 <a href="#national" class="hover:text-cyan-400 transition">National</a>
-                <a href="presse/global-africa-tech.html" class="text-cyan-400 font-bold hover:text-white transition">Sommet 2026 🚀</a>
+                <a href="#" class="text-cyan-400 font-bold hover:text-white transition">Sommet 2026 🚀</a>
             </div>
 
             <div class="flex items-center space-x-4">
                 <div class="relative hidden sm:block">
-                    <!-- AJOUT DE autocomplete="off" ICI -->
                     <input type="text" id="searchInput" placeholder="Rechercher..." autocomplete="off"
                            class="bg-slate-800 text-white text-xs rounded-full py-2 px-4 pl-10 focus:ring-2 focus:ring-cyan-500 outline-none w-32 focus:w-48 transition-all">
                     <i class="fas fa-search absolute left-3 top-2.5 text-slate-400 text-xs"></i>
@@ -40,75 +42,95 @@
         </div>
     </nav>
 
-    <!-- CONTENU PRINCIPAL -->
+    <!-- PRÉPARATION DES DONNÉES JEKYLL -->
+    {% assign all_articles = site.pages | where_exp: "item", "item.path contains 'presse/'" | sort: 'date' | reverse %}
+
     <main class="container mx-auto px-6 py-10" id="mainContent">
         
-        <!-- SECTION À LA UNE -->
-        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 searchable">
-            <div class="lg:col-span-2 relative group overflow-hidden rounded-3xl shadow-2xl bg-black">
-                <img src="img/zerrouki-mwc.jpg" alt="Sid Ali Zerrouki" class="w-full h-[500px] object-cover opacity-80 group-hover:scale-105 transition duration-700">
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            
+            <!-- ARTICLE À LA UNE (Le plus récent) -->
+            {% assign featured = all_articles[0] %}
+            <div class="lg:col-span-2 relative group overflow-hidden rounded-3xl shadow-2xl bg-black searchable">
+                {% if featured.image %}
+                <img src="{{ featured.image | relative_url }}" alt="{{ featured.title }}" class="w-full h-[500px] object-cover opacity-80 group-hover:scale-105 transition duration-700">
+                {% endif %}
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent"></div>
                 <div class="absolute bottom-0 p-8 md:p-12">
                     <span class="bg-cyan-500 text-white px-4 py-1 rounded-full text-xs font-bold mb-4 inline-block">À LA UNE</span>
                     <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
-                        L’Algérie au cœur de l’innovation mondiale : Sid Ali Zerrouki au MWC de Barcelone
+                        {{ featured.title }}
                     </h2>
-                    <a href="presse/article-mwc.html" class="inline-flex items-center bg-white text-slate-900 px-8 py-4 rounded-full font-bold hover:bg-cyan-400 hover:text-white transition-all transform hover:scale-105">
+                    <a href="{{ featured.url | relative_url }}" class="inline-flex items-center bg-white text-slate-900 px-8 py-4 rounded-full font-bold hover:bg-cyan-400 hover:text-white transition-all transform hover:scale-105">
                         LIRE L'ARTICLE COMPLET <i class="fas fa-arrow-right ml-3"></i>
                     </a>
                 </div>
             </div>
 
-            <!-- DERNIÈRES INFOS -->
+            <!-- COLONNE "DERNIÈRES INFOS" (Les suivants) -->
             <div class="space-y-6">
                 <h3 class="text-xl font-bold border-l-4 border-cyan-500 pl-3 mb-6">DERNIÈRES INFOS</h3>
                 
-                <a href="presse/global-africa-tech.html" class="searchable bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition cursor-pointer flex gap-4 group">
+                {% for article in all_articles offset:1 limit:4 %}
+                <a href="{{ article.url | relative_url }}" class="searchable bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition cursor-pointer flex gap-4 group">
                     <div class="w-20 h-20 bg-slate-100 rounded-xl overflow-hidden flex-shrink-0">
-                        <img src="img/Sigle-global-africa-tech.jpg" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
+                        <img src="{{ article.image | relative_url }}" class="object-cover h-full w-full group-hover:scale-110 transition duration-500">
                     </div>
                     <div>
-                        <h4 class="font-bold text-sm mb-1 leading-snug group-hover:text-cyan-600">Global Africa Tech 2026 : Le sommet à Alger.</h4>
-                        <span class="text-[10px] text-indigo-600 font-bold uppercase">Souveraineté</span>
+                        <h4 class="font-bold text-sm mb-1 leading-snug group-hover:text-cyan-600">{{ article.title }}</h4>
+                        <span class="text-[10px] text-indigo-600 font-bold uppercase">{{ article.date | date: "%d/%m/%Y" }}</span>
                     </div>
                 </a>
+                {% endfor %}
             </div>
         </section>
 
-        <!-- GRILLE DES SECTIONS -->
+        <!-- GRILLE DES SECTIONS PAR CATÉGORIE -->
         <div class="grid md:grid-cols-2 gap-12">
-            <section id="international" class="searchable">
+            
+            <!-- SECTION MONDIAL -->
+            <section id="international">
                 <div class="flex items-center justify-between mb-8">
                     <h3 class="text-2xl font-black uppercase tracking-tighter italic">Mondial</h3>
                     <div class="h-[2px] flex-grow mx-4 bg-slate-200"></div>
                 </div>
-                <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden card-hover">
-                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-cyan-600 text-xs font-bold">CYBERSÉCURITÉ</span>
-                        <h4 class="text-xl font-bold mt-2 mb-3 leading-tight">Vague d'attaques DDoS sur les serveurs DNS.</h4>
-                        <p class="text-slate-500 text-sm mb-4">Les experts alertent sur une faille critique...</p>
-                    </div>
+                <div class="space-y-4">
+                    {% for article in all_articles %}
+                        {% if article.category == "International" %}
+                        <div class="searchable bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden card-hover mb-6">
+                            <img src="{{ article.image | relative_url }}" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h4 class="text-xl font-bold mt-2 mb-3 leading-tight"><a href="{{ article.url | relative_url }}">{{ article.title }}</a></h4>
+                                <p class="text-slate-500 text-sm mb-4">{{ article.description | truncate: 120 }}</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </section>
 
-            <section id="national" class="searchable">
+            <!-- SECTION NATIONAL -->
+            <section id="national">
                 <div class="flex items-center justify-between mb-8">
                     <h3 class="text-2xl font-black uppercase tracking-tighter italic">National</h3>
                     <div class="h-[2px] flex-grow mx-4 bg-slate-200"></div>
                 </div>
                 <div class="space-y-4">
-                    <div class="group flex bg-white p-4 rounded-2xl border border-slate-100 hover:border-indigo-200 transition-all card-hover shadow-sm">
-                        <div class="w-24 h-24 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 flex-shrink-0">
-                            <i class="fas fa-satellite fa-2x"></i>
+                    {% for article in all_articles %}
+                        {% if article.category == "National" %}
+                        <div class="searchable group flex bg-white p-4 rounded-2xl border border-slate-100 hover:border-indigo-200 transition-all card-hover shadow-sm">
+                            <div class="w-24 h-24 bg-indigo-50 rounded-2xl overflow-hidden flex items-center justify-center text-indigo-600 flex-shrink-0">
+                                <img src="{{ article.image | relative_url }}" class="object-cover h-full w-full">
+                            </div>
+                            <div class="ml-5">
+                                <span class="text-[10px] font-bold text-indigo-600 uppercase">{{ article.date | date: "%d/%m/%Y" }}</span>
+                                <h4 class="font-bold text-lg leading-snug group-hover:text-indigo-600 transition">
+                                    <a href="{{ article.url | relative_url }}">{{ article.title }}</a>
+                                </h4>
+                            </div>
                         </div>
-                        <div class="ml-5">
-                            <span class="text-[10px] font-bold text-indigo-600 uppercase">Événement Stratégique</span>
-                            <h4 class="font-bold text-lg leading-snug group-hover:text-indigo-600 transition">
-                                <a href="presse/global-africa-tech.html">Global Africa Tech : Alger 2026.</a>
-                            </h4>
-                        </div>
-                    </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </section>
         </div>
@@ -118,12 +140,10 @@
         <p class="text-center text-slate-500 text-[10px] uppercase tracking-widest">© 2024 Basta-InfosTech • Excellence Numérique</p>
     </footer>
 
-    <!-- SCRIPT DE RECHERCHE CORRIGÉ -->
+    <!-- SCRIPT DE RECHERCHE -->
     <script>
-    // On attend que le document soit prêt
     document.addEventListener("DOMContentLoaded", function() {
         const searchInput = document.getElementById('searchInput');
-        
         function filter() {
             const val = searchInput.value.toLowerCase();
             const items = document.querySelectorAll('.searchable');
@@ -132,27 +152,8 @@
                 el.style.display = text.includes(val) ? "" : "none";
             });
         }
-
-        if(searchInput) {
-            searchInput.addEventListener('input', filter);
-        }
-
-        // FORCE L'AFFICHAGE AU CHARGEMENT ET AU RETOUR
-        function resetDisplay() {
-            if (searchInput) searchInput.value = "";
-            const items = document.querySelectorAll('.searchable');
-            items.forEach(el => {
-                el.style.setProperty('display', '', 'important');
-                el.style.opacity = "1";
-                el.style.visibility = "visible";
-            });
-        }
-
-        // Se déclenche à chaque fois que la page devient visible
-        window.addEventListener('pageshow', resetDisplay);
-        window.addEventListener('load', resetDisplay);
-        resetDisplay();
+        if(searchInput) { searchInput.addEventListener('input', filter); }
     });
-</script>
+    </script>
 </body>
 </html>
