@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | Basta-InfosTech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; background-color: #f8fafc; }
+        .article-content img { border-radius: 1rem; margin: 2rem auto; display: block; max-width: 100%; height: auto; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .article-content h2 { font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-top: 2.5rem; margin-bottom: 1rem; }
+        .article-content p { margin-bottom: 1.5rem; color: #334155; font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="bg-slate-900 text-white p-5 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{{ '/' | relative_url }}" class="text-2xl font-black text-cyan-400 italic uppercase">BASTA-INFOTECH</a>
+            <a href="{{ '/' | relative_url }}" class="text-xs font-bold uppercase bg-slate-800 px-4 py-2 rounded-full hover:bg-cyan-600 transition">
+                <i class="fas fa-home mr-2"></i> Accueil
+            </a>
+        </div>
+    </nav>
+
+    <!-- EN-TÊTE -->
+    <header class="bg-slate-900 text-white pt-20 pb-24 px-6 text-center">
+        <div class="container mx-auto max-w-3xl">
+            <span class="bg-cyan-500 text-white text-[10px] font-black px-4 py-1 rounded-full uppercase">{{ page.category }}</span>
+            <h1 class="text-4xl md:text-5xl font-black mt-6 mb-4">{{ page.title }}</h1>
+            <p class="text-slate-400 text-sm italic">Publié le {{ page.date | date: "%d/%m/%Y" }}</p>
+        </div>
+    </header>
+
+    <!-- ARTICLE -->
+    <article class="container mx-auto max-w-3xl px-6 -mt-12 mb-20">
+        <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-100">
+            
+            {% if page.image %}
+            <div class="mb-10 -mt-20 shadow-2xl rounded-2xl overflow-hidden border-4 border-white">
+                <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="w-full">
+            </div>
+            {% endif %}
+
+            <!-- ICI LE TEXTE DE TON ARTICLE .MD S'AFFICHERA -->
+            <div class="article-content">
+                {{ content }}
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-slate-100 flex justify-center">
+                <a href="{{ '/' | relative_url }}" class="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-cyan-500 transition shadow-lg">
+                    ← RETOUR AUX INFOS
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <footer class="bg-slate-900 text-slate-500 py-10 text-center text-[10px] uppercase tracking-widest">
+        © 2024 Basta-InfosTech • Excellence Numérique
+    </footer>
+
+</body>
+</html>
