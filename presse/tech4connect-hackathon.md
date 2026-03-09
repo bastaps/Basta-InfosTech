@@ -1,14 +1,5 @@
 ---
 layout: article
-title: "Tech4Connect Hackathon : L'innovation"
-date: 2026-03-09
-image: "img/huawei-connect.jpg"
-category: "National"
-description: "Découvrez le succès du hackathon Tech4Connect pour l'inclusion numérique."
----
-
----
-layout: article
 title: "Tech4Connect : Huawei Algérie lance un marathon d'innovation technologique"
 date: 2025-03-09
 image: "img/huawei-connect.jpg"
