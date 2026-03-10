@@ -17,28 +17,31 @@
     </style>
 </head>
 <body>
-    <div class="bg-white border-b border-gray-200 py-2 text-[11px] font-bold text-gray-400 uppercase">
+    <!-- TOP BAR (Ultra compacte) -->
+    <div class="bg-white border-b border-gray-200 py-1.5 text-[10px] font-bold text-gray-400 uppercase">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <div>Alger, le {{ "now" | date: "%d %B %Y" }}</div>
             <div class="flex items-center">
-                <input type="text" id="searchInput" onkeyup="searchArticles()" placeholder="RECHERCHER..." class="border-b border-gray-300 outline-none focus:border-tsa-red px-2 py-1 w-32 md:w-48 bg-transparent transition-all uppercase">
+                <input type="text" id="searchInput" onkeyup="searchArticles()" placeholder="RECHERCHER..." class="border-b border-gray-300 outline-none focus:border-tsa-red px-2 py-0.5 w-32 md:w-48 bg-transparent transition-all uppercase text-[9px]">
                 <i class="fas fa-search tsa-red ml-2"></i>
             </div>
         </div>
     </div>
 
-    <header class="bg-white py-8 border-b border-gray-100">
+    <!-- LOGO HEADER (Réduit de moitié) -->
+    <header class="bg-white py-4 border-b border-gray-100">
         <div class="container mx-auto px-4 text-center">
-            <a href="{{ '/' | relative_url }}" class="text-5xl md:text-7xl font-black tracking-tighter uppercase">
+            <a href="{{ '/' | relative_url }}" class="text-4xl md:text-5xl font-black tracking-tighter uppercase">
                 DIGITAL<span class="tsa-red">.DZ</span>
             </a>
-            <p class="text-gray-400 text-xs mt-3 font-bold tracking-[0.3em] uppercase italic">L'excellence numérique algérienne</p>
+            <p class="text-gray-400 text-[10px] mt-1 font-bold tracking-[0.3em] uppercase italic">L'excellence numérique algérienne</p>
         </div>
     </header>
 
-    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200 uppercase font-black text-xs tracking-widest">
-        <div class="container mx-auto px-4 flex justify-center space-x-8 py-4 overflow-x-auto whitespace-nowrap">
-            <a href="#" class="tsa-red border-b-2 border-tsa-red">À la une</a>
+    <!-- NAVIGATION (Compacte) -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200 uppercase font-black text-[11px] tracking-widest">
+        <div class="container mx-auto px-4 flex justify-center space-x-6 py-3 overflow-x-auto whitespace-nowrap">
+            <a href="{{ '/' | relative_url }}" class="tsa-red border-b-2 border-tsa-red">À la une</a>
             <a href="#" class="hover:tsa-red transition">Algérie</a>
             <a href="#" class="hover:tsa-red transition">International</a>
             <a href="#" class="hover:tsa-red transition">Souveraineté</a>
@@ -47,28 +50,28 @@
     </nav>
 
     {% assign articles = site.pages | where_exp: "item", "item.path contains 'presse/'" | sort: 'date' | reverse %}
-    <main class="container mx-auto px-4 py-8">
+    <main class="container mx-auto px-4 py-6">
         <div class="flex flex-wrap -mx-4">
             <div class="w-full lg:w-2/3 px-4">
                 {% assign featured = articles[0] %}
-                <article class="searchable mb-12 bg-white group cursor-pointer border-b border-gray-200 pb-10">
+                <article class="searchable mb-10 bg-white group cursor-pointer border-b border-gray-200 pb-8">
                     <a href="{{ featured.url | relative_url }}">
-                        <img src="{{ featured.image | relative_url }}" class="w-full h-[400px] object-cover group-hover:opacity-95 transition">
-                        <div class="mt-6">
-                            <span class="tsa-red text-xs font-black uppercase">{{ featured.category }}</span>
-                            <h2 class="text-3xl md:text-4xl font-black mt-2 leading-tight group-hover:underline decoration-tsa-red">{{ featured.title }}</h2>
-                            <p class="text-gray-600 mt-4 text-lg leading-relaxed">{{ featured.description }}</p>
+                        <img src="{{ featured.image | relative_url }}" class="w-full h-[350px] object-cover group-hover:opacity-95 transition">
+                        <div class="mt-4">
+                            <span class="tsa-red text-[11px] font-black uppercase">{{ featured.category }}</span>
+                            <h2 class="text-2xl md:text-3xl font-black mt-1 leading-tight group-hover:underline decoration-tsa-red">{{ featured.title }}</h2>
+                            <p class="text-gray-600 mt-2 text-base leading-relaxed line-clamp-2">{{ featured.description }}</p>
                         </div>
                     </a>
                 </article>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {% for article in articles offset:1 %}
-                    <article class="searchable group border-b border-gray-100 pb-8">
+                    <article class="searchable group border-b border-gray-100 pb-6">
                         <a href="{{ article.url | relative_url }}">
-                            <img src="{{ article.image | relative_url }}" class="w-full h-48 object-cover">
-                            <span class="tsa-red text-[10px] font-black uppercase mt-4 block">{{ article.category }}</span>
-                            <h3 class="text-xl font-bold mt-2 group-hover:tsa-red transition leading-tight">{{ article.title }}</h3>
+                            <img src="{{ article.image | relative_url }}" class="w-full h-40 object-cover">
+                            <span class="tsa-red text-[10px] font-black uppercase mt-3 block">{{ article.category }}</span>
+                            <h3 class="text-lg font-bold mt-1 group-hover:tsa-red transition leading-tight">{{ article.title }}</h3>
                         </a>
                     </article>
                     {% endfor %}
@@ -76,13 +79,13 @@
             </div>
 
             <aside class="w-full lg:w-1/3 px-4">
-                <div class="bg-white p-6 border-t-4 border-tsa-red shadow-sm">
-                    <h3 class="font-black uppercase mb-6 border-b pb-2">Dernières infos</h3>
+                <div class="bg-white p-5 border-t-4 border-tsa-red shadow-sm sticky top-20">
+                    <h3 class="font-black uppercase mb-4 border-b pb-2 text-sm">Dernières infos</h3>
                     {% for article in articles %}
-                    <div class="searchable py-3 border-b border-gray-50 group">
+                    <div class="searchable py-2.5 border-b border-gray-50 group">
                         <a href="{{ article.url | relative_url }}">
                             <span class="tsa-red text-[10px] font-black">{{ article.date | date: "%H:%M" }}</span>
-                            <h4 class="text-sm font-bold group-hover:tsa-red transition">{{ article.title }}</h4>
+                            <h4 class="text-xs font-bold group-hover:tsa-red transition">{{ article.title }}</h4>
                         </a>
                     </div>
                     {% endfor %}
