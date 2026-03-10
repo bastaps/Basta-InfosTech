@@ -1,72 +1,161 @@
 ---
-# Ces tirets sont obligatoires pour activer Jekyll
+# Ce bloc active Jekyll
 ---
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basta-InfosTech | Excellence Numérique</title>
+    <title>Basta-InfosTech | L'actualité numérique en Algérie</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+        body { font-family: 'Roboto', sans-serif; background-color: #f6f6f6; color: #1a1a1a; }
+        .tsa-red { color: #E30613; }
+        .bg-tsa-red { background-color: #E30613; }
+        .border-tsa-red { border-color: #E30613; }
+        /* Style des titres de section type TSA */
+        .section-title { border-bottom: 3px solid #E30613; display: inline-block; padding-bottom: 2px; margin-bottom: 20px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.05em; }
+    </style>
 </head>
-<body class="bg-slate-50">
+<body>
 
-    <!-- BARRE DE NAVIGATION -->
-    <nav class="bg-slate-900 text-white p-5 shadow-xl">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-black text-cyan-400 italic">BASTA-INFOTECH</h1>
-            <div class="space-x-4 text-xs font-bold uppercase">
-                <a href="#" class="hover:text-cyan-400">Accueil</a>
-                <a href="#articles" class="bg-cyan-600 px-4 py-2 rounded-full">S'abonner</a>
+    <!-- BARRE SUPÉRIEURE (Date & Recherche) -->
+    <div class="bg-white border-b border-gray-200 py-2 text-[11px] font-bold text-gray-400 uppercase">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div>Alger, le {{ "now" | date: "%d %B %Y" }}</div>
+            <div class="flex items-center">
+                <input type="text" id="searchInput" onkeyup="searchArticles()" placeholder="RECHERCHER..." 
+                       class="border-b border-gray-300 outline-none focus:border-tsa-red px-2 py-1 w-32 md:w-48 bg-transparent transition-all">
+                <i class="fas fa-search tsa-red ml-2"></i>
             </div>
+        </div>
+    </div>
+
+    <!-- HEADER LOGO -->
+    <header class="bg-white py-8 border-b border-gray-100">
+        <div class="container mx-auto px-4 text-center">
+            <a href="{{ '/' | relative_url }}" class="text-5xl md:text-7xl font-black tracking-tighter">
+                BASTA<span class="tsa-red">-INFOTECH</span>
+            </a>
+            <p class="text-gray-400 text-xs mt-3 font-bold tracking-[0.3em] uppercase italic">Le quotidien du numérique</p>
+        </div>
+    </header>
+
+    <!-- NAVIGATION PRINCIPALE -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <ul class="flex justify-center md:space-x-10 space-x-4 py-4 text-xs md:text-sm font-black uppercase tracking-widest overflow-x-auto">
+                <li class="border-b-2 border-tsa-red"><a href="#" class="tsa-red">À la une</a></li>
+                <li><a href="#" class="hover:tsa-red transition">Algérie</a></li>
+                <li><a href="#" class="hover:tsa-red transition">International</a></li>
+                <li><a href="#" class="hover:tsa-red transition">Économie</a></li>
+                <li><a href="#" class="hover:tsa-red transition font-black">Sommet 2026</a></li>
+            </ul>
         </div>
     </nav>
 
-    <main class="container mx-auto px-6 py-12">
-        <h2 id="articles" class="text-3xl font-extrabold text-slate-800 mb-10 border-l-8 border-cyan-500 pl-4">DERNIÈRES ACTUALITÉS</h2>
+    {% assign articles = site.pages | where_exp: "item", "item.path contains 'presse/'" | sort: 'date' | reverse %}
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-wrap -mx-4">
             
-            <!-- BOUCLE AUTOMATIQUE : Jekyll cherche tes articles -->
-            {% assign mes_articles = site.pages | where_exp: "item", "item.path contains 'presse/'" %}
-            
-            {% for article in mes_articles %}
-                {% if article.title %}
-                <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100 flex flex-col hover:shadow-2xl transition-all">
-                    
-                    <!-- IMAGE -->
-                    <div class="h-48 overflow-hidden bg-slate-200">
-                        {% if article.image %}
-                            <img src="{{ article.image | relative_url }}" class="w-full h-full object-cover">
-                        {% else %}
-                            <div class="flex items-center justify-center h-full text-slate-400 text-5xl font-black">TECH</div>
-                        {% endif %}
-                    </div>
+            <!-- COLONNE GAUCHE : Articles principaux -->
+            <div class="w-full lg:w-2/3 px-4">
+                
+                <!-- L'ARTICLE À LA UNE -->
+                {% assign featured = articles[0] %}
+                <article class="searchable mb-12 bg-white group cursor-pointer border-b border-gray-200 pb-10">
+                    <a href="{{ featured.url | relative_url }}">
+                        <div class="overflow-hidden relative">
+                            <img src="{{ featured.image | relative_url }}" class="w-full h-[400px] object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-0 left-0 bg-tsa-red text-white text-[10px] font-black px-4 py-2 uppercase tracking-widest">À la une</span>
+                        </div>
+                        <div class="mt-6">
+                            <span class="tsa-red text-xs font-black uppercase">{{ featured.category }}</span>
+                            <h2 class="text-3xl md:text-4xl font-black mt-2 leading-tight group-hover:underline decoration-tsa-red underline-offset-4">
+                                {{ featured.title }}
+                            </h2>
+                            <p class="text-gray-600 mt-4 text-lg leading-relaxed">
+                                {{ featured.description }}
+                            </p>
+                        </div>
+                    </a>
+                </article>
 
-                    <!-- CONTENU -->
-                    <div class="p-6 flex-grow">
-                        <span class="bg-cyan-100 text-cyan-700 text-[10px] font-black px-3 py-1 rounded-full uppercase">{{ article.category | default: "TECH" }}</span>
-                        <h3 class="text-xl font-bold text-slate-900 mt-3 leading-tight">{{ article.title }}</h3>
-                        <p class="text-slate-500 text-sm mt-3 line-clamp-3">{{ article.description }}</p>
-                    </div>
-
-                    <!-- BOUTON -->
-                    <div class="p-6 pt-0 mt-auto">
-                        <a href="{{ article.url | relative_url }}" class="block w-full text-center bg-slate-900 text-white py-3 rounded-2xl font-bold hover:bg-cyan-500 transition-colors">
-                            LIRE L'ARTICLE
+                <!-- GRILLE DES AUTRES ARTICLES -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    {% for article in articles offset:1 %}
+                    <article class="searchable group border-b border-gray-100 pb-8">
+                        <a href="{{ article.url | relative_url }}">
+                            <img src="{{ article.image | relative_url }}" class="w-full h-48 object-cover group-hover:opacity-90 transition">
+                            <span class="tsa-red text-[10px] font-black uppercase mt-4 block">{{ article.category }}</span>
+                            <h3 class="text-xl font-bold mt-2 group-hover:tsa-red transition leading-tight">
+                                {{ article.title }}
+                            </h3>
+                            <p class="text-gray-500 text-sm mt-3 line-clamp-2 italic">
+                                {{ article.description }}
+                            </p>
                         </a>
-                    </div>
+                    </article>
+                    {% endfor %}
                 </div>
-                {% endif %}
-            {% endfor %}
+            </div>
 
+            <!-- COLONNE DROITE : Sidebar "Dernières infos" -->
+            <aside class="w-full lg:w-1/3 px-4 mt-12 lg:mt-0">
+                <div class="bg-white p-6 border-t-4 border-tsa-red shadow-sm">
+                    <h3 class="section-title text-lg">Dernières infos</h3>
+                    <div class="divide-y divide-gray-100">
+                        {% for article in articles %}
+                        <div class="searchable py-4 group">
+                            <a href="{{ article.url | relative_url }}" class="flex flex-col">
+                                <span class="tsa-red text-[10px] font-black">{{ article.date | date: "%d/%m/%Y" }}</span>
+                                <span class="text-sm font-bold mt-1 group-hover:tsa-red transition leading-snug">
+                                    {{ article.title }}
+                                </span>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="w-full mt-6 py-2 border border-gray-300 text-[10px] font-black uppercase hover:bg-gray-50 transition tracking-widest">
+                        Toute l'actualité
+                    </button>
+                </div>
+
+                <!-- BLOC PARTENAIRE / SOMMET -->
+                <div class="mt-8 bg-black p-8 text-white">
+                    <h3 class="text-xl font-black italic">GLOBAL AFRICA TECH <span class="tsa-red">2026</span></h3>
+                    <p class="text-gray-400 text-[10px] mt-2 uppercase tracking-widest font-bold">Le Sommet d'Alger</p>
+                    <a href="#" class="inline-block mt-6 bg-tsa-red text-white px-6 py-3 text-xs font-black uppercase tracking-widest">S'inscrire</a>
+                </div>
+            </aside>
         </div>
     </main>
 
-    <footer class="bg-slate-900 text-slate-500 py-10 text-center text-[10px] uppercase tracking-widest mt-20">
-        © 2024 Basta-InfosTech • Excellence Numérique
+    <footer class="bg-white border-t border-gray-200 py-12 mt-20">
+        <div class="container mx-auto px-4 text-center">
+            <div class="text-3xl font-black uppercase mb-6">
+                BASTA<span class="tsa-red">-INFOTECH</span>
+            </div>
+            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.4em]">© 2024 - 2026 Basta-InfosTech • Excellence Numérique</p>
+        </div>
     </footer>
+
+    <!-- SCRIPT DE RECHERCHE -->
+    <script>
+    function searchArticles() {
+        let input = document.getElementById('searchInput');
+        let filter = input.value.toLowerCase();
+        let items = document.querySelectorAll('.searchable');
+        
+        items.forEach(el => {
+            let text = el.innerText.toLowerCase();
+            el.style.display = text.includes(filter) ? "" : "none";
+        });
+    }
+    </script>
 
 </body>
 </html>
