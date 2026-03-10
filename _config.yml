@@ -1,9 +1,8 @@
-title: Basta-InfosTech
-description: Excellence Numérique
+title: DIGITAL.DZ
+description: L'excellence numérique algérienne
 remote_theme: jekyll/minima
 include: [presse, img]
 future: true
-# Force GitHub à utiliser Jekyll
-whitelist: [jekyll-feed, jekyll-seo-tag]
+encoding: "utf-8"
 future: true
 markdown: kramdown
