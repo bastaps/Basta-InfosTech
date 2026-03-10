@@ -1,65 +1,94 @@
----
-# Layout article
----
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} | DIGITAL.DZ</title>
+    <title>{{ page.title | default: "DIGITAL.DZ | Actu Tech Algérie" }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
-        body { font-family: 'Roboto', sans-serif; background-color: #f6f6f6; }
-        .tsa-red { color: #E30613; }
-        .article-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.15rem; color: #333; }
-        .article-content h2 { font-size: 1.8rem; font-weight: 900; margin-top: 2rem; color: #000; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .tech-gradient { background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%); }
     </style>
 </head>
 <body>
-    <!-- TOP BAR (Identique Accueil) -->
-    <div class="bg-white border-b border-gray-200 py-1.5 text-[10px] font-bold text-gray-400 uppercase">
+    <!-- TOP BAR -->
+    <div class="bg-slate-900 text-white py-2 text-[10px] font-bold uppercase tracking-[0.2em]">
         <div class="container mx-auto px-4 flex justify-between items-center">
-            <div>Alger, le {{ "now" | date: "%d %B %Y" }}</div>
-            <div class="flex space-x-4 text-gray-400">
-                <a href="#" class="hover:tsa-red"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="hover:tsa-red"><i class="fab fa-x-twitter"></i></a>
-                <a href="#" class="hover:tsa-red"><i class="fab fa-youtube"></i></a>
+            <div><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i> Alger, {{ "now" | date: "%d.%m.%Y" }}</div>
+            <div class="flex items-center gap-4">
+                <span class="hidden md:inline">Flux Souveraineté Numérique</span>
+                <div class="flex gap-3 text-sm">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- LOGO HEADER (Identique Accueil) -->
-    <header class="bg-white py-4 border-b border-gray-100">
-        <div class="container mx-auto px-4 text-center">
-            <a href="{{ '/' | relative_url }}" class="text-4xl md:text-5xl font-black tracking-tighter uppercase">
-                DIGITAL<span class="tsa-red">.DZ</span>
-            </a>
+    <!-- MAIN NAV -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <a href="{{ '/' | relative_url }}" class="flex flex-col">
+                    <span class="text-2xl font-black tracking-tighter leading-none">DIGITAL<span class="text-blue-600">.DZ</span></span>
+                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Intelligence Numérique</span>
+                </a>
+                
+                <nav class="hidden lg:flex space-x-8 text-[11px] font-black uppercase tracking-widest">
+                    <a href="{{ '/' | relative_url }}" class="hover:text-blue-600 transition border-b-2 border-transparent hover:border-blue-600 py-2">Accueil</a>
+                    <a href="#" class="hover:text-blue-600 transition">Écosystème DZ</a>
+                    <a href="#" class="hover:text-blue-600 transition">IA & Cyber</a>
+                    <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Grands Dossiers</a>
+                </nav>
+
+                <div class="flex items-center bg-slate-100 rounded-full px-4 py-1.5">
+                    <input type="text" id="searchInput" onkeyup="searchArticles()" placeholder="Rechercher..." class="bg-transparent border-none outline-none text-xs w-24 focus:w-40 transition-all">
+                    <i class="fas fa-search text-slate-400 text-xs"></i>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- NAVIGATION (Identique Accueil) -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200 uppercase font-black text-[11px] tracking-widest">
-        <div class="container mx-auto px-4 flex justify-center space-x-6 py-3 overflow-x-auto whitespace-nowrap">
-            <a href="{{ '/' | relative_url }}" class="hover:tsa-red transition">À la une</a>
-            <a href="#" class="hover:tsa-red transition">Algérie</a>
-            <a href="#" class="hover:tsa-red transition">International</a>
-            <a href="#" class="hover:tsa-red transition">Souveraineté</a>
-        </div>
-    </nav>
-
-    <main class="container mx-auto max-w-4xl px-4 py-8 bg-white mt-4 shadow-sm">
-        <span class="tsa-red font-black uppercase text-xs">{{ page.category }}</span>
-        <h1 class="text-3xl md:text-5xl font-black mt-2 mb-6 leading-tight">{{ page.title }}</h1>
-        <img src="{{ page.image | relative_url }}" class="w-full mb-8 shadow-md">
-        <div class="article-content">
-            {{ content }}
-        </div>
+    <main class="container mx-auto px-4 py-8">
+        {{ content }}
     </main>
 
-    <footer class="bg-gray-900 text-white py-10 mt-12 text-center uppercase text-[10px] font-bold tracking-widest">
-        © 2026 DIGITAL.DZ • TOUS DROITS RÉSERVÉS
+    <footer class="bg-slate-900 text-white pt-16 pb-8 mt-20">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-slate-800 pb-12 mb-8">
+                <div>
+                    <h4 class="text-xl font-black mb-4 uppercase">DIGITAL<span class="text-blue-600">.DZ</span></h4>
+                    <p class="text-slate-400 text-sm italic leading-relaxed">Le premier média statique dédié à l'analyse profonde des technologies en Algérie. Hébergé sur GitHub.</p>
+                </div>
+                <div>
+                    <h5 class="font-bold uppercase text-xs mb-4 tracking-widest text-blue-500">Navigation</h5>
+                    <ul class="text-slate-400 text-xs space-y-2 uppercase font-bold">
+                        <li><a href="#" class="hover:text-white">Mentions Légales</a></li>
+                        <li><a href="#" class="hover:text-white">Contribuer via GitHub</a></li>
+                        <li><a href="#" class="hover:text-white">Archives</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold uppercase text-xs mb-4 tracking-widest text-blue-500">Abonnez-vous</h5>
+                    <div class="flex mt-2">
+                        <input type="email" placeholder="Email" class="bg-slate-800 border-none px-4 py-2 text-xs rounded-l-lg w-full">
+                        <button class="bg-blue-600 px-4 py-2 rounded-r-lg text-xs font-bold italic text-white uppercase">OK</button>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-[10px] text-slate-500 font-bold tracking-widest uppercase">© 2024 DIGITAL.DZ | SOURCE OUVERTE</p>
+        </div>
     </footer>
+
+    <script>
+        function searchArticles() {
+            let filter = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.searchable').forEach(el => {
+                el.style.display = el.innerText.toLowerCase().includes(filter) ? "" : "none";
+            });
+        }
+    </script>
 </body>
 </html>
