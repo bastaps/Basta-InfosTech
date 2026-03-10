@@ -9,6 +9,8 @@ author: "Rédaction"
 
 # Révolution numérique : Ooredoo devient le premier opérateur à couvrir l’ensemble de l’Algérie en 5G
 
+![Couverture 5G Ooredoo Algérie](img/ooredoo-5g-couverture.jpg)
+
 **Alger, le 05 mars 2026 – Dans un tournant historique pour le secteur des télécommunications en Algérie, l’opérateur Ooredoo a annoncé l’extension de son réseau de cinquième génération (5G) aux 58 wilayas du pays. Cette avancée majeure fait d’Ooredoo le premier opérateur à assurer une couverture nationale totale dès la première année de déploiement.**
 
 Fidèle à son engagement constant en faveur de l’innovation, **Ooredoo Algérie** franchit une étape décisive dans la transformation digitale du pays. En rendant la 5G accessible du Nord au Sud et d’Est en Ouest, l’opérateur ne se contente pas de suivre une tendance technologique, mais s’impose comme le moteur d'une Algérie connectée, intelligente et compétitive.
