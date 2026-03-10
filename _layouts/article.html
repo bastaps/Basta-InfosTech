@@ -7,58 +7,130 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; line-height: 1.6; background-color: #f8fafc; }
-        .article-content img { border-radius: 1rem; margin: 2rem auto; display: block; max-width: 100%; height: auto; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
-        .article-content h2 { font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-top: 2.5rem; margin-bottom: 1rem; }
-        .article-content p { margin-bottom: 1.5rem; color: #334155; font-size: 1.1rem; }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+        body { font-family: 'Roboto', sans-serif; background-color: #ffffff; color: #1a1a1a; }
+        .tsa-red { color: #E30613; }
+        .bg-tsa-red { background-color: #E30613; }
+        /* Style du contenu Markdown */
+        .article-body p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.15rem; color: #333; }
+        .article-body h2 { font-size: 1.8rem; font-weight: 900; margin-top: 2rem; margin-bottom: 1rem; color: #000; }
+        .article-body img { border-radius: 4px; margin: 2rem 0; width: 100%; }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
-    <nav class="bg-slate-900 text-white p-5 sticky top-0 z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="{{ '/' | relative_url }}" class="text-2xl font-black text-cyan-400 italic uppercase">BASTA-INFOTECH</a>
-            <a href="{{ '/' | relative_url }}" class="text-xs font-bold uppercase bg-slate-800 px-4 py-2 rounded-full hover:bg-cyan-600 transition">
-                <i class="fas fa-home mr-2"></i> Accueil
+    <!-- TOP BAR (Réseaux Sociaux & Date) -->
+    <div class="bg-gray-100 border-b border-gray-200 py-2">
+        <div class="container mx-auto px-4 flex justify-between items-center text-[11px] font-bold uppercase">
+            <div class="text-gray-500">{{ page.date | date: "%d %B %Y" }}</div>
+            <div class="flex items-center space-x-4 text-gray-600">
+                <a href="#" class="hover:text-blue-600"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-pink-600"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-black"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" class="hover:text-red-600"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGO HEADER -->
+    <div class="bg-white py-6 border-b border-gray-100">
+        <div class="container mx-auto px-4 text-center">
+            <a href="{{ '/' | relative_url }}" class="text-4xl md:text-5xl font-black tracking-tighter uppercase">
+                BASTA<span class="tsa-red">-INFOTECH</span>
             </a>
+        </div>
+    </div>
+
+    <!-- MENU STICKY (Comme TSA) -->
+    <nav class="bg-white shadow-md sticky top-0 z-50 border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <ul class="flex justify-center md:space-x-8 space-x-4 py-3 text-[11px] md:text-xs font-black uppercase tracking-widest overflow-x-auto whitespace-nowrap">
+                <li><a href="{{ '/' | relative_url }}" class="hover:tsa-red transition">Accueil</a></li>
+                <li class="border-b-2 border-tsa-red"><a href="#" class="tsa-red">{{ page.category }}</a></li>
+                <li><a href="#" class="hover:tsa-red transition">Algérie</a></li>
+                <li><a href="#" class="hover:tsa-red transition">Économie</a></li>
+                <li><a href="#" class="hover:tsa-red transition">Société</a></li>
+                <li><a href="#" class="hover:tsa-red transition">Sport</a></li>
+                <li><a href="#" class="hover:tsa-red transition font-black">Direct <i class="fas fa-circle text-[8px] animate-pulse"></i></a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- EN-TÊTE -->
-    <header class="bg-slate-900 text-white pt-20 pb-24 px-6 text-center">
-        <div class="container mx-auto max-w-3xl">
-            <span class="bg-cyan-500 text-white text-[10px] font-black px-4 py-1 rounded-full uppercase">{{ page.category }}</span>
-            <h1 class="text-4xl md:text-5xl font-black mt-6 mb-4">{{ page.title }}</h1>
-            <p class="text-slate-400 text-sm italic">Publié le {{ page.date | date: "%d/%m/%Y" }}</p>
-        </div>
-    </header>
-
-    <!-- ARTICLE -->
-    <article class="container mx-auto max-w-3xl px-6 -mt-12 mb-20">
-        <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-100">
+    <!-- CONTENU DE L'ARTICLE -->
+    <main class="container mx-auto px-4 py-10">
+        <div class="flex flex-wrap -mx-4">
             
-            {% if page.image %}
-            <div class="mb-10 -mt-20 shadow-2xl rounded-2xl overflow-hidden border-4 border-white">
-                <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="w-full">
-            </div>
-            {% endif %}
+            <!-- CORPS DE L'ARTICLE -->
+            <div class="w-full lg:w-2/3 px-4">
+                <header class="mb-8">
+                    <span class="tsa-red text-xs font-black uppercase tracking-widest">{{ page.category }}</span>
+                    <h1 class="text-3xl md:text-5xl font-black mt-4 leading-tight">
+                        {{ page.title }}
+                    </h1>
+                    <div class="flex items-center mt-6 py-4 border-y border-gray-100 text-gray-400 text-xs font-bold uppercase">
+                        <span class="mr-4">Par La Rédaction</span>
+                        <span>{{ page.date | date: "%d/%m/%Y à %H:%M" }}</span>
+                    </div>
+                </header>
 
-            <!-- ICI LE TEXTE DE TON ARTICLE .MD S'AFFICHERA -->
-            <div class="article-content">
-                {{ content }}
+                {% if page.image %}
+                <figure class="mb-10">
+                    <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="w-full shadow-sm">
+                </figure>
+                {% endif %}
+
+                <div class="article-body">
+                    {{ content }}
+                </div>
+
+                <!-- PARTAGE -->
+                <div class="mt-12 py-6 border-t border-gray-100">
+                    <p class="text-xs font-black uppercase mb-4">Partager cet article :</p>
+                    <div class="flex space-x-2">
+                        <button class="bg-blue-600 text-white px-6 py-2 rounded text-xs font-bold uppercase">Facebook</button>
+                        <button class="bg-black text-white px-6 py-2 rounded text-xs font-bold uppercase">X</button>
+                    </div>
+                </div>
             </div>
 
-            <div class="mt-12 pt-8 border-t border-slate-100 flex justify-center">
-                <a href="{{ '/' | relative_url }}" class="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-cyan-500 transition shadow-lg">
-                    ← RETOUR AUX INFOS
-                </a>
-            </div>
+            <!-- SIDEBAR (Dernières infos) -->
+            <aside class="w-full lg:w-1/3 px-4 mt-12 lg:mt-0">
+                <div class="sticky top-20">
+                    <h3 class="text-lg font-black uppercase border-b-4 border-tsa-red inline-block mb-6">À lire aussi</h3>
+                    <div class="space-y-6">
+                        {% assign related = site.pages | where_exp: "item", "item.path contains 'presse/'" | sort: 'date' | reverse %}
+                        {% for post in related limit:5 %}
+                        {% unless post.url == page.url %}
+                        <div class="flex space-x-4 group border-b border-gray-100 pb-4">
+                            <img src="{{ post.image | relative_url }}" class="w-20 h-20 object-cover flex-shrink-0">
+                            <div>
+                                <a href="{{ post.url | relative_url }}" class="text-sm font-bold group-hover:tsa-red transition leading-tight">
+                                    {{ post.title }}
+                                </a>
+                            </div>
+                        </div>
+                        {% endunless %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </aside>
         </div>
-    </article>
+    </main>
 
-    <footer class="bg-slate-900 text-slate-500 py-10 text-center text-[10px] uppercase tracking-widest">
-        © 2024 Basta-InfosTech • Excellence Numérique
+    <!-- FOOTER TSA STYLE -->
+    <footer class="bg-gray-900 text-white py-16 mt-20">
+        <div class="container mx-auto px-4 text-center">
+            <div class="text-3xl font-black uppercase mb-4">
+                BASTA<span class="tsa-red">-INFOTECH</span>
+            </div>
+            <div class="flex justify-center space-x-6 mb-8 text-xl">
+                <a href="#" class="hover:tsa-red"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="hover:tsa-red"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:tsa-red"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" class="hover:tsa-red"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="text-gray-500 text-[10px] font-bold uppercase tracking-[0.4em]">© 2024 - 2026 Basta-InfosTech • Excellence Numérique</p>
+        </div>
     </footer>
 
 </body>
