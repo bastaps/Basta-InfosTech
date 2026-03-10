@@ -1,7 +1,13 @@
 title: DIGITAL.DZ
-description: L'excellence numérique algérienne
-remote_theme: jekyll/minima
+description: L'actualité tech, IA et souveraineté numérique en Algérie.
+baseurl: "/Basta-InfosTech" # Indispensable pour GitHub Pages
+url: "https://bastaps.github.io"
+
+# On garde ta structure
 include: [presse, img]
 future: true
 encoding: "utf-8"
 markdown: kramdown
+
+# Paramètres de lecture
+permalink: /:categories/:title/
