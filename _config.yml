@@ -4,5 +4,4 @@ remote_theme: jekyll/minima
 include: [presse, img]
 future: true
 encoding: "utf-8"
-future: true
 markdown: kramdown
