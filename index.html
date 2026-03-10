@@ -1,106 +1,81 @@
 ---
-# Layout auto
+layout: default
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIGITAL.DZ | L'actualité numérique en Algérie</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
-        body { font-family: 'Roboto', sans-serif; background-color: #f6f6f6; }
-        .tsa-red { color: #E30613; }
-        .bg-tsa-red { background-color: #E30613; }
-    </style>
-</head>
-<body>
-    <!-- TOP BAR (Ultra compacte) -->
-    <div class="bg-white border-b border-gray-200 py-1.5 text-[10px] font-bold text-gray-400 uppercase">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <div>Alger, le {{ "now" | date: "%d %B %Y" }}</div>
-            <div class="flex items-center">
-                <input type="text" id="searchInput" onkeyup="searchArticles()" placeholder="RECHERCHER..." class="border-b border-gray-300 outline-none focus:border-tsa-red px-2 py-0.5 w-32 md:w-48 bg-transparent transition-all uppercase text-[9px]">
-                <i class="fas fa-search tsa-red ml-2"></i>
-            </div>
+
+<!-- SECTION HÉROS (Le gros dossier) -->
+{% assign articles = site.pages | where_exp: "item", "item.path contains 'presse/'" | sort: 'date' | reverse %}
+{% assign featured = articles[0] %}
+
+<section class="mb-12">
+    <div class="relative overflow-hidden rounded-2xl bg-slate-900 group">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10"></div>
+        <img src="{{ featured.image | relative_url }}" class="w-full h-[500px] object-cover transition duration-500 group-hover:scale-105">
+        <div class="absolute bottom-0 left-0 p-8 z-20 w-full lg:w-2/3">
+            <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4 inline-block">Grand Dossier</span>
+            <h2 class="text-white text-3xl md:text-5xl font-black leading-tight mb-4">
+                <a href="{{ featured.url | relative_url }}" class="hover:underline">{{ featured.title }}</a>
+            </h2>
+            <p class="text-gray-300 text-lg line-clamp-2 mb-6">{{ featured.description }}</p>
+            <a href="{{ featured.url | relative_url }}" class="inline-block bg-white text-black px-6 py-3 font-bold rounded-lg hover:bg-blue-500 hover:text-white transition">Lire l'enquête →</a>
+        </div>
+    </div>
+</section>
+
+<div class="flex flex-wrap -mx-4">
+    <!-- COLONNE PRINCIPALE : ACTU GRAND PUBLIC -->
+    <div class="w-full lg:w-2/3 px-4">
+        <h3 class="text-xl font-black uppercase mb-6 border-b-4 border-blue-600 inline-block">Dernières Nouvelles</h3>
+        <div class="space-y-8">
+            {% for article in articles offset:1 %}
+            <article class="searchable flex flex-col md:flex-row gap-6 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                <div class="w-full md:w-1/3">
+                    <img src="{{ article.image | relative_url }}" class="w-full h-40 object-cover rounded-lg">
+                </div>
+                <div class="w-full md:w-2/3">
+                    <span class="text-blue-600 text-[10px] font-black uppercase tracking-widest">{{ article.category }}</span>
+                    <h4 class="text-xl font-bold mt-1 leading-tight hover:text-blue-600 transition">
+                        <a href="{{ article.url | relative_url }}">{{ article.title }}</a>
+                    </h4>
+                    <p class="text-gray-500 text-sm mt-2 line-clamp-2">{{ article.description }}</p>
+                    <div class="mt-4 flex items-center text-gray-400 text-[10px] font-bold uppercase">
+                        <span><i class="far fa-calendar-alt mr-1"></i> {{ article.date | date: "%d/%m/%Y" }}</span>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
         </div>
     </div>
 
-    <!-- LOGO HEADER (Réduit de moitié) -->
-    <header class="bg-white py-4 border-b border-gray-100">
-        <div class="container mx-auto px-4 text-center">
-            <a href="{{ '/' | relative_url }}" class="text-4xl md:text-5xl font-black tracking-tighter uppercase">
-                DIGITAL<span class="tsa-red">.DZ</span>
-            </a>
-            <p class="text-gray-400 text-[10px] mt-1 font-bold tracking-[0.3em] uppercase italic">L'excellence numérique algérienne</p>
-        </div>
-    </header>
-
-    <!-- NAVIGATION (Compacte) -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200 uppercase font-black text-[11px] tracking-widest">
-        <div class="container mx-auto px-4 flex justify-center space-x-6 py-3 overflow-x-auto whitespace-nowrap">
-            <a href="{{ '/' | relative_url }}" class="tsa-red border-b-2 border-tsa-red">À la une</a>
-            <a href="#" class="hover:tsa-red transition">Algérie</a>
-            <a href="#" class="hover:tsa-red transition">International</a>
-            <a href="#" class="hover:tsa-red transition">Souveraineté</a>
-            <a href="#" class="hover:tsa-red transition">Direct <i class="fas fa-circle text-[8px] animate-pulse"></i></a>
-        </div>
-    </nav>
-
-    {% assign articles = site.pages | where_exp: "item", "item.path contains 'presse/'" | sort: 'date' | reverse %}
-    <main class="container mx-auto px-4 py-6">
-        <div class="flex flex-wrap -mx-4">
-            <div class="w-full lg:w-2/3 px-4">
-                {% assign featured = articles[0] %}
-                <article class="searchable mb-10 bg-white group cursor-pointer border-b border-gray-200 pb-8">
-                    <a href="{{ featured.url | relative_url }}">
-                        <img src="{{ featured.image | relative_url }}" class="w-full h-[350px] object-cover group-hover:opacity-95 transition">
-                        <div class="mt-4">
-                            <span class="tsa-red text-[11px] font-black uppercase">{{ featured.category }}</span>
-                            <h2 class="text-2xl md:text-3xl font-black mt-1 leading-tight group-hover:underline decoration-tsa-red">{{ featured.title }}</h2>
-                            <p class="text-gray-600 mt-2 text-base leading-relaxed line-clamp-2">{{ featured.description }}</p>
-                        </div>
+    <!-- ASIDE : COIN DES PROS / GEEKS -->
+    <aside class="w-full lg:w-1/3 px-4 mt-12 lg:mt-0">
+        <div class="bg-slate-900 text-white p-6 rounded-2xl sticky top-24">
+            <h3 class="text-lg font-black uppercase mb-6 flex items-center">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse mr-2"></span>
+                Espace Pro & Dev
+            </h3>
+            
+            <div class="space-y-6">
+                <!-- On peut filtrer ici par une catégorie spécifique "Pro" ou "Dev" si tu l'ajoutes dans tes pages -->
+                {% for article in articles limit:5 %}
+                <div class="searchable group border-b border-slate-700 pb-4 last:border-0">
+                    <a href="{{ article.url | relative_url }}">
+                        <span class="text-green-400 text-[9px] font-black uppercase tracking-widest">{{ article.category }}</span>
+                        <h4 class="text-sm font-bold group-hover:text-blue-400 transition leading-snug mt-1 italic">
+                            > {{ article.title }}
+                        </h4>
+                        <p class="text-slate-500 text-[10px] mt-1 italic">Analyse technique</p>
                     </a>
-                </article>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {% for article in articles offset:1 %}
-                    <article class="searchable group border-b border-gray-100 pb-6">
-                        <a href="{{ article.url | relative_url }}">
-                            <img src="{{ article.image | relative_url }}" class="w-full h-40 object-cover">
-                            <span class="tsa-red text-[10px] font-black uppercase mt-3 block">{{ article.category }}</span>
-                            <h3 class="text-lg font-bold mt-1 group-hover:tsa-red transition leading-tight">{{ article.title }}</h3>
-                        </a>
-                    </article>
-                    {% endfor %}
                 </div>
+                {% endfor %}
             </div>
 
-            <aside class="w-full lg:w-1/3 px-4">
-                <div class="bg-white p-5 border-t-4 border-tsa-red shadow-sm sticky top-20">
-                    <h3 class="font-black uppercase mb-4 border-b pb-2 text-sm">Dernières infos</h3>
-                    {% for article in articles %}
-                    <div class="searchable py-2.5 border-b border-gray-50 group">
-                        <a href="{{ article.url | relative_url }}">
-                            <span class="tsa-red text-[10px] font-black">{{ article.date | date: "%H:%M" }}</span>
-                            <h4 class="text-xs font-bold group-hover:tsa-red transition">{{ article.title }}</h4>
-                        </a>
-                    </div>
-                    {% endfor %}
+            <div class="mt-8 pt-6 border-t border-slate-700">
+                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-2">Indices Tech DZ</p>
+                <div class="grid grid-cols-2 gap-2 text-[10px]">
+                    <div class="bg-slate-800 p-2 rounded">MS100 : <span class="text-green-400">+1.2%</span></div>
+                    <div class="bg-slate-800 p-2 rounded">Fibre : <span class="text-blue-400">Stable</span></div>
                 </div>
-            </aside>
+            </div>
         </div>
-    </main>
-
-    <script>
-        function searchArticles() {
-            let filter = document.getElementById('searchInput').value.toLowerCase();
-            document.querySelectorAll('.searchable').forEach(el => {
-                el.style.display = el.innerText.toLowerCase().includes(filter) ? "" : "none";
-            });
-        }
-    </script>
-</body>
-</html>
+    </aside>
+</div>
