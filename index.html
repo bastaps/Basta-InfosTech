@@ -18,28 +18,26 @@
     </style>
 </head>
 <body>
-    <!-- TOP BAR -->
+    <!-- BANDEAU TOP (Identique partout) -->
     <div class="bg-white border-b border-gray-200 py-2 text-[11px] font-bold text-gray-500 uppercase">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <div>Alger, le {{ "now" | date: "%d %B %Y" }}</div>
-            <div class="hidden md:flex space-x-4">
-                <a href="#" class="hover:tsa-red">À propos</a>
-                <a href="#" class="hover:tsa-red">Contact</a>
+            <div class="hidden md:flex space-x-4 italic">
+                <span>Direct <i class="fas fa-circle text-[8px] text-red-500 animate-pulse"></i></span>
             </div>
         </div>
     </div>
 
-    <!-- LOGO HEADER (Logo à gauche + Recherche à droite) -->
+    <!-- HEADER PRINCIPAL (Logo gauche + Recherche droite) -->
     <header class="bg-white py-6 border-b border-gray-100">
         <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-            <div class="text-left mb-4 md:mb-0">
+            <div class="text-left mb-6 md:mb-0">
                 <a href="{{ '/' | relative_url }}" class="text-5xl md:text-6xl font-black tracking-tighter uppercase">
                     DIGITAL<span class="tsa-red">.DZ</span>
                 </a>
-                <p class="text-gray-400 text-xs mt-1 font-bold tracking-[0.3em] uppercase italic">L'excellence numérique algérienne</p>
+                <p class="text-gray-400 text-xs mt-1 font-bold tracking-[0.3em] uppercase italic leading-none">L'excellence numérique algérienne</p>
             </div>
             
-            <!-- BARRE DE RECHERCHE AGRANDIE -->
             <div class="relative w-full md:w-96">
                 <input type="text" id="searchInput" onkeyup="filterArticles()" placeholder="RECHERCHER UN ARTICLE..." 
                     class="w-full border-2 border-gray-200 rounded-sm py-3 px-4 outline-none focus:border-tsa-red transition-all uppercase text-sm font-bold">
@@ -48,7 +46,7 @@
         </div>
     </header>
 
-    <!-- NAVIGATION (Catégories agrandies) -->
+    <!-- NAVIGATION CATÉGORIES -->
     <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200 uppercase font-black text-sm tracking-widest">
         <div class="container mx-auto px-4 flex justify-center space-x-8 py-4 overflow-x-auto whitespace-nowrap">
             <a href="javascript:void(0)" onclick="setCategory('all')" class="nav-link active transition pb-1" data-cat="all">À la une</a>
@@ -63,7 +61,6 @@
     
     <main class="container mx-auto px-4 py-8">
         <div class="flex flex-wrap -mx-4">
-            <!-- Zone Articles -->
             <div class="w-full lg:w-2/3 px-4">
                 <div id="articlesGrid">
                     {% for article in articles %}
@@ -74,7 +71,6 @@
                                 <span class="tsa-red text-xs font-black uppercase">{{ article.category }}</span>
                                 <h2 class="text-3xl font-black mt-1 leading-tight group-hover:underline decoration-tsa-red">{{ article.title }}</h2>
                                 <p class="text-gray-600 mt-2 text-lg leading-relaxed line-clamp-3">{{ article.description }}</p>
-                                <span class="text-gray-400 text-xs font-bold mt-4 block uppercase">{{ article.date | date: "%d %B %Y" }}</span>
                             </div>
                         </a>
                     </article>
@@ -86,43 +82,38 @@
             <aside class="w-full lg:w-1/3 px-4">
                 <div class="bg-white p-6 border-t-4 border-tsa-red shadow-sm sticky top-24">
                     <h3 class="font-black uppercase mb-4 border-b pb-2 text-base italic">Dernières minutes</h3>
-                    <div id="sidebarList">
-                        {% for article in articles limit:8 %}
-                        <div class="searchable py-3 border-b border-gray-50 group" data-category="{{ article.category }}">
-                            <a href="{{ article.url | relative_url }}">
-                                <span class="tsa-red text-[10px] font-black">{{ article.date | date: "%H:%M" }}</span>
-                                <h4 class="text-sm font-bold group-hover:tsa-red transition leading-snug">{{ article.title }}</h4>
-                            </a>
-                        </div>
-                        {% endfor %}
+                    {% for article in articles limit:10 %}
+                    <div class="searchable py-3 border-b border-gray-50 group" data-category="{{ article.category }}">
+                        <a href="{{ article.url | relative_url }}">
+                            <span class="tsa-red text-[10px] font-black">{{ article.date | date: "%H:%M" }}</span>
+                            <h4 class="text-sm font-bold group-hover:tsa-red transition leading-snug">{{ article.title }}</h4>
+                        </a>
                     </div>
+                    {% endfor %}
                 </div>
             </aside>
         </div>
     </main>
 
-    <!-- FOOTER AJOUTÉ -->
+    <!-- FOOTER (Identique partout) -->
     <footer class="bg-gray-900 text-white pt-12 pb-6 mt-12">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10">
-                <!-- Colonne 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10 text-left">
                 <div>
-                    <h3 class="text-2xl font-black mb-4 uppercase">DIGITAL<span class="tsa-red">.DZ</span></h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Le premier portail algérien dédié à la souveraineté numérique, à l'intelligence artificielle et aux innovations technologiques.
+                    <h3 class="text-2xl font-black mb-4 uppercase text-white">DIGITAL<span class="tsa-red">.DZ</span></h3>
+                    <p class="text-gray-400 text-sm leading-relaxed normal-case">
+                        Le premier portail indépendant dédié à l'actualité numérique, à la souveraineté technologique et à l'innovation en Algérie.
                     </p>
                 </div>
-                <!-- Colonne 2 -->
                 <div>
                     <h4 class="text-sm font-black uppercase tracking-widest mb-6 border-b border-gray-700 pb-2">Navigation</h4>
-                    <ul class="text-gray-400 text-sm space-y-3 font-bold uppercase">
-                        <li><a href="#" class="hover:text-white transition">À Propos</a></li>
-                        <li><a href="#" class="hover:text-white transition">Contactez-nous</a></li>
-                        <li><a href="#" class="hover:text-white transition">Publicité</a></li>
+                    <ul class="text-gray-400 text-xs space-y-3 font-bold uppercase tracking-wider">
+                        <li><a href="#" class="hover:text-white transition">À Propos de nous</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition">Publicité / Annonceurs</a></li>
                         <li><a href="#" class="hover:text-white transition">Mentions Légales</a></li>
                     </ul>
                 </div>
-                <!-- Colonne 3 -->
                 <div>
                     <h4 class="text-sm font-black uppercase tracking-widest mb-6 border-b border-gray-700 pb-2">Suivez-nous</h4>
                     <div class="flex space-x-6 text-2xl">
@@ -140,33 +131,24 @@
     </footer>
 
     <script>
-        let currentCategory = 'all';
-
         function setCategory(cat) {
-            currentCategory = cat;
-            // Mise à jour visuelle des liens
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
                 if(link.getAttribute('data-cat') === cat) link.classList.add('active');
             });
-            filterArticles();
+            filterArticles(cat);
         }
 
-        function filterArticles() {
+        function filterArticles(forcedCat = null) {
             let searchText = document.getElementById('searchInput').value.toLowerCase();
+            let activeCat = forcedCat || document.querySelector('.nav-link.active').getAttribute('data-cat');
             
             document.querySelectorAll('.searchable').forEach(el => {
                 let cat = el.getAttribute('data-category');
                 let text = el.innerText.toLowerCase();
-                
                 let matchesSearch = text.includes(searchText);
-                let matchesCat = (currentCategory === 'all' || cat === currentCategory);
-                
-                if (matchesSearch && matchesCat) {
-                    el.style.display = "";
-                } else {
-                    el.style.display = "none";
-                }
+                let matchesCat = (activeCat === 'all' || cat === activeCat);
+                el.style.display = (matchesSearch && matchesCat) ? "" : "none";
             });
         }
     </script>
