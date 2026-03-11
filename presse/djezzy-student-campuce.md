@@ -2,8 +2,9 @@
 layout: article
 title: "Djezzy : De Telco à TechCo, la révolution Student Campuce est lancée"
 category: "Stratégie Digitale"
-image: "img/djezzy-student-campuce.jpg"
-date: 2026-03-10
+description: "Djezzy transforme son offre étudiante en un véritable écosystème numérique avec 15 partenaires et une plateforme de recrutement."
+image: "/img/djezzy-student-campuce.jpg"
+date: 2026-03-10 18:30:00
 ---
 
 **L’opérateur de téléphonie mobile Djezzy vient de franchir une étape majeure dans sa stratégie de transformation digitale. En renforçant son programme "Student Campuce" avec 15 partenaires stratégiques et une plateforme de recrutement intégrée, l'opérateur bâtit une véritable "Super-App" de services pour la jeunesse algérienne.**
@@ -14,7 +15,7 @@ Le paysage de la connectivité étudiante en Algérie change de paradigme. Mardi
 
 Ce qui différencie cette annonce d'une simple promotion marketing est la profondeur technique de l'intégration. Djezzy a mis en place une infrastructure flexible de type **SaaS (Software as a Service)** pour agréger 15 acteurs majeurs de l'économie numérique et physique (Yassir, Temtem, Lufthansa, Sacomi, Techno, etc.). 
 
-Grâce à une intégration par **API**, les étudiants accèdent via leur interface "Student Campuce" à des réductions exclusives sur le transport, l'équipement IT et les services de livraison. L’opérateur utilise également des outils de **Smart SMSing** et des **codes QR** pour fluidifier l’expérience utilisateur entre le monde digital et les points de vente physiques.
+Grâce à une intégration par **API**, les étudiants accèdent via leur interface "Student Campuce" à des réductions exclusives sur le transport, l'équipement IT et les services de livraison. 
 
 ## FinTech : L’inclusion financière via Algérie Poste
 
