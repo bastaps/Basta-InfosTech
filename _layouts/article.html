@@ -13,53 +13,63 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
         body { font-family: 'Roboto', sans-serif; background-color: #f6f6f6; }
         .tsa-red { color: #E30613; }
-        .article-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.15rem; color: #333; }
-        .article-content h2 { font-size: 1.8rem; font-weight: 900; margin-top: 2rem; color: #000; }
+        .article-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.2rem; color: #222; }
+        .article-content h2 { font-size: 1.8rem; font-weight: 900; margin-top: 2.5rem; margin-bottom: 1rem; color: #000; }
     </style>
 </head>
 <body>
-    <!-- TOP BAR (Identique Accueil) -->
-    <div class="bg-white border-b border-gray-200 py-1.5 text-[10px] font-bold text-gray-400 uppercase">
+    <!-- TOP BAR -->
+    <div class="bg-white border-b border-gray-200 py-2 text-[11px] font-bold text-gray-500 uppercase">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <div>Alger, le {{ "now" | date: "%d %B %Y" }}</div>
-            <div class="flex space-x-4 text-gray-400">
+            <div class="flex space-x-4">
                 <a href="#" class="hover:tsa-red"><i class="fab fa-facebook"></i></a>
                 <a href="#" class="hover:tsa-red"><i class="fab fa-x-twitter"></i></a>
-                <a href="#" class="hover:tsa-red"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </div>
 
-    <!-- LOGO HEADER (Identique Accueil) -->
-    <header class="bg-white py-4 border-b border-gray-100">
-        <div class="container mx-auto px-4 text-center">
-            <a href="{{ '/' | relative_url }}" class="text-4xl md:text-5xl font-black tracking-tighter uppercase">
-                DIGITAL<span class="tsa-red">.DZ</span>
-            </a>
+    <!-- LOGO HEADER (Design gauche) -->
+    <header class="bg-white py-6 border-b border-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-left">
+                <a href="{{ '/' | relative_url }}" class="text-5xl md:text-6xl font-black tracking-tighter uppercase">
+                    DIGITAL<span class="tsa-red">.DZ</span>
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- NAVIGATION (Identique Accueil) -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200 uppercase font-black text-[11px] tracking-widest">
-        <div class="container mx-auto px-4 flex justify-center space-x-6 py-3 overflow-x-auto whitespace-nowrap">
-            <a href="{{ '/' | relative_url }}" class="hover:tsa-red transition">À la une</a>
-            <a href="#" class="hover:tsa-red transition">Algérie</a>
-            <a href="#" class="hover:tsa-red transition">International</a>
-            <a href="#" class="hover:tsa-red transition">Souveraineté</a>
+    <main class="container mx-auto max-w-4xl px-4 py-10 bg-white mt-6 shadow-sm mb-12">
+        <nav class="mb-6">
+            <a href="{{ '/' | relative_url }}" class="text-gray-400 uppercase text-xs font-bold hover:tsa-red italic">← Retour à l'accueil</a>
+        </nav>
+        
+        <span class="tsa-red font-black uppercase text-sm tracking-widest">{{ page.category }}</span>
+        <h1 class="text-4xl md:text-6xl font-black mt-3 mb-8 leading-tight">{{ page.title }}</h1>
+        
+        <div class="flex items-center text-gray-400 text-xs font-bold uppercase mb-8 border-b border-gray-100 pb-4">
+            <span class="mr-4"><i class="far fa-calendar-alt mr-1"></i> {{ page.date | date: "%d %B %Y" }}</span>
+            <span><i class="far fa-clock mr-1"></i> Lecture 3 min</span>
         </div>
-    </nav>
 
-    <main class="container mx-auto max-w-4xl px-4 py-8 bg-white mt-4 shadow-sm">
-        <span class="tsa-red font-black uppercase text-xs">{{ page.category }}</span>
-        <h1 class="text-3xl md:text-5xl font-black mt-2 mb-6 leading-tight">{{ page.title }}</h1>
-        <img src="{{ page.image | relative_url }}" class="w-full mb-8 shadow-md">
+        <img src="{{ page.image | relative_url }}" class="w-full mb-10 shadow-lg">
+        
         <div class="article-content">
             {{ content }}
         </div>
     </main>
 
-    <footer class="bg-gray-900 text-white py-10 mt-12 text-center uppercase text-[10px] font-bold tracking-widest">
-        © 2026 DIGITAL.DZ • TOUS DROITS RÉSERVÉS
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4 text-center">
+             <div class="flex justify-center space-x-8 mb-8 text-2xl">
+                <a href="#" class="text-gray-400 hover:tsa-red"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-gray-400 hover:tsa-red"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:tsa-red"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="text-[10px] text-gray-500 font-bold tracking-widest uppercase">© 2024 DIGITAL.DZ • TOUS DROITS RÉSERVÉS</p>
+        </div>
     </footer>
 </body>
 </html>
