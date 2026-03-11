@@ -7,18 +7,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }} | DIGITAL.DZ</title>
+    
+    <!-- SEO & Partage Social -->
+    <meta name="description" content="{{ page.description }}">
+    <meta property="og:title" content="{{ page.title }} | DIGITAL.DZ">
+    <meta property="og:description" content="{{ page.description }}">
+    <meta property="og:image" content="{{ page.image | absolute_url }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:description" content="{{ page.description }}">
+    <meta name="twitter:image" content="{{ page.image | absolute_url }}">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
         body { font-family: 'Roboto', sans-serif; background-color: #f6f6f6; }
         .tsa-red { color: #E30613; }
-        .article-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.2rem; color: #222; text-align: justify; }
-        .article-content h2 { font-size: 1.8rem; font-weight: 900; margin-top: 2.5rem; margin-bottom: 1rem; color: #000; }
+        /* Style amélioré pour la lecture de l'article */
+        .article-content { font-family: 'Lora', serif; }
+        .article-content p { margin-bottom: 1.8rem; line-height: 1.9; font-size: 1.25rem; color: #1a1a1a; text-align: left; }
+        .article-content h2 { font-family: 'Roboto', sans-serif; font-size: 2rem; font-weight: 900; margin-top: 3rem; margin-bottom: 1.5rem; color: #000; border-left: 5px solid #E30613; padding-left: 15px; }
     </style>
 </head>
 <body>
-    <!-- BANDEAU TOP (Identique Accueil) -->
+    <!-- BANDEAU TOP -->
     <div class="bg-white border-b border-gray-200 py-2 text-[11px] font-bold text-gray-500 uppercase">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <div>Alger, le {{ "now" | date: "%d %B %Y" }}</div>
@@ -28,7 +43,7 @@
         </div>
     </div>
 
-    <!-- HEADER PRINCIPAL (Logo gauche + Recherche) -->
+    <!-- HEADER PRINCIPAL -->
     <header class="bg-white py-6 border-b border-gray-100">
         <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
             <div class="text-left mb-6 md:mb-0">
@@ -39,7 +54,7 @@
             </div>
             
             <div class="relative w-full md:w-96">
-                <!-- Ici la recherche renvoie vers l'accueil pour fonctionner -->
+                <!-- La recherche renvoie vers l'accueil avec le paramètre 'q' -->
                 <form action="{{ '/' | relative_url }}" method="GET">
                     <input type="text" name="q" placeholder="RECHERCHER..." 
                         class="w-full border-2 border-gray-200 rounded-sm py-3 px-4 outline-none focus:border-tsa-red transition-all uppercase text-sm font-bold">
@@ -49,14 +64,14 @@
         </div>
     </header>
 
-    <!-- NAVIGATION (Identique Accueil - Redirige vers l'accueil) -->
+    <!-- NAVIGATION (Avec liens de filtrage) -->
     <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200 uppercase font-black text-sm tracking-widest">
         <div class="container mx-auto px-4 flex justify-center space-x-8 py-4 overflow-x-auto whitespace-nowrap">
             <a href="{{ '/' | relative_url }}" class="hover:tsa-red transition pb-1">À la une</a>
-            <a href="{{ '/' | relative_url }}" class="hover:tsa-red transition pb-1">Algérie</a>
-            <a href="{{ '/' | relative_url }}" class="hover:tsa-red transition pb-1">International</a>
-            <a href="{{ '/' | relative_url }}" class="hover:tsa-red transition pb-1">Souveraineté</a>
-            <a href="{{ '/' | relative_url }}" class="hover:tsa-red transition pb-1">Tech / IA</a>
+            <a href="{{ '/' | relative_url }}?cat=Algérie" class="hover:tsa-red transition pb-1">Algérie</a>
+            <a href="{{ '/' | relative_url }}?cat=International" class="hover:tsa-red transition pb-1">International</a>
+            <a href="{{ '/' | relative_url }}?cat=Souveraineté" class="hover:tsa-red transition pb-1">Souveraineté</a>
+            <a href="{{ '/' | relative_url }}?cat=Tech" class="hover:tsa-red transition pb-1">Tech / IA</a>
         </div>
     </nav>
 
@@ -70,17 +85,25 @@
         
         <div class="flex items-center text-gray-400 text-xs font-bold uppercase mb-8 border-b border-gray-100 pb-4">
             <span class="mr-4"><i class="far fa-calendar-alt mr-1"></i> {{ page.date | date: "%d %B %Y" }}</span>
-            <span><i class="far fa-clock mr-1"></i> {{ page.content | number_of_words | divided_by: 200 | plus: 1 }} min de lecture</span>
+            <span class="mr-4"><i class="far fa-clock mr-1"></i> {{ page.content | number_of_words | divided_by: 200 | plus: 1 }} min de lecture</span>
         </div>
 
-        <img src="{{ page.image | relative_url }}" class="w-full mb-10 shadow-lg">
+        <img src="{{ page.image | relative_url }}" class="w-full mb-10 shadow-lg aspect-video object-cover">
         
+        <!-- Boutons de partage -->
+        <div class="flex space-x-4 mb-8 pb-6 border-b border-gray-100">
+            <span class="text-xs font-black uppercase self-center text-gray-400">Partager :</span>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}" target="_blank" class="w-10 h-10 flex items-center justify-center bg-blue-600 text-white rounded-full hover:opacity-80 transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url }}&text={{ page.title }}" target="_blank" class="w-10 h-10 flex items-center justify-center bg-black text-white rounded-full hover:opacity-80 transition"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://api.whatsapp.com/send?text={{ page.title }}%20{{ page.url | absolute_url }}" target="_blank" class="w-10 h-10 flex items-center justify-center bg-green-500 text-white rounded-full hover:opacity-80 transition"><i class="fab fa-whatsapp"></i></a>
+        </div>
+
         <div class="article-content">
             {{ content }}
         </div>
     </main>
 
-    <!-- FOOTER (Identique Accueil) -->
+    <!-- FOOTER -->
     <footer class="bg-gray-900 text-white pt-12 pb-6 mt-12">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10 text-left">
