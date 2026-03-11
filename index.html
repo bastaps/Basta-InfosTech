@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <!-- BANDEAU TOP (Identique partout) -->
+    <!-- BANDEAU TOP -->
     <div class="bg-white border-b border-gray-200 py-2 text-[11px] font-bold text-gray-500 uppercase">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <div>Alger, le {{ "now" | date: "%d %B %Y" }}</div>
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <!-- HEADER PRINCIPAL (Logo gauche + Recherche droite) -->
+    <!-- HEADER PRINCIPAL -->
     <header class="bg-white py-6 border-b border-gray-100">
         <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
             <div class="text-left mb-6 md:mb-0">
@@ -49,11 +49,11 @@
     <!-- NAVIGATION CATÉGORIES -->
     <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200 uppercase font-black text-sm tracking-widest">
         <div class="container mx-auto px-4 flex justify-center space-x-8 py-4 overflow-x-auto whitespace-nowrap">
-            <a href="javascript:void(0)" onclick="setCategory('all')" class="nav-link active transition pb-1" data-cat="all">À la une</a>
-            <a href="javascript:void(0)" onclick="setCategory('Algérie')" class="nav-link hover:tsa-red transition pb-1" data-cat="Algérie">Algérie</a>
-            <a href="javascript:void(0)" onclick="setCategory('International')" class="nav-link hover:tsa-red transition pb-1" data-cat="International">International</a>
-            <a href="javascript:void(0)" onclick="setCategory('Souveraineté')" class="nav-link hover:tsa-red transition pb-1" data-cat="Souveraineté">Souveraineté</a>
-            <a href="javascript:void(0)" onclick="setCategory('Tech')" class="nav-link hover:tsa-red transition pb-1" data-cat="Tech">Tech / IA</a>
+            <button onclick="setCategory('all')" class="nav-link active transition pb-1" data-cat="all">À la une</button>
+            <button onclick="setCategory('Algérie')" class="nav-link hover:tsa-red transition pb-1" data-cat="Algérie">Algérie</button>
+            <button onclick="setCategory('International')" class="nav-link hover:tsa-red transition pb-1" data-cat="International">International</button>
+            <button onclick="setCategory('Souveraineté')" class="nav-link hover:tsa-red transition pb-1" data-cat="Souveraineté">Souveraineté</button>
+            <button onclick="setCategory('Tech')" class="nav-link hover:tsa-red transition pb-1" data-cat="Tech">Tech / IA</button>
         </div>
     </nav>
 
@@ -66,7 +66,7 @@
                     {% for article in articles %}
                     <article class="article-card searchable mb-10 bg-white group cursor-pointer border-b border-gray-200 pb-8" data-category="{{ article.category }}">
                         <a href="{{ article.url | relative_url }}">
-                            <img src="{{ article.image | relative_url }}" class="w-full h-[400px] object-cover group-hover:opacity-95 transition shadow-sm">
+                            <img src="{{ article.image | relative_url }}" class="w-full aspect-video object-cover group-hover:opacity-95 transition shadow-sm">
                             <div class="mt-4">
                                 <span class="tsa-red text-xs font-black uppercase">{{ article.category }}</span>
                                 <h2 class="text-3xl font-black mt-1 leading-tight group-hover:underline decoration-tsa-red">{{ article.title }}</h2>
@@ -95,7 +95,7 @@
         </div>
     </main>
 
-    <!-- FOOTER (Identique partout) -->
+    <!-- FOOTER -->
     <footer class="bg-gray-900 text-white pt-12 pb-6 mt-12">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10 text-left">
@@ -150,6 +150,21 @@
                 let matchesCat = (activeCat === 'all' || cat === activeCat);
                 el.style.display = (matchesSearch && matchesCat) ? "" : "none";
             });
+        }
+
+        // Script magique pour gérer la recherche et les catégories venant d'autres pages
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('q');
+            const catQuery = urlParams.get('cat');
+
+            if (searchQuery) {
+                document.getElementById('searchInput').value = searchQuery;
+                filterArticles();
+            }
+            if (catQuery) {
+                setCategory(catQuery);
+            }
         }
     </script>
 </body>
