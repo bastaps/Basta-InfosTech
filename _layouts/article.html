@@ -13,36 +13,56 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
         body { font-family: 'Roboto', sans-serif; background-color: #f6f6f6; }
         .tsa-red { color: #E30613; }
-        .article-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.2rem; color: #222; }
+        .article-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.2rem; color: #222; text-align: justify; }
         .article-content h2 { font-size: 1.8rem; font-weight: 900; margin-top: 2.5rem; margin-bottom: 1rem; color: #000; }
     </style>
 </head>
 <body>
-    <!-- TOP BAR -->
+    <!-- BANDEAU TOP (Identique Accueil) -->
     <div class="bg-white border-b border-gray-200 py-2 text-[11px] font-bold text-gray-500 uppercase">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <div>Alger, le {{ "now" | date: "%d %B %Y" }}</div>
-            <div class="flex space-x-4">
-                <a href="#" class="hover:tsa-red"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="hover:tsa-red"><i class="fab fa-x-twitter"></i></a>
+            <div class="hidden md:flex space-x-4 italic">
+                <span>Direct <i class="fas fa-circle text-[8px] text-red-500 animate-pulse"></i></span>
             </div>
         </div>
     </div>
 
-    <!-- LOGO HEADER (Design gauche) -->
+    <!-- HEADER PRINCIPAL (Logo gauche + Recherche) -->
     <header class="bg-white py-6 border-b border-gray-100">
-        <div class="container mx-auto px-4">
-            <div class="text-left">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="text-left mb-6 md:mb-0">
                 <a href="{{ '/' | relative_url }}" class="text-5xl md:text-6xl font-black tracking-tighter uppercase">
                     DIGITAL<span class="tsa-red">.DZ</span>
                 </a>
+                <p class="text-gray-400 text-xs mt-1 font-bold tracking-[0.3em] uppercase italic leading-none">L'excellence numérique algérienne</p>
+            </div>
+            
+            <div class="relative w-full md:w-96">
+                <!-- Ici la recherche renvoie vers l'accueil pour fonctionner -->
+                <form action="{{ '/' | relative_url }}" method="GET">
+                    <input type="text" name="q" placeholder="RECHERCHER..." 
+                        class="w-full border-2 border-gray-200 rounded-sm py-3 px-4 outline-none focus:border-tsa-red transition-all uppercase text-sm font-bold">
+                    <button type="submit" class="absolute right-4 top-4"><i class="fas fa-search tsa-red"></i></button>
+                </form>
             </div>
         </div>
     </header>
 
+    <!-- NAVIGATION (Identique Accueil - Redirige vers l'accueil) -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200 uppercase font-black text-sm tracking-widest">
+        <div class="container mx-auto px-4 flex justify-center space-x-8 py-4 overflow-x-auto whitespace-nowrap">
+            <a href="{{ '/' | relative_url }}" class="hover:tsa-red transition pb-1">À la une</a>
+            <a href="{{ '/' | relative_url }}" class="hover:tsa-red transition pb-1">Algérie</a>
+            <a href="{{ '/' | relative_url }}" class="hover:tsa-red transition pb-1">International</a>
+            <a href="{{ '/' | relative_url }}" class="hover:tsa-red transition pb-1">Souveraineté</a>
+            <a href="{{ '/' | relative_url }}" class="hover:tsa-red transition pb-1">Tech / IA</a>
+        </div>
+    </nav>
+
     <main class="container mx-auto max-w-4xl px-4 py-10 bg-white mt-6 shadow-sm mb-12">
         <nav class="mb-6">
-            <a href="{{ '/' | relative_url }}" class="text-gray-400 uppercase text-xs font-bold hover:tsa-red italic">← Retour à l'accueil</a>
+            <a href="{{ '/' | relative_url }}" class="text-gray-400 uppercase text-xs font-bold hover:tsa-red italic">← Retour à l'actualité</a>
         </nav>
         
         <span class="tsa-red font-black uppercase text-sm tracking-widest">{{ page.category }}</span>
@@ -50,7 +70,7 @@
         
         <div class="flex items-center text-gray-400 text-xs font-bold uppercase mb-8 border-b border-gray-100 pb-4">
             <span class="mr-4"><i class="far fa-calendar-alt mr-1"></i> {{ page.date | date: "%d %B %Y" }}</span>
-            <span><i class="far fa-clock mr-1"></i> Lecture 3 min</span>
+            <span><i class="far fa-clock mr-1"></i> {{ page.content | number_of_words | divided_by: 200 | plus: 1 }} min de lecture</span>
         </div>
 
         <img src="{{ page.image | relative_url }}" class="w-full mb-10 shadow-lg">
@@ -60,15 +80,38 @@
         </div>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white pt-12 pb-6">
-        <div class="container mx-auto px-4 text-center">
-             <div class="flex justify-center space-x-8 mb-8 text-2xl">
-                <a href="#" class="text-gray-400 hover:tsa-red"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="text-gray-400 hover:tsa-red"><i class="fab fa-x-twitter"></i></a>
-                <a href="#" class="text-gray-400 hover:tsa-red"><i class="fab fa-instagram"></i></a>
+    <!-- FOOTER (Identique Accueil) -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10 text-left">
+                <div>
+                    <h3 class="text-2xl font-black mb-4 uppercase">DIGITAL<span class="tsa-red">.DZ</span></h3>
+                    <p class="text-gray-400 text-sm leading-relaxed normal-case">
+                        Le premier portail indépendant dédié à l'actualité numérique, à la souveraineté technologique et à l'innovation en Algérie.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-sm font-black uppercase tracking-widest mb-6 border-b border-gray-700 pb-2">Navigation</h4>
+                    <ul class="text-gray-400 text-xs space-y-3 font-bold uppercase tracking-wider">
+                        <li><a href="#" class="hover:text-white transition">À Propos de nous</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition">Publicité</a></li>
+                        <li><a href="#" class="hover:text-white transition">Mentions Légales</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-black uppercase tracking-widest mb-6 border-b border-gray-700 pb-2">Suivez-nous</h4>
+                    <div class="flex space-x-6 text-2xl">
+                        <a href="#" class="text-gray-400 hover:tsa-red"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:tsa-red"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:tsa-red"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:tsa-red"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
             </div>
-            <p class="text-[10px] text-gray-500 font-bold tracking-widest uppercase">© 2024 DIGITAL.DZ • TOUS DROITS RÉSERVÉS</p>
+            <div class="border-t border-gray-800 pt-6 text-center text-[10px] text-gray-500 font-bold tracking-widest uppercase">
+                © {{ "now" | date: "%Y" }} DIGITAL.DZ - TOUS DROITS RÉSERVÉS.
+            </div>
         </div>
     </footer>
 </body>
