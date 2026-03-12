@@ -26,10 +26,11 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
         body { font-family: 'Roboto', sans-serif; background-color: #f6f6f6; }
         .tsa-red { color: #E30613; }
-        /* Style amélioré pour la lecture de l'article */
         .article-content { font-family: 'Lora', serif; }
         .article-content p { margin-bottom: 1.8rem; line-height: 1.9; font-size: 1.25rem; color: #1a1a1a; text-align: left; }
         .article-content h2 { font-family: 'Roboto', sans-serif; font-size: 2rem; font-weight: 900; margin-top: 3rem; margin-bottom: 1.5rem; color: #000; border-left: 5px solid #E30613; padding-left: 15px; }
+        .article-content ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1.8rem; font-size: 1.2rem; }
+        .article-content li { margin-bottom: 0.5rem; }
     </style>
 </head>
 <body>
@@ -54,7 +55,6 @@
             </div>
             
             <div class="relative w-full md:w-96">
-                <!-- La recherche renvoie vers l'accueil avec le paramètre 'q' -->
                 <form action="{{ '/' | relative_url }}" method="GET">
                     <input type="text" name="q" placeholder="RECHERCHER..." 
                         class="w-full border-2 border-gray-200 rounded-sm py-3 px-4 outline-none focus:border-tsa-red transition-all uppercase text-sm font-bold">
@@ -64,11 +64,11 @@
         </div>
     </header>
 
-    <!-- NAVIGATION (Avec liens de filtrage) -->
+    <!-- NAVIGATION -->
     <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200 uppercase font-black text-sm tracking-widest">
         <div class="container mx-auto px-4 flex justify-center space-x-8 py-4 overflow-x-auto whitespace-nowrap">
             <a href="{{ '/' | relative_url }}" class="hover:tsa-red transition pb-1">À la une</a>
-            <a href="{{ '/' | relative_url }}?cat=Algérie" class="hover:tsa-red transition pb-1">Algérie</a>
+            <a href="{{ '/' | relative_url }}?cat=National" class="hover:tsa-red transition pb-1">Algérie</a>
             <a href="{{ '/' | relative_url }}?cat=International" class="hover:tsa-red transition pb-1">International</a>
             <a href="{{ '/' | relative_url }}?cat=Souveraineté" class="hover:tsa-red transition pb-1">Souveraineté</a>
             <a href="{{ '/' | relative_url }}?cat=Tech" class="hover:tsa-red transition pb-1">Tech / IA</a>
@@ -83,9 +83,11 @@
         <span class="tsa-red font-black uppercase text-sm tracking-widest">{{ page.category }}</span>
         <h1 class="text-4xl md:text-6xl font-black mt-3 mb-8 leading-tight">{{ page.title }}</h1>
         
-        <div class="flex items-center text-gray-400 text-xs font-bold uppercase mb-8 border-b border-gray-100 pb-4">
-            <span class="mr-4"><i class="far fa-calendar-alt mr-1"></i> {{ page.date | date: "%d %B %Y" }}</span>
-            <span class="mr-4"><i class="far fa-clock mr-1"></i> {{ page.content | number_of_words | divided_by: 200 | plus: 1 }} min de lecture</span>
+        <!-- BARRE INFO ARTICLE (Date + Heure + Lecture) -->
+        <div class="flex flex-wrap items-center text-gray-400 text-xs font-bold uppercase mb-8 border-b border-gray-100 pb-4">
+            <span class="mr-6 mb-2 md:mb-0"><i class="far fa-calendar-alt mr-2 tsa-red"></i> {{ page.date | date: "%d %B %Y" }}</span>
+            <span class="mr-6 mb-2 md:mb-0"><i class="far fa-clock mr-2 tsa-red"></i> {{ page.date | date: "%H:%M" }}</span>
+            <span class="mr-6 mb-2 md:mb-0"><i class="fas fa-hourglass-half mr-2 tsa-red"></i> {{ page.content | number_of_words | divided_by: 200 | plus: 1 }} min de lecture</span>
         </div>
 
         <img src="{{ page.image | relative_url }}" class="w-full mb-10 shadow-lg aspect-video object-cover">
@@ -116,10 +118,10 @@
                 <div>
                     <h4 class="text-sm font-black uppercase tracking-widest mb-6 border-b border-gray-700 pb-2">Navigation</h4>
                     <ul class="text-gray-400 text-xs space-y-3 font-bold uppercase tracking-wider">
-                        <li><a href="#" class="hover:text-white transition">À Propos de nous</a></li>
+                        <li><a href="#" class="hover:text-white transition">À Propos</a></li>
                         <li><a href="#" class="hover:text-white transition">Contact</a></li>
                         <li><a href="#" class="hover:text-white transition">Publicité</a></li>
-                        <li><a href="#" class="hover:text-white transition">Mentions Légales</a></li>
+                        <li><a href="#" class="hover:text-white transition">Légal</a></li>
                     </ul>
                 </div>
                 <div>
