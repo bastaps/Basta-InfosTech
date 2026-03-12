@@ -1,0 +1,72 @@
+---
+layout: default
+---
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | DIGITAL.DZ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #fff; }
+        .serif { font-family: 'Lora', serif; }
+        .article-body { font-family: 'Lora', serif; font-size: 1.3rem; line-height: 1.85; color: #121212; }
+        .article-body h2 { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 2rem; margin-top: 2.5rem; margin-bottom: 1.5rem; border-top: 3px solid black; pt-4; }
+        .article-body p { margin-bottom: 1.8rem; }
+        .dropcap::first-letter { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 5rem; float: left; line-height: 1; padding-right: 10px; color: #E30613; }
+    </style>
+</head>
+<body class="bg-white">
+
+    <article class="max-w-4xl mx-auto px-4 py-12">
+        <!-- Sur-titre -->
+        <div class="mb-6">
+            <span class="bg-black text-white px-3 py-1 text-xs font-black uppercase tracking-widest">{{ page.category }}</span>
+        </div>
+
+        <!-- Titre Principal style Libé -->
+        <h1 class="serif text-4xl md:text-7xl font-extrabold leading-[0.9] tracking-tight mb-8">{{ page.title }}</h1>
+        
+        <!-- Chapeau (Introduction) -->
+        <p class="text-2xl font-bold text-gray-700 leading-tight mb-10 border-l-4 border-red-600 pl-6 italic">
+            {{ page.description }}
+        </p>
+
+        <!-- Métadonnées & Partage -->
+        <div class="flex flex-wrap items-center justify-between border-t border-b border-gray-100 py-4 mb-10">
+            <div class="text-[12px] font-black uppercase">
+                <span class="mr-4 text-red-600">Publié le {{ page.date | date: "%d/%m/%Y à %H:%M" }}</span>
+                <span class="text-gray-400">Par La Rédaction</span>
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-400 hover:text-black"><i class="fab fa-x-twitter"></i></a>
+            </div>
+        </div>
+
+        <!-- Image principale -->
+        <figure class="mb-12">
+            <img src="{{ page.image | relative_url }}" class="w-full shadow-2xl">
+            <figcaption class="text-[10px] text-gray-400 uppercase font-bold mt-2 text-right tracking-widest">Crédit Photo: DIGITAL.DZ Archive</figcaption>
+        </figure>
+
+        <!-- Corps de l'article -->
+        <div class="article-body dropcap">
+            {{ content }}
+        </div>
+    </article>
+
+    <!-- FOOTER SIMPLE -->
+    <footer class="bg-black text-white py-12 mt-20">
+        <div class="container mx-auto px-4 text-center">
+            <a href="{{ '/' | relative_url }}" class="text-3xl font-black uppercase tracking-tighter">DIGITAL<span class="text-red-600">.DZ</span></a>
+            <p class="text-[10px] text-gray-500 mt-4 tracking-[0.5em] uppercase italic">L'excellence au cœur du réseau</p>
+        </div>
+    </footer>
+
+</body>
+</html>
