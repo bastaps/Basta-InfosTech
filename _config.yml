@@ -1,14 +1,9 @@
 title: DIGITAL.DZ
-description: L'actualité tech et télécoms en Algérie
-url: "https://bastaps.github.io"
 baseurl: "/Basta-InfosTech"
+url: "https://bastaps.github.io"
 
-# Paramètres de construction
+# Configuration technique
 markdown: kramdown
-highlighter: rouge
-permalink: /:categories/:title/
 include: [presse, img]
-exclude: [README.md, Gemfile, Gemfile.lock]
-
-# Encodage
+future: true # Permet d'afficher les articles datés de 2026
 encoding: "utf-8"
