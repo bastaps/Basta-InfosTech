@@ -2,8 +2,7 @@ title: DIGITAL.DZ
 baseurl: "/Basta-InfosTech"
 url: "https://bastaps.github.io"
 
-# Configuration technique
 markdown: kramdown
 include: [presse, img]
-future: true # Permet d'afficher les articles datés de 2026
+future: true
 encoding: "utf-8"
