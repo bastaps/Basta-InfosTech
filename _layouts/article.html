@@ -1,5 +1,5 @@
 ---
-# Ce fichier est un layout autonome
+# Layout épuré inspiré de MobileAlgérie
 ---
 <!DOCTYPE html>
 <html lang="fr">
@@ -10,63 +10,76 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #fff; }
-        .serif { font-family: 'Lora', serif; }
-        .article-body { font-family: 'Lora', serif; font-size: 1.25rem; line-height: 1.85; color: #121212; }
-        .article-body h2 { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 2rem; margin-top: 2.5rem; margin-bottom: 1.5rem; border-top: 3px solid black; padding-top: 1rem; }
-        .article-body p { margin-bottom: 1.8rem; }
-        .dropcap::first-letter { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 5rem; float: left; line-height: 1; padding-right: 15px; color: #E30613; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; color: #1a1a1a; line-height: 1.6; }
+        .article-content p { margin-bottom: 1.5rem; font-size: 1.15rem; color: #333; }
+        .article-content h2 { font-weight: 800; font-size: 1.75rem; margin-top: 2rem; margin-bottom: 1rem; color: #000; }
+        .sticky-share { position: sticky; top: 100px; }
     </style>
 </head>
 <body class="bg-white">
 
-    <nav class="border-b border-gray-100 py-4 mb-8">
-        <div class="container mx-auto px-4">
-            <a href="{{ '/' | relative_url }}" class="font-black text-2xl uppercase tracking-tighter">DIGITAL<span class="text-red-600">.DZ</span></a>
+    <!-- Header épuré -->
+    <nav class="border-b border-gray-100 py-4 sticky top-0 bg-white/90 backdrop-blur-md z-50">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="{{ '/' | relative_url }}" class="text-2xl font-extrabold tracking-tighter text-blue-600">DIGITAL<span class="text-black">.DZ</span></a>
+            <a href="{{ '/' | relative_url }}" class="text-sm font-bold text-gray-500 hover:text-blue-600">ACCUEIL</a>
         </div>
     </nav>
 
-    <article class="max-w-4xl mx-auto px-4 py-8">
-        <div class="mb-6">
-            <span class="bg-black text-white px-3 py-1 text-xs font-black uppercase tracking-widest">{{ page.category | default: "Actualité" }}</span>
-        </div>
+    <main class="container mx-auto px-4 max-w-5xl py-10">
+        <div class="flex flex-wrap -mx-4">
+            <!-- Article -->
+            <div class="w-full lg:w-8/12 px-4">
+                <div class="mb-4">
+                    <span class="text-blue-600 font-bold uppercase text-xs tracking-widest">{{ page.category }}</span>
+                </div>
+                <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6 text-gray-900">{{ page.title }}</h1>
+                
+                <div class="flex items-center text-sm text-gray-500 mb-8 pb-6 border-b border-gray-100">
+                    <img src="https://ui-avatars.com/api/?name=Redaction&background=0D8ABC&color=fff" class="w-10 h-10 rounded-full mr-3">
+                    <div>
+                        <div class="font-bold text-black">Par La Rédaction</div>
+                        <div>
+                            {{ page.date | date: "%d %b %Y" }} • 
+                            <span class="text-blue-600">
+                                {% assign words = content | number_of_words %}
+                                {{ words | divided_by: 180 | plus: 1 }} min de lecture
+                            </span>
+                        </div>
+                    </div>
+                </div>
 
-        <h1 class="serif text-4xl md:text-7xl font-extrabold leading-[0.9] tracking-tight mb-8">{{ page.title }}</h1>
-        
-        <p class="text-2xl font-bold text-gray-700 leading-tight mb-10 border-l-4 border-red-600 pl-6 italic">
-            {{ page.description }}
-        </p>
-
-        <div class="flex flex-wrap items-center justify-between border-t border-b border-gray-100 py-4 mb-10">
-            <div class="text-[12px] font-black uppercase">
-                <span class="mr-4 text-red-600">Publié le {{ page.date | date: "%d/%m/%Y" }}</span>
-                <span class="text-gray-400">Par La Rédaction</span>
+                <div class="article-content">
+                    {% if page.image %}
+                    <img src="{{ page.image | relative_url }}" class="w-full rounded-xl mb-8 shadow-sm">
+                    {% endif %}
+                    
+                    <div class="prose prose-lg max-w-none">
+                        {{ content }}
+                    </div>
+                </div>
             </div>
-            <div class="flex space-x-4">
-                <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-gray-400 hover:text-black"><i class="fab fa-x-twitter"></i></a>
-            </div>
+
+            <!-- Sidebar -->
+            <aside class="w-full lg:w-4/12 px-4 mt-10 lg:mt-0">
+                <div class="sticky-share border-l border-gray-100 pl-8">
+                    <h4 class="font-bold mb-4 uppercase text-xs tracking-widest text-gray-400">Partager</h4>
+                    <div class="flex flex-col space-y-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </aside>
         </div>
+    </main>
 
-        {% if page.image %}
-        <figure class="mb-12">
-            <img src="{{ page.image | relative_url }}" class="w-full shadow-2xl">
-            <figcaption class="text-[10px] text-gray-400 uppercase font-bold mt-2 text-right tracking-widest">Crédit Photo: DIGITAL.DZ Archive</figcaption>
-        </figure>
-        {% endif %}
-
-        <div class="article-body dropcap">
-            {{ content }}
-        </div>
-    </article>
-
-    <footer class="bg-black text-white py-12 mt-20">
+    <footer class="bg-gray-50 border-t border-gray-100 py-10 mt-20">
         <div class="container mx-auto px-4 text-center">
-            <a href="{{ '/' | relative_url }}" class="text-3xl font-black uppercase tracking-tighter">DIGITAL<span class="text-red-600">.DZ</span></a>
-            <p class="text-[10px] text-gray-500 mt-4 tracking-[0.5em] uppercase italic">L'excellence au cœur du réseau</p>
+            <div class="text-xl font-extrabold mb-4">DIGITAL.DZ</div>
+            <p class="text-sm text-gray-500 italic">L'actualité des télécoms et du numérique en Algérie.</p>
         </div>
     </footer>
-
 </body>
 </html>
