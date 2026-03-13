@@ -1,115 +1,130 @@
 ---
-# Index standalone - Style MobileAlgérie
+# Page autonome sans layout pour éviter les erreurs Jekyll
 ---
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIGITAL.DZ | Actualité High-Tech Algérie</title>
+    <title>DIGITAL.DZ | Actualité Tech & Télécoms en Algérie</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
-        .tech-card { background: white; border-radius: 12px; transition: all 0.3s ease; border: 1px solid #e2e8f0; }
-        .tech-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); border-color: #3b82f6; }
-        .nav-link { position: relative; font-weight: 600; color: #64748b; transition: color 0.2s; }
-        .nav-link.active { color: #3b82f6; }
-        .nav-link.active::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: #3b82f6; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a1a; }
+        .nav-link { font-weight: 700; color: #666; transition: all 0.2s; position: relative; }
+        .nav-link:hover, .nav-link.active { color: #0066ff; }
+        .nav-link.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: #0066ff; }
+        .article-card { border-bottom: 1px solid #f0f0f0; padding-bottom: 2rem; transition: opacity 0.3s; }
+        .article-card:last-child { border-bottom: none; }
     </style>
 </head>
 <body>
 
-    <!-- TOP BAR LIVE -->
-    <div class="bg-blue-600 text-white py-2 px-4 shadow-sm">
-        <div class="container mx-auto flex justify-between items-center text-[11px] font-bold uppercase tracking-wider">
-            <div id="live-clock"></div>
-            <div class="hidden sm:block">Souveraineté • IA • Télécoms • Algérie</div>
+    <!-- Barre supérieure : Heure en temps réel -->
+    <div class="bg-[#f8f9fa] border-b border-gray-100 py-2">
+        <div class="container mx-auto px-4 flex justify-between items-center text-[11px] font-bold text-gray-500 uppercase tracking-wider">
+            <div id="live-clock"><i class="far fa-clock mr-2 text-blue-500"></i> Chargement...</div>
+            <div class="hidden md:block">Le quotidien du numérique algérien</div>
         </div>
     </div>
 
-    <!-- LOGO HEADER -->
-    <header class="bg-white py-8 border-b border-slate-100">
+    <!-- Header simple & épuré -->
+    <header class="py-10">
         <div class="container mx-auto px-4 text-center">
-            <a href="{{ '/' | relative_url }}" class="text-4xl md:text-5xl font-black tracking-tighter italic">
+            <a href="{{ site.baseurl }}/" class="text-4xl md:text-5xl font-[800] tracking-tighter">
                 DIGITAL<span class="text-blue-600">.DZ</span>
             </a>
-            <p class="text-slate-400 text-xs mt-2 uppercase font-bold tracking-[0.2em]">Le portail de référence de la Tech Algérienne</p>
         </div>
     </header>
 
-    <!-- NAVIGATION -->
-    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+    <!-- Navigation MobileAlgérie style -->
+    <nav class="border-y border-gray-100 sticky top-0 bg-white/90 backdrop-blur-md z-50">
         <div class="container mx-auto px-4">
-            <div class="flex items-center justify-center space-x-6 h-14 text-[13px]">
-                <button onclick="setCategory('all')" class="nav-link active uppercase" data-cat="all">À la une</button>
-                <button onclick="setCategory('Tech')" class="nav-link uppercase" data-cat="Tech">Tech</button>
-                <button onclick="setCategory('National')" class="nav-link uppercase" data-cat="National">Algérie</button>
-                <button onclick="setCategory('Souveraineté')" class="nav-link uppercase" data-cat="Souveraineté">Souveraineté</button>
+            <div class="flex items-center justify-center space-x-8 h-14 text-[12px] uppercase tracking-widest">
+                <button onclick="setCategory('all')" class="nav-link active" data-cat="all">À la une</button>
+                <button onclick="setCategory('Tech')" class="nav-link" data-cat="Tech">Tech</button>
+                <button onclick="setCategory('National')" class="nav-link" data-cat="National">Algérie</button>
+                <button onclick="setCategory('Souveraineté')" class="nav-link" data-cat="Souveraineté">Souveraineté</button>
             </div>
         </div>
     </nav>
 
+    <!-- Loop Articles -->
     {% assign articles = site.pages | where_exp: "item", "item.path contains 'presse/'" | sort: 'date' | reverse %}
 
-    <main class="container mx-auto px-4 py-12">
-        <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for article in articles %}
-            <article class="tech-card searchable group" data-category="{{ article.category }}">
-                <a href="{{ article.url | relative_url }}">
-                    <div class="relative overflow-hidden aspect-video rounded-t-xl">
-                        <img src="{{ article.image | relative_url }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-blue-600 text-white text-[10px] font-black px-2 py-1 rounded uppercase shadow-lg">
-                                {{ article.category }}
-                            </span>
+    <main class="container mx-auto px-4 max-w-6xl py-12">
+        <div class="flex flex-wrap -mx-8">
+            
+            <!-- Flux principal (Gauche) -->
+            <div class="w-full lg:w-8/12 px-8">
+                <div id="articlesGrid" class="space-y-12">
+                    {% for article in articles %}
+                    <article class="article-card searchable" data-category="{{ article.category }}">
+                        <a href="{{ article.url | relative_url }}" class="group flex flex-col md:flex-row gap-8">
+                            <div class="w-full md:w-5/12 overflow-hidden rounded-lg">
+                                <img src="{{ article.image | relative_url }}" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                            </div>
+                            <div class="w-full md:w-7/12">
+                                <span class="text-blue-600 font-bold text-[10px] uppercase tracking-widest mb-2 block">{{ article.category }}</span>
+                                <h2 class="text-2xl font-bold leading-tight mb-3 group-hover:text-blue-600 transition-colors">{{ article.title }}</h2>
+                                <p class="text-gray-500 text-sm mb-4 line-clamp-2">{{ article.description }}</p>
+                                <div class="text-[11px] font-bold text-gray-400 uppercase flex items-center">
+                                    <span class="mr-3">{{ article.date | date: "%d %B %Y" }}</span>
+                                    <span class="bg-gray-100 text-gray-600 px-2 py-0.5 rounded">
+                                        {{ article.content | number_of_words | divided_by: 200 | plus: 1 }} min lecture
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Sidebar épurée (Droite) -->
+            <aside class="w-full lg:w-4/12 px-8 mt-12 lg:mt-0">
+                <div class="sticky top-24">
+                    <h3 class="text-xs font-black uppercase tracking-[0.2em] mb-6 pb-2 border-b-2 border-blue-600 inline-block">Dernières infos</h3>
+                    <div class="space-y-6">
+                        {% for article in articles limit:5 %}
+                        <div class="group">
+                            <a href="{{ article.url | relative_url }}">
+                                <span class="text-[10px] text-blue-500 font-bold uppercase">{{ article.date | date: "%H:%M" }}</span>
+                                <h4 class="text-sm font-bold group-hover:text-blue-600 leading-snug">{{ article.title }}</h4>
+                            </a>
                         </div>
+                        {% endfor %}
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center text-[10px] font-bold text-slate-400 mb-3 uppercase tracking-widest">
-                            <span>{{ article.date | date: "%d %b %Y" }}</span>
-                            <span class="mx-2">•</span>
-                            <span class="text-blue-500">{{ article.content | number_of_words | divided_by: 200 | plus: 1 }} min lecture</span>
-                        </div>
-                        <h2 class="text-xl font-extrabold leading-tight mb-3 group-hover:text-blue-600 transition-colors">
-                            {{ article.title }}
-                        </h2>
-                        <p class="text-slate-500 text-sm line-clamp-2 leading-relaxed">
-                            {{ article.description }}
-                        </p>
-                    </div>
-                </a>
-            </article>
-            {% endfor %}
+                </div>
+            </aside>
+
         </div>
     </main>
 
-    <footer class="bg-slate-900 text-white py-16 mt-20">
+    <footer class="border-t border-gray-100 py-20 mt-20 bg-[#fafafa]">
         <div class="container mx-auto px-4 text-center">
-            <div class="text-3xl font-black tracking-tighter italic mb-4">DIGITAL<span class="text-blue-500">.DZ</span></div>
-            <p class="text-slate-400 text-sm max-w-md mx-auto mb-8 font-medium italic">"L'information technologique décryptée avec précision pour l'écosystème algérien."</p>
-            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">© 2026 DIGITAL.DZ - Tous droits réservés</div>
+            <div class="text-2xl font-extrabold tracking-tighter mb-4">DIGITAL<span class="text-blue-600">.DZ</span></div>
+            <p class="text-xs text-gray-400 uppercase tracking-widest">© 2026 - L'actualité technologique décryptée</p>
         </div>
     </footer>
 
     <script>
-        // Horloge temps réel
+        // Horloge temps réel (Mise à jour automatique)
         function updateClock() {
             const now = new Date();
-            const options = { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-            document.getElementById('live-clock').innerHTML = '<i class="far fa-clock mr-2"></i> ' + now.toLocaleDateString('fr-FR', options);
+            const options = { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' };
+            document.getElementById('live-clock').innerHTML = '<i class="far fa-clock mr-2 text-blue-500"></i> ' + now.toLocaleDateString('fr-FR', options);
         }
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Filtrage dynamique
+        // Filtrage des rubriques
         function setCategory(cat) {
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
                 if(link.getAttribute('data-cat') === cat) link.classList.add('active');
             });
-
             document.querySelectorAll('.searchable').forEach(el => {
                 const itemCat = el.getAttribute('data-category');
                 el.style.display = (cat === 'all' || itemCat === cat) ? "block" : "none";
