@@ -1,10 +1,10 @@
 ---
 layout: article
 title: "Souveraineté Numérique : Alger devient l'épicentre du futur technologique de l'Afrique"
-date: 2026-03-08 10:30:00 +0100
+date: 2026-03-08 09:00:00 +0100
 image: "/img/Sigle-global-africa-tech.jpg"
 category: "Souveraineté"
-description: "Découvrez les enjeux du sommet Global Africa Tech 2026 au CIC d'Alger : un rendez-vous historique pour l'autonomie technologique du continent."
+description: "Le sommet Global Africa Tech 2026 au CIC d'Alger pose les jalons de l'autonomie technologique du continent."
 ---
 
 **« Tous les réseaux, une seule convergence. »** C’est sous ce slogan puissant que se tiendra, du **28 au 30 mars 2026**, le sommet **Global Africa Tech** au Centre International des Conférences (CIC) d’Alger. Organisé sous le Haut Patronage du Président de la République et piloté par le Ministère de la Poste et des Télécommunications, cet événement n'est pas qu'un simple salon : c'est le point de départ de la décolonisation numérique du continent.
