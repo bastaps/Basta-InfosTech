@@ -1,5 +1,5 @@
 ---
-# Layout article
+layout: default
 ---
 <!DOCTYPE html>
 <html lang="fr">
@@ -7,137 +7,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }} | DIGITAL.DZ</title>
-    
-    <!-- SEO & Partage Social -->
-    <meta name="description" content="{{ page.description }}">
-    <meta property="og:title" content="{{ page.title }} | DIGITAL.DZ">
-    <meta property="og:description" content="{{ page.description }}">
-    <meta property="og:image" content="{{ page.image | absolute_url }}">
-    <meta property="og:url" content="{{ page.url | absolute_url }}">
-    <meta property="og:type" content="article">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ page.title }}">
-    <meta name="twitter:description" content="{{ page.description }}">
-    <meta name="twitter:image" content="{{ page.image | absolute_url }}">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
-        body { font-family: 'Roboto', sans-serif; background-color: #f6f6f6; }
-        .tsa-red { color: #E30613; }
-        .article-content { font-family: 'Lora', serif; }
-        .article-content p { margin-bottom: 1.8rem; line-height: 1.9; font-size: 1.25rem; color: #1a1a1a; text-align: left; }
-        .article-content h2 { font-family: 'Roboto', sans-serif; font-size: 2rem; font-weight: 900; margin-top: 3rem; margin-bottom: 1.5rem; color: #000; border-left: 5px solid #E30613; padding-left: 15px; }
-        .article-content ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1.8rem; font-size: 1.2rem; }
-        .article-content li { margin-bottom: 0.5rem; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #fff; }
+        .serif { font-family: 'Lora', serif; }
+        .article-body { font-family: 'Lora', serif; font-size: 1.3rem; line-height: 1.85; color: #121212; }
+        .article-body h2 { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 2rem; margin-top: 2.5rem; margin-bottom: 1.5rem; border-top: 3px solid black; pt-4; }
+        .article-body p { margin-bottom: 1.8rem; }
+        .dropcap::first-letter { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 5rem; float: left; line-height: 1; padding-right: 10px; color: #E30613; }
     </style>
 </head>
-<body>
-    <!-- BANDEAU TOP -->
-    <div class="bg-white border-b border-gray-200 py-2 text-[11px] font-bold text-gray-500 uppercase">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <div>Alger, le {{ "now" | date: "%d %B %Y" }}</div>
-            <div class="hidden md:flex space-x-4 italic">
-                <span>Direct <i class="fas fa-circle text-[8px] text-red-500 animate-pulse"></i></span>
+<body class="bg-white">
+
+    <article class="max-w-4xl mx-auto px-4 py-12">
+        <!-- Sur-titre -->
+        <div class="mb-6">
+            <span class="bg-black text-white px-3 py-1 text-xs font-black uppercase tracking-widest">{{ page.category }}</span>
+        </div>
+
+        <!-- Titre Principal style Libé -->
+        <h1 class="serif text-4xl md:text-7xl font-extrabold leading-[0.9] tracking-tight mb-8">{{ page.title }}</h1>
+        
+        <!-- Chapeau (Introduction) -->
+        <p class="text-2xl font-bold text-gray-700 leading-tight mb-10 border-l-4 border-red-600 pl-6 italic">
+            {{ page.description }}
+        </p>
+
+        <!-- Métadonnées & Partage -->
+        <div class="flex flex-wrap items-center justify-between border-t border-b border-gray-100 py-4 mb-10">
+            <div class="text-[12px] font-black uppercase">
+                <span class="mr-4 text-red-600">Publié le {{ page.date | date: "%d/%m/%Y à %H:%M" }}</span>
+                <span class="text-gray-400">Par La Rédaction</span>
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-400 hover:text-black"><i class="fab fa-x-twitter"></i></a>
             </div>
         </div>
-    </div>
 
-    <!-- HEADER PRINCIPAL -->
-    <header class="bg-white py-6 border-b border-gray-100">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-            <div class="text-left mb-6 md:mb-0">
-                <a href="{{ '/' | relative_url }}" class="text-5xl md:text-6xl font-black tracking-tighter uppercase">
-                    DIGITAL<span class="tsa-red">.DZ</span>
-                </a>
-                <p class="text-gray-400 text-xs mt-1 font-bold tracking-[0.3em] uppercase italic leading-none">L'excellence numérique algérienne</p>
-            </div>
-            
-            <div class="relative w-full md:w-96">
-                <form action="{{ '/' | relative_url }}" method="GET">
-                    <input type="text" name="q" placeholder="RECHERCHER..." 
-                        class="w-full border-2 border-gray-200 rounded-sm py-3 px-4 outline-none focus:border-tsa-red transition-all uppercase text-sm font-bold">
-                    <button type="submit" class="absolute right-4 top-4"><i class="fas fa-search tsa-red"></i></button>
-                </form>
-            </div>
-        </div>
-    </header>
+        <!-- Image principale -->
+        <figure class="mb-12">
+            <img src="{{ page.image | relative_url }}" class="w-full shadow-2xl">
+            <figcaption class="text-[10px] text-gray-400 uppercase font-bold mt-2 text-right tracking-widest">Crédit Photo: DIGITAL.DZ Archive</figcaption>
+        </figure>
 
-    <!-- NAVIGATION -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200 uppercase font-black text-sm tracking-widest">
-        <div class="container mx-auto px-4 flex justify-center space-x-8 py-4 overflow-x-auto whitespace-nowrap">
-            <a href="{{ '/' | relative_url }}" class="hover:tsa-red transition pb-1">À la une</a>
-            <a href="{{ '/' | relative_url }}?cat=National" class="hover:tsa-red transition pb-1">Algérie</a>
-            <a href="{{ '/' | relative_url }}?cat=International" class="hover:tsa-red transition pb-1">International</a>
-            <a href="{{ '/' | relative_url }}?cat=Souveraineté" class="hover:tsa-red transition pb-1">Souveraineté</a>
-            <a href="{{ '/' | relative_url }}?cat=Tech" class="hover:tsa-red transition pb-1">Tech / IA</a>
-        </div>
-    </nav>
-
-    <main class="container mx-auto max-w-4xl px-4 py-10 bg-white mt-6 shadow-sm mb-12">
-        <nav class="mb-6">
-            <a href="{{ '/' | relative_url }}" class="text-gray-400 uppercase text-xs font-bold hover:tsa-red italic">← Retour à l'actualité</a>
-        </nav>
-        
-        <span class="tsa-red font-black uppercase text-sm tracking-widest">{{ page.category }}</span>
-        <h1 class="text-4xl md:text-6xl font-black mt-3 mb-8 leading-tight">{{ page.title }}</h1>
-        
-        <!-- BARRE INFO ARTICLE (Date + Heure + Lecture) -->
-        <div class="flex flex-wrap items-center text-gray-400 text-xs font-bold uppercase mb-8 border-b border-gray-100 pb-4">
-            <span class="mr-6 mb-2 md:mb-0"><i class="far fa-calendar-alt mr-2 tsa-red"></i> {{ page.date | date: "%d %B %Y" }}</span>
-            <span class="mr-6 mb-2 md:mb-0"><i class="far fa-clock mr-2 tsa-red"></i> {{ page.date | date: "%H:%M" }}</span>
-            <span class="mr-6 mb-2 md:mb-0"><i class="fas fa-hourglass-half mr-2 tsa-red"></i> {{ page.content | number_of_words | divided_by: 200 | plus: 1 }} min de lecture</span>
-        </div>
-
-        <img src="{{ page.image | relative_url }}" class="w-full mb-10 shadow-lg aspect-video object-cover">
-        
-        <!-- Boutons de partage -->
-        <div class="flex space-x-4 mb-8 pb-6 border-b border-gray-100">
-            <span class="text-xs font-black uppercase self-center text-gray-400">Partager :</span>
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}" target="_blank" class="w-10 h-10 flex items-center justify-center bg-blue-600 text-white rounded-full hover:opacity-80 transition"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url }}&text={{ page.title }}" target="_blank" class="w-10 h-10 flex items-center justify-center bg-black text-white rounded-full hover:opacity-80 transition"><i class="fab fa-x-twitter"></i></a>
-            <a href="https://api.whatsapp.com/send?text={{ page.title }}%20{{ page.url | absolute_url }}" target="_blank" class="w-10 h-10 flex items-center justify-center bg-green-500 text-white rounded-full hover:opacity-80 transition"><i class="fab fa-whatsapp"></i></a>
-        </div>
-
-        <div class="article-content">
+        <!-- Corps de l'article -->
+        <div class="article-body dropcap">
             {{ content }}
         </div>
-    </main>
+    </article>
 
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white pt-12 pb-6 mt-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10 text-left">
-                <div>
-                    <h3 class="text-2xl font-black mb-4 uppercase">DIGITAL<span class="tsa-red">.DZ</span></h3>
-                    <p class="text-gray-400 text-sm leading-relaxed normal-case">
-                        Le premier portail indépendant dédié à l'actualité numérique, à la souveraineté technologique et à l'innovation en Algérie.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="text-sm font-black uppercase tracking-widest mb-6 border-b border-gray-700 pb-2">Navigation</h4>
-                    <ul class="text-gray-400 text-xs space-y-3 font-bold uppercase tracking-wider">
-                        <li><a href="#" class="hover:text-white transition">À Propos</a></li>
-                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
-                        <li><a href="#" class="hover:text-white transition">Publicité</a></li>
-                        <li><a href="#" class="hover:text-white transition">Légal</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-sm font-black uppercase tracking-widest mb-6 border-b border-gray-700 pb-2">Suivez-nous</h4>
-                    <div class="flex space-x-6 text-2xl">
-                        <a href="#" class="text-gray-400 hover:tsa-red"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-gray-400 hover:tsa-red"><i class="fab fa-x-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:tsa-red"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-gray-400 hover:tsa-red"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 pt-6 text-center text-[10px] text-gray-500 font-bold tracking-widest uppercase">
-                © {{ "now" | date: "%Y" }} DIGITAL.DZ - TOUS DROITS RÉSERVÉS.
-            </div>
+    <!-- FOOTER SIMPLE -->
+    <footer class="bg-black text-white py-12 mt-20">
+        <div class="container mx-auto px-4 text-center">
+            <a href="{{ '/' | relative_url }}" class="text-3xl font-black uppercase tracking-tighter">DIGITAL<span class="text-red-600">.DZ</span></a>
+            <p class="text-[10px] text-gray-500 mt-4 tracking-[0.5em] uppercase italic">L'excellence au cœur du réseau</p>
         </div>
     </footer>
+
 </body>
 </html>
