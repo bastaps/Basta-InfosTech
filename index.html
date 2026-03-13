@@ -1,69 +1,83 @@
 ---
-# Page d'accueil style portail Tech épuré
+# Index standalone - Style MobileAlgérie
 ---
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIGITAL.DZ | Portail Tech & Télécoms Algérie</title>
+    <title>DIGITAL.DZ | Actualité High-Tech Algérie</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #1a1a1a; }
-        .news-card { background: white; border: 1px solid #f0f0f0; transition: transform 0.2s, box-shadow 0.2s; border-radius: 8px; overflow: hidden; }
-        .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .tag { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #2563eb; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        .tech-card { background: white; border-radius: 12px; transition: all 0.3s ease; border: 1px solid #e2e8f0; }
+        .tech-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); border-color: #3b82f6; }
+        .nav-link { position: relative; font-weight: 600; color: #64748b; transition: color 0.2s; }
+        .nav-link.active { color: #3b82f6; }
+        .nav-link.active::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: #3b82f6; }
     </style>
 </head>
 <body>
 
-    <!-- Barre de temps réelle -->
-    <div class="bg-gray-900 text-white py-2 text-[11px] font-medium px-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <div id="live-clock"><i class="far fa-clock mr-2"></i> Chargement...</div>
-            <div class="hidden md:block uppercase tracking-widest font-bold">Le quotidien du numérique algérien</div>
+    <!-- TOP BAR LIVE -->
+    <div class="bg-blue-600 text-white py-2 px-4 shadow-sm">
+        <div class="container mx-auto flex justify-between items-center text-[11px] font-bold uppercase tracking-wider">
+            <div id="live-clock"></div>
+            <div class="hidden sm:block">Souveraineté • IA • Télécoms • Algérie</div>
         </div>
     </div>
 
-    <!-- Header -->
-    <header class="bg-white border-b border-gray-100 py-6">
-        <div class="container mx-auto px-4 flex flex-col items-center">
-            <h1 class="text-5xl font-black tracking-tighter mb-2">DIGITAL<span class="text-blue-600">.DZ</span></h1>
-            <p class="text-gray-400 font-medium text-sm">Actualité, IA, Souveraineté & Télécoms</p>
+    <!-- LOGO HEADER -->
+    <header class="bg-white py-8 border-b border-slate-100">
+        <div class="container mx-auto px-4 text-center">
+            <a href="{{ '/' | relative_url }}" class="text-4xl md:text-5xl font-black tracking-tighter italic">
+                DIGITAL<span class="text-blue-600">.DZ</span>
+            </a>
+            <p class="text-slate-400 text-xs mt-2 uppercase font-bold tracking-[0.2em]">Le portail de référence de la Tech Algérienne</p>
         </div>
     </header>
 
-    <!-- Menu horizontal épuré -->
-    <nav class="bg-white border-b border-gray-100 sticky top-0 z-50">
-        <div class="container mx-auto px-4 flex justify-center space-x-8 h-14 items-center">
-            <button onclick="setCategory('all')" class="font-bold text-sm hover:text-blue-600 nav-link border-b-2 border-blue-600 py-4">À LA UNE</button>
-            <button onclick="setCategory('Tech')" class="font-bold text-sm hover:text-blue-600 nav-link py-4">TECH</button>
-            <button onclick="setCategory('National')" class="font-bold text-sm hover:text-blue-600 nav-link py-4">ALGÉRIE</button>
-            <button onclick="setCategory('Souveraineté')" class="font-bold text-sm hover:text-blue-600 nav-link py-4">SOUVERAINETÉ</button>
+    <!-- NAVIGATION -->
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-center space-x-6 h-14 text-[13px]">
+                <button onclick="setCategory('all')" class="nav-link active uppercase" data-cat="all">À la une</button>
+                <button onclick="setCategory('Tech')" class="nav-link uppercase" data-cat="Tech">Tech</button>
+                <button onclick="setCategory('National')" class="nav-link uppercase" data-cat="National">Algérie</button>
+                <button onclick="setCategory('Souveraineté')" class="nav-link uppercase" data-cat="Souveraineté">Souveraineté</button>
+            </div>
         </div>
     </nav>
 
     {% assign articles = site.pages | where_exp: "item", "item.path contains 'presse/'" | sort: 'date' | reverse %}
 
-    <main class="container mx-auto px-4 py-10">
-        <!-- Grille d'articles -->
+    <main class="container mx-auto px-4 py-12">
         <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {% for article in articles %}
-            <article class="news-card searchable" data-category="{{ article.category }}">
+            <article class="tech-card searchable group" data-category="{{ article.category }}">
                 <a href="{{ article.url | relative_url }}">
-                    <div class="relative aspect-video">
-                        <img src="{{ article.image | relative_url }}" class="w-full h-full object-cover">
+                    <div class="relative overflow-hidden aspect-video rounded-t-xl">
+                        <img src="{{ article.image | relative_url }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-blue-600 text-white text-[10px] font-black px-2 py-1 rounded uppercase shadow-lg">
+                                {{ article.category }}
+                            </span>
+                        </div>
                     </div>
                     <div class="p-6">
-                        <span class="tag">{{ article.category }}</span>
-                        <h2 class="text-xl font-extrabold mt-2 mb-3 leading-tight hover:text-blue-600 transition-colors">{{ article.title }}</h2>
-                        <p class="text-gray-500 text-sm line-clamp-3 mb-4">{{ article.description }}</p>
-                        <div class="text-[11px] font-bold text-gray-400 uppercase flex justify-between items-center border-t pt-4">
-                            <span>{{ article.date | date: "%d/%m/%Y" }}</span>
-                            <span class="bg-gray-100 px-2 py-1 rounded text-gray-600">{{ article.content | number_of_words | divided_by: 200 | plus: 1 }} min lecture</span>
+                        <div class="flex items-center text-[10px] font-bold text-slate-400 mb-3 uppercase tracking-widest">
+                            <span>{{ article.date | date: "%d %b %Y" }}</span>
+                            <span class="mx-2">•</span>
+                            <span class="text-blue-500">{{ article.content | number_of_words | divided_by: 200 | plus: 1 }} min lecture</span>
                         </div>
+                        <h2 class="text-xl font-extrabold leading-tight mb-3 group-hover:text-blue-600 transition-colors">
+                            {{ article.title }}
+                        </h2>
+                        <p class="text-slate-500 text-sm line-clamp-2 leading-relaxed">
+                            {{ article.description }}
+                        </p>
                     </div>
                 </a>
             </article>
@@ -71,10 +85,11 @@
         </div>
     </main>
 
-    <footer class="bg-white border-t border-gray-100 py-12 mt-20">
+    <footer class="bg-slate-900 text-white py-16 mt-20">
         <div class="container mx-auto px-4 text-center">
-            <div class="text-2xl font-black mb-6 italic">DIGITAL.DZ</div>
-            <p class="text-gray-400 text-sm uppercase tracking-[0.2em]">© 2024-2026 Tous droits réservés</p>
+            <div class="text-3xl font-black tracking-tighter italic mb-4">DIGITAL<span class="text-blue-500">.DZ</span></div>
+            <p class="text-slate-400 text-sm max-w-md mx-auto mb-8 font-medium italic">"L'information technologique décryptée avec précision pour l'écosystème algérien."</p>
+            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">© 2026 DIGITAL.DZ - Tous droits réservés</div>
         </div>
     </footer>
 
@@ -82,23 +97,21 @@
         // Horloge temps réel
         function updateClock() {
             const now = new Date();
-            const options = { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' };
+            const options = { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit', second: '2-digit' };
             document.getElementById('live-clock').innerHTML = '<i class="far fa-clock mr-2"></i> ' + now.toLocaleDateString('fr-FR', options);
         }
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Filtre de catégorie
+        // Filtrage dynamique
         function setCategory(cat) {
             document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('border-b-2', 'border-blue-600');
-                if(link.innerText.toLowerCase() === cat.toLowerCase() || (cat === 'all' && link.innerText === 'À LA UNE')) {
-                    link.classList.add('border-b-2', 'border-blue-600');
-                }
+                link.classList.remove('active');
+                if(link.getAttribute('data-cat') === cat) link.classList.add('active');
             });
 
             document.querySelectorAll('.searchable').forEach(el => {
-                let itemCat = el.getAttribute('data-category');
+                const itemCat = el.getAttribute('data-category');
                 el.style.display = (cat === 'all' || itemCat === cat) ? "block" : "none";
             });
         }
