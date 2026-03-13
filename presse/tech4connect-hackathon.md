@@ -1,8 +1,8 @@
 ---
 layout: article
 title: "Tech4Connect : Huawei Algérie lance un marathon d'innovation technologique"
-date: 2025-03-09
-image: "img/huawei-connect.jpg"
+date: 2026-03-09 22:30:00 +0100
+image: "/img/huawei-connect.jpg"
 category: "National"
 description: "Retour sur les moments forts du hackathon Tech4Connect : 40 heures d'innovation intensive en 5G, IA et Cloud au cœur d'Alger."
 ---
