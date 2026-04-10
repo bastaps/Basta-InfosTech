@@ -1,11 +1,5 @@
 title: DIGITAL.DZ
 baseurl: "/Basta-InfosTech"
 url: "https://bastaps.github.io"
-
-# Cette ligne est cruciale pour l'apparence :
-theme: jekyll-theme-primer
-
 markdown: kramdown
 include: [presse, img]
-future: true
-encoding: "utf-8"
