@@ -2,6 +2,7 @@ backend:
   name: github
   repo: bastaps/Basta-InfosTech
   branch: main
+  base_url: https://api.github.com
 
 media_folder: "img/articles"
 public_folder: "/img/articles"
