@@ -55,7 +55,7 @@
             <div class="w-full lg:w-8/12 px-8">
                 <div id="articlesGrid">
                     <!-- Correction de la boucle pour éviter l'erreur de tri -->
-                    {% assign all_pages = site.pages | sort: 'date' | reverse %}
+                    {% assign all_pages = site.pages | where_exp: "item", "item.path contains 'presse/'" | sort: "date" | reverse %}
                     {% for article in all_pages %}
                         {% if article.path contains 'presse/' %}
                         <article class="card-tech searchable" data-category="{{ article.category }}">
