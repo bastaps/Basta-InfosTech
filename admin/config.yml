@@ -3,8 +3,8 @@ backend:
   repo: bastaps/Basta-InfosTech
   branch: main
 
-media_folder: "images/articles"
-public_folder: "/images/articles"
+media_folder: "img/articles"
+public_folder: "/img/articles"
 
 collections:
   - name: "articles"
