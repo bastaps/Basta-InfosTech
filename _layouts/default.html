@@ -21,19 +21,23 @@
             <div id="live-clock"></div>
             <div class="flex space-x-6">
                 <a href="mailto:contact@basta-infostech.dz" class="hover:text-blue-400"><i class="fas fa-envelope mr-1"></i> Contact</a>
+                <div class="flex space-x-3 border-l border-slate-700 pl-4">
+                    <a href="https://linkedin.com" target="_blank" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://facebook.com" target="_blank" class="hover:text-blue-600"><i class="fab fa-facebook"></i></a>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Header & Recherche -->
+    <!-- Header Logo & Recherche -->
     <header class="bg-white py-6 border-b border-slate-200">
         <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
             <a href="{{ site.baseurl }}/" class="text-4xl font-black tracking-tighter text-slate-900 mb-4 md:mb-0">
                 DIGITAL<span class="text-blue-600">.DZ</span>
             </a>
             <div class="relative w-full md:w-80">
-                <input type="text" id="searchInput" onkeyup="searchArticles()" placeholder="Rechercher..." 
-                class="w-full bg-white border-2 border-slate-200 rounded-lg px-4 py-2 text-sm focus:border-blue-500 outline-none transition-all">
+                <input type="text" id="searchInput" onkeyup="searchArticles()" placeholder="Rechercher une actualité..." 
+                class="w-full bg-white border-2 border-slate-200 rounded-lg px-4 py-2 text-sm focus:border-blue-500 outline-none transition-all shadow-sm">
                 <i class="fas fa-search absolute right-3 top-3 text-slate-400"></i>
             </div>
         </div>
@@ -44,14 +48,15 @@
         <div class="container mx-auto px-4 overflow-x-auto">
             <div class="flex space-x-8 py-4 whitespace-nowrap">
                 <a href="{{ site.baseurl }}/" class="nav-link active">Actualités</a>
-                <button onclick="setCategory('Algérie')" class="nav-link" data-cat="Algérie">Algérie</button>
-                <button onclick="setCategory('Tech')" class="nav-link" data-cat="Tech">Tech</button>
-                <button onclick="setCategory('Mobile')" class="nav-link" data-cat="Mobile">Mobile</button>
-                <button onclick="setCategory('Economie')" class="nav-link" data-cat="Economie">Economie</button>
+                <button onclick="filterCat('Algérie')" class="nav-link">Algérie</button>
+                <button onclick="filterCat('Tech')" class="nav-link">Tech</button>
+                <button onclick="filterCat('Mobile')" class="nav-link">Mobile</button>
+                <button onclick="filterCat('Economie')" class="nav-link">Economie</button>
             </div>
         </div>
     </nav>
 
+    <!-- Contenu variable -->
     <main class="container mx-auto px-4 py-8">
         {{ content }}
     </main>
@@ -74,27 +79,43 @@
             <div>
                 <h4 class="font-bold uppercase text-[11px] mb-6 text-blue-400 tracking-widest">Suivre</h4>
                 <div class="flex space-x-4">
+                    <a href="https://linkedin.com" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-700 transition-all"><i class="fab fa-linkedin-in"></i></a>
                     <a href="https://facebook.com" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-all"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://twitter.com" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-400 transition-all"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
+        // Horloge
         function updateClock() {
             const now = new Date();
             const options = { weekday: 'long', day: 'numeric', month: 'long' };
-            document.getElementById('live-clock').innerHTML = '<i class="far fa-calendar-alt mr-2 text-blue-400"></i> ' + now.toLocaleDateString('fr-FR', options).toUpperCase();
+            const el = document.getElementById('live-clock');
+            if(el) el.innerHTML = '<i class="far fa-calendar-alt mr-2 text-blue-400"></i> ' + now.toLocaleDateString('fr-FR', options).toUpperCase();
         }
         setInterval(updateClock, 1000); updateClock();
 
+        // Recherche
         function searchArticles() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             document.querySelectorAll('.searchable').forEach(article => {
                 let text = article.innerText.toLowerCase();
                 article.style.display = text.includes(input) ? "block" : "none";
             });
+        }
+
+        // Filtre de catégorie (ne fonctionne que sur la home)
+        function filterCat(cat) {
+            const isHome = window.location.pathname === "{{ site.baseurl }}/" || window.location.pathname === "{{ site.baseurl }}/index.html";
+            if (!isHome) {
+                window.location.href = "{{ site.baseurl }}/";
+            } else {
+                document.querySelectorAll('.searchable').forEach(el => {
+                    const itemCat = el.getAttribute('data-category');
+                    el.style.display = (itemCat === cat) ? "block" : "none";
+                });
+            }
         }
     </script>
 </body>
