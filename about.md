@@ -3,5 +3,5 @@ layout: default
 title: À Propos
 permalink: /about
 ---
-# À Propos
-DIGITAL.DZ est votre portail...
+# À Propos de Digital.dz
+Contenu ici...
