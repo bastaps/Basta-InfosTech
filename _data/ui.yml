@@ -4,8 +4,9 @@ fr:
   tech: "Tech"
   mobile: "Mobile"
   eco: "Économie"
+  contact: "Contact"
+  search_placeholder: "Rechercher une actualité..."
   read_more: "Lire la suite"
-  search_placeholder: "Rechercher..."
   last_minutes: "Dernières minutes"
 
 ar:
@@ -14,6 +15,7 @@ ar:
   tech: "تكنولوجيا"
   mobile: "موبايل"
   eco: "إقتصاد"
+  contact: "اتصل بنا"
+  search_placeholder: "بحث عن خبر..."
   read_more: "اقرأ المزيد"
-  search_placeholder: "بحث..."
   last_minutes: "آخر الأخبار"
