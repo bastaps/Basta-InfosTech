@@ -1,5 +1,6 @@
 ---
 layout: article
+lang: fr
 title: "Tech4Connect : Huawei Algérie lance un marathon d'innovation technologique"
 date: 2026-03-09 22:30:00 +0100
 image: "/img/huawei-connect.jpg"
