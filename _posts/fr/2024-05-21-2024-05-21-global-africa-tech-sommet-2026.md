@@ -1,8 +1,8 @@
 ---
 layout: article
-lang: fr
 title: "Souveraineté Numérique : Alger devient l'épicentre du futur technologique de l'Afrique"
 date: 2026-03-08 09:00:00 +0100
+lang: fr
 image: "/img/Sigle-global-africa-tech.jpg"
 category: "Souveraineté"
 description: "Le sommet Global Africa Tech 2026 au CIC d'Alger pose les jalons de l'autonomie technologique du continent."
