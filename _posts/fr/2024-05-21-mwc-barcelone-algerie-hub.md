@@ -2,6 +2,7 @@
 layout: article
 title: "MWC Barcelone : L’Algérie affiche ses ambitions de hub numérique mondial"
 date: 2026-03-02 18:30:00 +0100
+lang: fr
 image: "/img/zerrouki-mwc.jpg"
 category: "International"
 description: "Sid Ali Zerrouki profite du Mobile World Congress pour positionner l'Algérie sur l'IA, la 5G et les infrastructures sous-marines stratégiques."
