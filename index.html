@@ -1,66 +1,39 @@
 ---
 layout: default
+lang: fr
 ---
+{% assign posts_fr = site.posts | where: "lang", "fr" %}
 
-<div class="flex flex-wrap -mx-4 mb-12">
-    <!-- Article IMPORTANT (À GAUCHE) -->
-    <div class="w-full lg:w-8/12 px-4 mb-8 lg:mb-0">
-        {% for article in site.pages %}
-            {% if article.path contains 'presse/' %}
-            <div class="relative h-[500px] rounded-2xl overflow-hidden group shadow-2xl searchable-item" data-category="{{ article.category }}">
-                <img src="{{ article.image | relative_url }}" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
-                <div class="absolute bottom-0 p-10">
-                    <span class="bg-blue-600 text-white px-3 py-1 text-[10px] font-bold uppercase rounded mb-4 inline-block">{{ article.category }}</span>
-                    <h2 class="text-4xl font-extrabold text-white leading-tight mb-4">
-                        <a href="{{ article.url | relative_url }}">{{ article.title }}</a>
-                    </h2>
-                    <p class="text-slate-200 line-clamp-2 max-w-xl">{{ article.description }}</p>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <div class="lg:col-span-8">
+        {% if posts_fr.size > 0 %}
+            {% for post in posts_fr limit:1 %}
+            <article class="searchable-item group cursor-pointer" data-category="{{ post.category }}">
+                <div class="relative overflow-hidden rounded-3xl shadow-xl">
+                    <img src="{{ site.baseurl }}/{{ post.image }}" class="w-full h-[500px] object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 p-8 flex flex-col justify-end">
+                        <h2 class="text-white text-4xl font-black mb-4">{{ post.title }}</h2>
+                        <p class="text-slate-200 mb-4">{{ post.excerpt }}</p>
+                        <a href="{{ post.url | prepend: site.baseurl }}" class="text-blue-400 font-bold">LIRE LA SUITE</a>
+                    </div>
                 </div>
-            </div>
-            {% break %}
-            {% endif %}
-        {% endfor %}
+            </article>
+            {% endfor %}
+        {% else %}
+            <p class="text-center py-20 text-slate-500">Aucun article disponible pour le moment.</p>
+        {% endif %}
     </div>
 
-    <!-- Dernières Minutes (À DROITE) -->
-    <div class="w-full lg:w-4/12 px-4">
-        <h3 class="text-xs font-black uppercase tracking-[0.2em] text-blue-600 mb-6 border-l-4 border-blue-600 pl-3">Dernières minutes</h3>
-        <div class="space-y-4">
-            {% assign count = 0 %}
-            {% for article in site.pages %}
-                {% if article.path contains 'presse/' %}
-                    {% assign count = count | plus: 1 %}
-                    {% if count > 1 and count < 6 %}
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex gap-4 items-center searchable-item" data-category="{{ article.category }}">
-                        <img src="{{ article.image | relative_url }}" class="w-16 h-16 object-cover rounded shadow-inner">
-                        <div>
-                            <span class="text-[9px] font-bold text-blue-500 uppercase">{{ article.category }}</span>
-                            <h4 class="font-bold text-xs leading-tight hover:text-blue-600"><a href="{{ article.url | relative_url }}">{{ article.title }}</a></h4>
-                        </div>
-                    </div>
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
+    <div class="lg:col-span-4">
+        <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100">
+            <h3 class="text-xl font-black mb-6">DERNIÈRES MINUTES</h3>
+            <div class="space-y-6">
+                {% for post in posts_fr offset:1 %}
+                <div class="searchable-item border-b border-slate-50 pb-4" data-category="{{ post.category }}">
+                    <a href="{{ post.url | prepend: site.baseurl }}" class="block font-bold hover:text-blue-600">{{ post.title }}</a>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
-
-<!-- Reste du flux -->
-<div class="max-w-4xl">
-    <h3 class="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-8 pb-2 border-b">Plus d'actualités</h3>
-    {% for article in site.pages %}
-        {% if article.path contains 'presse/' %}
-        <article class="bg-white rounded-xl mb-6 overflow-hidden shadow-sm border border-slate-100 searchable-item" data-category="{{ article.category }}">
-            <a href="{{ article.url | relative_url }}" class="flex flex-col md:flex-row">
-                <img src="{{ article.image | relative_url }}" class="md:w-1/3 h-48 object-cover">
-                <div class="p-6 md:w-2/3">
-                    <span class="text-blue-600 font-bold text-[10px] uppercase block mb-2">{{ article.category }}</span>
-                    <h2 class="text-xl font-bold mb-2 text-slate-900">{{ article.title }}</h2>
-                    <p class="text-slate-500 text-sm line-clamp-2">{{ article.description }}</p>
-                </div>
-            </a>
-        </article>
-        {% endif %}
-    {% endfor %}
 </div>
