@@ -1,0 +1,19 @@
+fr:
+  news: "Actualités"
+  algeria: "Algérie"
+  tech: "Tech"
+  mobile: "Mobile"
+  eco: "Économie"
+  read_more: "Lire la suite"
+  search_placeholder: "Rechercher..."
+  last_minutes: "Dernières minutes"
+
+ar:
+  news: "أخبار"
+  algeria: "الجزائر"
+  tech: "تكنولوجيا"
+  mobile: "موبايل"
+  eco: "إقتصاد"
+  read_more: "اقرأ المزيد"
+  search_placeholder: "بحث..."
+  last_minutes: "آخر الأخبار"
