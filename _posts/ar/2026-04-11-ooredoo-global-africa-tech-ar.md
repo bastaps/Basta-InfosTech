@@ -1,6 +1,6 @@
 ---
 layout: article
-title: "Ooredoo Algérie distinguée pour son excellence au Sommet Global Africa Tech 2026"
+title: "2026 Global Africa Tech أوريدو الجزائر تحظى بالتميز في قمة" 
 date: 2026-04-11 14:30:00 +0100
 lang: ar
 image: "/img/ooredoo-globalafricatech-recompense.jpg"
