@@ -2,4 +2,4 @@ title: DIGITAL.DZ
 baseurl: "/Basta-InfosTech"
 url: "https://bastaps.github.io"
 markdown: kramdown
-include: [presse, img]
+include: [presse, img, _posts]
