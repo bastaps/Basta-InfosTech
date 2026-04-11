@@ -1,5 +1,6 @@
 ---
 layout: article
+lang: fr
 title: "MWC Barcelone : L’Algérie affiche ses ambitions de hub numérique mondial"
 date: 2026-03-02 18:30:00 +0100
 image: "/img/zerrouki-mwc.jpg"
