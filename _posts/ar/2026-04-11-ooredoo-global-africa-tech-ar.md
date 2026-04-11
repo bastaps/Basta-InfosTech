@@ -1,6 +1,6 @@
 ---
 layout: article
-title: "2026 Global Africa Tech أوريدو الجزائر تحظى بالتميز في قمة" 
+title: "أوريدو الجزائر تحظى بالتميز في قمة "2026 Global Africa Tech 
 date: 2026-04-11 14:30:00 +0100
 lang: ar
 image: "/img/ooredoo-globalafricatech-recompense.jpg"
