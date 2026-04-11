@@ -1,8 +1,8 @@
 ---
 layout: article
-lang: fr
 title: "ICT Day 2026 : Huawei Algérie propulse l’innovation locale avec le hackathon « Tech4Connect »"
 date: 2026-03-12 18:30:00 +0100
+lang: fr
 image: "/img/huawei-tech4connect.jpg"
 category: "Tech"
 description: "Huawei Algérie célèbre l’excellence technologique en récompensant les lauréats de son premier hackathon « Tech4Connect 2026 »."
