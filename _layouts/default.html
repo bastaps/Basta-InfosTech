@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #1e293b; }
-        .nav-link { font-weight: 700; color: #475569; transition: all 0.2s; position: relative; font-size: 12px; cursor: pointer; text-transform: uppercase; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .nav-link { font-weight: 700; color: #64748b; transition: all 0.2s; position: relative; font-size: 13px; cursor: pointer; text-transform: uppercase; }
         .nav-link:hover, .nav-link.active { color: #2563eb; }
         .nav-link.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: #2563eb; }
     </style>
@@ -18,12 +18,12 @@
     <!-- Topbar -->
     <div class="bg-slate-900 text-white py-2">
         <div class="container mx-auto px-4 flex justify-between items-center text-[10px] font-bold uppercase tracking-widest">
-            <div id="live-clock"></div>
-            <div class="flex space-x-6">
-                <a href="mailto:contact@basta-infostech.dz" class="hover:text-blue-400"><i class="fas fa-envelope mr-1"></i> Contact</a>
-                <div class="flex space-x-3 border-l border-slate-700 pl-4">
-                    <a href="https://linkedin.com" target="_blank" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://facebook.com" target="_blank" class="hover:text-blue-600"><i class="fab fa-facebook"></i></a>
+            <div id="live-clock">CHARGEMENT...</div>
+            <div class="flex items-center space-x-6">
+                <a href="mailto:contact@basta-infostech.dz" class="hover:text-blue-400">Contact</a>
+                <div class="flex space-x-4 border-l border-slate-700 pl-4">
+                    <a href="https://linkedin.com/company/votre-page" target="_blank" class="hover:text-blue-400"><i class="fab fa-linkedin text-sm"></i></a>
+                    <a href="https://facebook.com/votre-page" target="_blank" class="hover:text-blue-600"><i class="fab fa-facebook text-sm"></i></a>
                 </div>
             </div>
         </div>
@@ -37,32 +37,31 @@
             </a>
             <div class="relative w-full md:w-80">
                 <input type="text" id="searchInput" onkeyup="searchArticles()" placeholder="Rechercher une actualité..." 
-                class="w-full bg-white border-2 border-slate-200 rounded-lg px-4 py-2 text-sm focus:border-blue-500 outline-none transition-all shadow-sm">
-                <i class="fas fa-search absolute right-3 top-3 text-slate-400"></i>
+                class="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-0 outline-none transition-all shadow-sm">
+                <i class="fas fa-search absolute right-4 top-3.5 text-slate-400"></i>
             </div>
         </div>
     </header>
 
     <!-- Menu Rubriques -->
-    <nav class="sticky top-0 bg-white shadow-md z-50 border-b border-slate-200">
+    <nav class="sticky top-0 bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-slate-200">
         <div class="container mx-auto px-4 overflow-x-auto">
             <div class="flex space-x-8 py-4 whitespace-nowrap">
                 <a href="{{ site.baseurl }}/" class="nav-link active">Actualités</a>
-                <button onclick="filterCat('Algérie')" class="nav-link">Algérie</button>
-                <button onclick="filterCat('Tech')" class="nav-link">Tech</button>
-                <button onclick="filterCat('Mobile')" class="nav-link">Mobile</button>
-                <button onclick="filterCat('Economie')" class="nav-link">Economie</button>
+                <button onclick="filterByCat('Algérie')" class="nav-link">Algérie</button>
+                <button onclick="filterByCat('Tech')" class="nav-link">Tech</button>
+                <button onclick="filterByCat('Mobile')" class="nav-link">Mobile</button>
+                <button onclick="filterByCat('Economie')" class="nav-link">Economie</button>
             </div>
         </div>
     </nav>
 
-    <!-- Contenu variable -->
-    <main class="container mx-auto px-4 py-8">
+    <main class="container mx-auto px-4 py-8 min-h-screen">
         {{ content }}
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-white py-12 mt-20">
+    <footer class="bg-slate-900 text-white py-12">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
                 <div class="text-2xl font-black mb-4 uppercase">Digital<span class="text-blue-500">.dz</span></div>
@@ -70,10 +69,10 @@
             </div>
             <div>
                 <h4 class="font-bold uppercase text-[11px] mb-6 text-blue-400 tracking-widest">Navigation</h4>
-                <ul class="text-slate-300 text-sm space-y-3">
-                    <li><a href="{{ site.baseurl }}/about" class="hover:text-white transition">À Propos</a></li>
-                    <li><a href="{{ site.baseurl }}/contact" class="hover:text-white transition">Contact</a></li>
-                    <li><a href="{{ site.baseurl }}/mentions" class="hover:text-white transition">Mentions Légales</a></li>
+                <ul class="text-slate-400 text-sm space-y-3">
+                    <li><a href="{{ site.baseurl }}/about.html" class="hover:text-white transition">À Propos</a></li>
+                    <li><a href="{{ site.baseurl }}/contact.html" class="hover:text-white transition">Contact</a></li>
+                    <li><a href="{{ site.baseurl }}/mentions.html" class="hover:text-white transition">Mentions Légales</a></li>
                 </ul>
             </div>
             <div>
@@ -87,35 +86,30 @@
     </footer>
 
     <script>
-        // Horloge
         function updateClock() {
             const now = new Date();
             const options = { weekday: 'long', day: 'numeric', month: 'long' };
-            const el = document.getElementById('live-clock');
-            if(el) el.innerHTML = '<i class="far fa-calendar-alt mr-2 text-blue-400"></i> ' + now.toLocaleDateString('fr-FR', options).toUpperCase();
+            document.getElementById('live-clock').innerHTML = '<i class="far fa-calendar-alt mr-2 text-blue-400"></i> ' + now.toLocaleDateString('fr-FR', options).toUpperCase();
         }
         setInterval(updateClock, 1000); updateClock();
 
-        // Recherche
         function searchArticles() {
             let input = document.getElementById('searchInput').value.toLowerCase();
-            document.querySelectorAll('.searchable').forEach(article => {
-                let text = article.innerText.toLowerCase();
-                article.style.display = text.includes(input) ? "block" : "none";
+            document.querySelectorAll('.searchable-item').forEach(el => {
+                let text = el.innerText.toLowerCase();
+                el.style.display = text.includes(input) ? "block" : "none";
             });
         }
 
-        // Filtre de catégorie (ne fonctionne que sur la home)
-        function filterCat(cat) {
-            const isHome = window.location.pathname === "{{ site.baseurl }}/" || window.location.pathname === "{{ site.baseurl }}/index.html";
-            if (!isHome) {
+        function filterByCat(cat) {
+            if (window.location.pathname !== "{{ site.baseurl }}/" && window.location.pathname !== "{{ site.baseurl }}/index.html") {
                 window.location.href = "{{ site.baseurl }}/";
-            } else {
-                document.querySelectorAll('.searchable').forEach(el => {
-                    const itemCat = el.getAttribute('data-category');
-                    el.style.display = (itemCat === cat) ? "block" : "none";
-                });
+                return;
             }
+            document.querySelectorAll('.searchable-item').forEach(el => {
+                const itemCat = el.getAttribute('data-category');
+                el.style.display = (itemCat === cat) ? "block" : "none";
+            });
         }
     </script>
 </body>
