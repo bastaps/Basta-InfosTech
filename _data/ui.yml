@@ -6,8 +6,6 @@ fr:
   eco: "Économie"
   contact: "Contact"
   search_placeholder: "Rechercher une actualité..."
-  read_more: "Lire la suite"
-  last_minutes: "Dernières minutes"
 
 ar:
   news: "أخبار"
@@ -17,5 +15,3 @@ ar:
   eco: "إقتصاد"
   contact: "اتصل بنا"
   search_placeholder: "بحث عن خبر..."
-  read_more: "اقرأ المزيد"
-  last_minutes: "آخر الأخبار"
