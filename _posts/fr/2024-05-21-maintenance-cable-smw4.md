@@ -1,5 +1,6 @@
 ---
 layout: article
+lang: fr
 title: "Alerte Infrastructure : Maintenance préventive sur le câble sous-marin SMW4"
 date: 2026-03-09 20:30 +0100
 image: "/img/cable-sous-marin.jpg"
