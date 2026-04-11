@@ -4,36 +4,36 @@ lang: fr
 ---
 {% assign posts_fr = site.posts | where: "lang", "fr" %}
 
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
     <div class="lg:col-span-8">
         {% if posts_fr.size > 0 %}
             {% assign hero = posts_fr.first %}
-            <article class="searchable-item group mb-10" data-category="{{ hero.category }}">
+            <article class="searchable-item group" data-category="{{ hero.category }}">
                 <a href="{{ hero.url | prepend: site.baseurl }}" class="block">
-                    <span class="text-blue-600 font-bold text-sm uppercase tracking-widest mb-2 block">{{ hero.category }}</span>
-                    <!-- Titre en DESSUS -->
-                    <h2 class="text-slate-900 text-5xl font-black mb-6 leading-tight group-hover:text-blue-600 transition">
+                    <span class="text-blue-600 font-bold text-[11px] uppercase tracking-widest mb-1 block">{{ hero.category }}</span>
+                    <!-- Titre réduit -->
+                    <h2 class="text-slate-900 text-3xl font-extrabold mb-4 leading-tight group-hover:text-blue-600 transition">
                         {{ hero.title }}
                     </h2>
-                    <!-- Image en DESSOUS -->
-                    <div class="overflow-hidden rounded-3xl shadow-2xl mb-6">
-                        <img src="{{ site.baseurl }}/{{ hero.image }}" class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-105">
+                    <!-- Image redimensionnée (Hauteur max 350px) -->
+                    <div class="overflow-hidden rounded-2xl shadow-lg mb-4">
+                        <img src="{{ site.baseurl }}/{{ hero.image }}" class="w-full h-[350px] object-cover transition duration-700 group-hover:scale-105">
                     </div>
                 </a>
-                <p class="text-slate-600 text-xl leading-relaxed mb-6">{{ hero.excerpt }}</p>
-                <a href="{{ hero.url | prepend: site.baseurl }}" class="inline-block bg-blue-600 text-white px-8 py-3 rounded-full font-bold hover:bg-slate-900 transition">LIRE LA SUITE</a>
+                <p class="text-slate-500 text-base leading-relaxed mb-4 line-clamp-3">{{ hero.excerpt }}</p>
+                <a href="{{ hero.url | prepend: site.baseurl }}" class="text-blue-600 text-sm font-bold border-b-2 border-blue-100 hover:border-blue-600 transition pb-1">LIRE LA SUITE</a>
             </article>
         {% endif %}
     </div>
 
+    <!-- Sidebar plus aérée -->
     <div class="lg:col-span-4">
-        <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
-            <h3 class="text-2xl font-black mb-8 border-b-4 border-blue-600 pb-2 inline-block">DERNIÈRES MINUTES</h3>
-            <div class="space-y-8">
+        <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+            <h3 class="text-sm font-black mb-6 text-slate-400 uppercase tracking-widest border-b pb-2">Dernières minutes</h3>
+            <div class="space-y-6">
                 {% for post in posts_fr offset:1 %}
                 <div class="searchable-item group" data-category="{{ post.category }}">
-                    <span class="text-blue-600 text-xs font-bold uppercase">{{ post.category }}</span>
-                    <a href="{{ post.url | prepend: site.baseurl }}" class="block text-xl font-bold text-slate-800 hover:text-blue-600 leading-tight mt-2 transition">
+                    <a href="{{ post.url | prepend: site.baseurl }}" class="block text-base font-bold text-slate-800 hover:text-blue-600 leading-snug transition">
                         {{ post.title }}
                     </a>
                 </div>
