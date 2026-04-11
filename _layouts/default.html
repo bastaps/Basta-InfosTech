@@ -1,5 +1,7 @@
+{% assign lang = page.lang | default: "fr" %}
+{% assign t = site.data.ui[lang] %}
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ lang }}" dir="{% if lang == 'ar' %}rtl{% else %}ltr{% endif %}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,21 +9,39 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        /* Importation de Inter pour le FR et Cairo pour l'AR */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Cairo:wght@400;700;900&display=swap');
+        
+        body { 
+            font-family: {% if lang == 'ar' %}'Cairo'{% else %}'Inter'{% endif %}, sans-serif; 
+            background-color: #f8fafc; 
+            color: #1e293b; 
+        }
+        
         .nav-link { font-weight: 700; color: #64748b; transition: all 0.2s; position: relative; font-size: 13px; cursor: pointer; text-transform: uppercase; }
         .nav-link:hover, .nav-link.active { color: #2563eb; }
         .nav-link.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: #2563eb; }
+        
+        /* Ajustement pour le RTL (inversion des bordures et icônes) */
+        html[dir="rtl"] .border-l { border-left: 0; border-right-width: 1px; padding-left: 0; padding-right: 1rem; }
+        html[dir="rtl"] .fas.fa-search { right: auto; left: 1rem; }
     </style>
 </head>
 <body>
     <!-- Topbar -->
     <div class="bg-slate-900 text-white py-2">
         <div class="container mx-auto px-4 flex justify-between items-center text-[10px] font-bold uppercase tracking-widest">
-            <div id="live-clock">CHARGEMENT...</div>
-            <div class="flex items-center space-x-6">
-                <a href="mailto:contact@basta-infostech.dz" class="hover:text-blue-400">Contact</a>
-                <div class="flex space-x-4 border-l border-slate-700 pl-4">
+            <div id="live-clock">...</div>
+            <div class="flex items-center space-x-6 space-x-reverse">
+                <!-- Sélecteur de langue -->
+                {% if lang == 'fr' %}
+                <a href="{{ site.baseurl }}/ar/" class="text-blue-400 font-black">العربية</a>
+                {% else %}
+                <a href="{{ site.baseurl }}/" class="text-blue-400 font-black">FRANÇAIS</a>
+                {% endif %}
+                
+                <a href="mailto:contact@basta-infostech.dz" class="hover:text-blue-400">{{ t.contact }}</a>
+                <div class="flex space-x-4 space-x-reverse border-l border-slate-700 pl-4">
                     <a href="https://linkedin.com" target="_blank" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
                     <a href="https://facebook.com" target="_blank" class="hover:text-blue-600"><i class="fab fa-facebook"></i></a>
                 </div>
@@ -32,12 +52,12 @@
     <!-- Header Logo & Recherche -->
     <header class="bg-white py-6 border-b border-slate-200">
         <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-            <a href="{{ site.baseurl }}/" class="text-4xl font-black tracking-tighter text-slate-900 mb-4 md:mb-0">
+            <a href="{% if lang == 'ar' %}{{ site.baseurl }}/ar/{% else %}{{ site.baseurl }}/{% endif %}" class="text-4xl font-black tracking-tighter text-slate-900 mb-4 md:mb-0">
                 DIGITAL<span class="text-blue-600">.DZ</span>
             </a>
             <!-- Recherche VISIBLE -->
             <div class="relative w-full md:w-80">
-                <input type="text" id="searchInput" onkeyup="searchArticles()" placeholder="Rechercher une actualité..." 
+                <input type="text" id="searchInput" onkeyup="searchArticles()" placeholder="{{ t.search_placeholder }}" 
                 class="w-full bg-slate-50 border-2 border-slate-300 rounded-xl px-4 py-2 text-sm focus:border-blue-500 outline-none shadow-sm text-slate-900">
                 <i class="fas fa-search absolute right-4 top-3 text-slate-400"></i>
             </div>
@@ -47,12 +67,12 @@
     <!-- Menu Rubriques -->
     <nav class="sticky top-0 bg-white/95 backdrop-blur-sm shadow-md z-50 border-b border-slate-200">
         <div class="container mx-auto px-4 overflow-x-auto">
-            <div class="flex space-x-8 py-4 whitespace-nowrap">
-                <a href="{{ site.baseurl }}/" class="nav-link">Actualités</a>
-                <button onclick="filterByCat('National')" class="nav-link">Algérie</button>
-                <button onclick="filterByCat('Tech')" class="nav-link">Tech</button>
-                <button onclick="filterByCat('Mobile')" class="nav-link">Mobile</button>
-                <button onclick="filterByCat('Economie')" class="nav-link">Economie</button>
+            <div class="flex space-x-8 space-x-reverse py-4 whitespace-nowrap">
+                <a href="{% if lang == 'ar' %}{{ site.baseurl }}/ar/{% else %}{{ site.baseurl }}/{% endif %}" class="nav-link">{{ t.news }}</a>
+                <button onclick="filterByCat('National')" class="nav-link">{{ t.algeria }}</button>
+                <button onclick="filterByCat('Tech')" class="nav-link">{{ t.tech }}</button>
+                <button onclick="filterByCat('Mobile')" class="nav-link">{{ t.mobile }}</button>
+                <button onclick="filterByCat('Economie')" class="nav-link">{{ t.eco }}</button>
             </div>
         </div>
     </nav>
@@ -63,22 +83,21 @@
 
     <!-- Footer -->
     <footer class="bg-slate-900 text-white py-12">
-        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 text-start">
             <div>
                 <div class="text-2xl font-black mb-4 uppercase">Digital<span class="text-blue-500">.dz</span></div>
-                <p class="text-slate-400 text-sm">Source de référence du numérique en Algérie.</p>
+                <p class="text-slate-400 text-sm">{% if lang == 'ar' %}المصدر المرجعي للمجال الرقمي في الجزائر.{% else %}Source de référence du numérique en Algérie.{% endif %}</p>
             </div>
             <div>
                 <h4 class="font-bold uppercase text-[11px] mb-6 text-blue-400 tracking-widest">Navigation</h4>
                 <ul class="text-slate-400 text-sm space-y-3">
-                    <li><a href="{{ site.baseurl }}/about.html" class="hover:text-white transition">À Propos</a></li>
-                    <li><a href="{{ site.baseurl }}/contact.html" class="hover:text-white transition">Contact</a></li>
-                    <li><a href="{{ site.baseurl }}/mentions.html" class="hover:text-white transition">Mentions Légales</a></li>
+                    <li><a href="{{ site.baseurl }}/about.html" class="hover:text-white transition">{% if lang == 'ar' %}حول الموقع{% else %}À Propos{% endif %}</a></li>
+                    <li><a href="{{ site.baseurl }}/contact.html" class="hover:text-white transition">{% if lang == 'ar' %}اتصل بنا{% else %}Contact{% endif %}</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-bold uppercase text-[11px] mb-6 text-blue-400 tracking-widest">Suivre</h4>
-                <div class="flex space-x-4">
+                <h4 class="font-bold uppercase text-[11px] mb-6 text-blue-400 tracking-widest">{% if lang == 'ar' %}تابعنا{% else %}Suivre{% endif %}</h4>
+                <div class="flex space-x-4 space-x-reverse">
                     <a href="https://linkedin.com" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-700 transition-all"><i class="fab fa-linkedin-in"></i></a>
                     <a href="https://facebook.com" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-all"><i class="fab fa-facebook-f"></i></a>
                 </div>
@@ -89,8 +108,10 @@
     <script>
         function updateClock() {
             const now = new Date();
+            const lang = "{{ lang }}";
+            const locale = (lang === 'ar') ? 'ar-DZ' : 'fr-FR';
             const options = { weekday: 'long', day: 'numeric', month: 'long' };
-            document.getElementById('live-clock').innerHTML = '<i class="far fa-calendar-alt mr-2 text-blue-400"></i> ' + now.toLocaleDateString('fr-FR', options).toUpperCase();
+            document.getElementById('live-clock').innerHTML = '<i class="far fa-calendar-alt mr-2 text-blue-400"></i> ' + now.toLocaleDateString(locale, options).toUpperCase();
         }
         setInterval(updateClock, 1000); updateClock();
 
@@ -103,8 +124,10 @@
         }
 
         function filterByCat(cat) {
-            if (window.location.pathname.length > 20) { // Si on est sur un article
-                window.location.href = "{{ site.baseurl }}/";
+            // Logique simplifiée pour redirection vers accueil selon la langue
+            const homeUrl = ( "{{ lang }}" === 'ar' ) ? "{{ site.baseurl }}/ar/" : "{{ site.baseurl }}/";
+            if (window.location.pathname.includes('/202')) { // Détection rudimentaire d'une page article
+                window.location.href = homeUrl;
             } else {
                 document.querySelectorAll('.searchable-item').forEach(el => {
                     const itemCat = el.getAttribute('data-category');
