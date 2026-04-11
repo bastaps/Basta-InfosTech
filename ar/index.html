@@ -1,61 +1,59 @@
 ---
 layout: default
 lang: ar
-permalink: /ar/
 ---
 {% assign posts_ar = site.posts | where: "lang", "ar" %}
 
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<!-- BLOC SUPÉRIEUR : UNE + DERNIÈRES MINUTES -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mb-12">
     
-    <!-- DROITE (Visuel) : LA UNE -->
-    <div class="space-y-6">
+    <!-- DROITE (car Arabe) : LA UNE -->
+    <div class="h-full">
         {% if posts_ar.size > 0 %}
             {% assign hero = posts_ar[0] %}
-            <article class="searchable-item group" data-category="{{ hero.category }}">
+            <article class="searchable-item group h-full" data-category="{{ hero.category }}">
                 <a href="{{ hero.url | prepend: site.baseurl }}" class="block">
-                    <span class="text-blue-600 font-bold text-[10px] uppercase tracking-[0.2em] mb-2 block">{{ hero.category }}</span>
+                    <span class="text-blue-600 font-bold text-xs uppercase mb-2 block">{{ hero.category }}</span>
                     <h2 class="text-slate-900 text-3xl font-black mb-4 leading-tight group-hover:text-blue-600 transition">{{ hero.title }}</h2>
-                    <div class="overflow-hidden rounded-xl shadow-md mb-4">
-                        <img src="{{ site.baseurl }}/{{ hero.image }}" class="w-full h-[300px] object-cover transition duration-700 group-hover:scale-105">
+                    <div class="overflow-hidden rounded-xl shadow-lg h-[320px]">
+                        <img src="{{ site.baseurl }}/{{ hero.image }}" class="w-full h-full object-cover img-zoom">
                     </div>
                 </a>
-                <p class="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-3">{{ hero.excerpt }}</p>
-                <a href="{{ hero.url | prepend: site.baseurl }}" class="text-blue-600 text-xs font-bold border-b border-blue-200 pb-1 uppercase tracking-widest">اقرأ المزيد</a>
             </article>
         {% endif %}
     </div>
 
-    <!-- GAUCHE (Visuel) : DERNIÈRES MINUTES -->
-    <div class="space-y-10">
-        <h3 class="text-xs font-black text-slate-400 uppercase tracking-[0.3em] border-b pb-2">آخر الأخبار</h3>
-        
-        <!-- Les 4 articles majeurs (Grille 2x2) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- GAUCHE : DERNIÈRES MINUTES (آخر الأخبار) -->
+    <div class="flex flex-col h-full">
+        <h3 class="text-xs font-black text-white bg-red-600 inline-block px-3 py-1 uppercase tracking-widest w-fit mb-4">آخر الأخبار</h3>
+        <div class="grid grid-cols-2 gap-4 flex-grow">
             {% for post in posts_ar limit:4 offset:1 %}
-            <article class="searchable-item group" data-category="{{ post.category }}">
-                <a href="{{ post.url | prepend: site.baseurl }}" class="block">
-                    <div class="overflow-hidden rounded-lg shadow-sm mb-3">
-                        <img src="{{ site.baseurl }}/{{ post.image }}" class="w-full h-[140px] object-cover group-hover:opacity-90 transition">
+            <article class="searchable-item group relative h-[165px] overflow-hidden rounded-lg shadow-sm" data-category="{{ post.category }}">
+                <a href="{{ post.url | prepend: site.baseurl }}" class="h-full block">
+                    <img src="{{ site.baseurl }}/{{ post.image }}" class="w-full h-full object-cover img-zoom">
+                    <!-- PAS DE TEXTE DESSOUS - UNIQUEMENT OVERLAY -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-3 text-right">
+                        <h4 class="text-white text-xs font-bold leading-tight">{{ post.title }}</h4>
                     </div>
-                    <h4 class="text-slate-900 text-sm font-bold leading-snug group-hover:text-blue-600 transition mb-2">{{ post.title }}</h4>
                 </a>
-                <p class="text-slate-500 text-[11px] line-clamp-2 leading-relaxed">{{ post.excerpt }}</p>
             </article>
             {% endfor %}
         </div>
+    </div>
+</div>
 
-        <!-- Articles restants (Liste compacte) -->
-        <div class="pt-8 border-t border-slate-100 space-y-4">
-            {% for post in posts_ar offset:5 %}
-            <div class="searchable-item flex items-center gap-4 group" data-category="{{ post.category }}">
-                <div class="w-16 h-12 flex-shrink-0 overflow-hidden rounded bg-slate-100">
-                    <img src="{{ site.baseurl }}/{{ post.image }}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition">
-                </div>
-                <a href="{{ post.url | prepend: site.baseurl }}" class="text-sm font-semibold text-slate-700 hover:text-blue-600 transition leading-tight">
-                    {{ post.title }}
-                </a>
-            </div>
-            {% endfor %}
-        </div>
+<!-- BLOC INFÉRIEUR : TOUTE LA LARGEUR (3 colonnes) -->
+<div class="border-t border-slate-200 pt-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-right">
+        {% for post in posts_ar offset:5 %}
+        <article class="searchable-item group border-b border-slate-100 pb-6" data-category="{{ post.category }}">
+            <a href="{{ post.url | prepend: site.baseurl }}">
+                <h4 class="text-slate-900 text-xl font-black mb-3 group-hover:text-blue-600 transition leading-snug">{{ post.title }}</h4>
+                <p class="text-slate-500 text-sm leading-relaxed line-clamp-3">
+                    {{ post.excerpt | strip_html }}...
+                </p>
+            </a>
+        </article>
+        {% endfor %}
     </div>
 </div>
