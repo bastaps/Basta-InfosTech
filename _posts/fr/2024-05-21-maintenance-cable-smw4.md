@@ -2,6 +2,7 @@
 layout: article
 title: "Alerte Infrastructure : Maintenance préventive sur le câble sous-marin SMW4"
 date: 2026-03-09 20:30 +0100
+lang: fr
 image: "/img/cable-sous-marin.jpg"
 category: "National"
 description: "Le Ministère de la Poste et des Télécommunications annonce des travaux de maintenance sur le câble SMW4 à Palerme. Des perturbations temporaires d'internet sont à prévoir les 10 et 11 mars."
