@@ -3,45 +3,35 @@ layout: default
 lang: ar
 permalink: /ar/
 ---
+{% assign posts_ar = site.posts | where: "lang", "ar" %}
 
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-    <!-- GRANDE PHOTO À DROITE (Inversion visuelle pour l'arabe) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8" dir="rtl">
     <div class="lg:col-span-8">
-        {% assign posts_ar = site.posts | where: "lang", "ar" %}
         {% if posts_ar.size > 0 %}
-            {% assign hero = posts_ar.first %}
-            <article class="searchable-item group cursor-pointer" data-category="{{ hero.category }}">
+            {% for post in posts_ar limit:1 %}
+            <article class="searchable-item group cursor-pointer" data-category="{{ post.category }}">
                 <div class="relative overflow-hidden rounded-3xl shadow-xl">
-                    <img src="{{ site.baseurl }}/{{ hero.image }}" class="w-full h-[500px] object-cover transition duration-500 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
-                        <span class="bg-blue-600 text-white text-[10px] font-bold px-4 py-1 rounded-full w-max mb-4 uppercase tracking-widest">{{ hero.category }}</span>
-                        <h2 class="text-white text-4xl font-black mb-4 leading-tight">{{ hero.title }}</h2>
-                        <p class="text-slate-200 text-lg line-clamp-2 mb-4">{{ hero.excerpt }}</p>
-                        <a href="{{ hero.url | prepend: site.baseurl }}" class="text-white font-bold flex items-center hover:text-blue-400 transition">
-                            {{ site.data.ui.ar.read_more }} <i class="fas fa-arrow-left mr-2"></i>
-                        </a>
+                    <img src="{{ site.baseurl }}/{{ post.image }}" class="w-full h-[500px] object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 p-8 flex flex-col justify-end">
+                        <h2 class="text-white text-4xl font-black mb-4">{{ post.title }}</h2>
+                        <p class="text-slate-200 mb-4">{{ post.excerpt }}</p>
+                        <a href="{{ post.url | prepend: site.baseurl }}" class="text-blue-400 font-bold">اقرأ المزيد</a>
                     </div>
                 </div>
             </article>
+            {% endfor %}
         {% else %}
-            <p class="text-center py-10 text-slate-500 font-bold">لا يوجد مقالات باللغة العربية حالياً.</p>
+            <p class="text-center py-20 text-slate-500">لا يوجد مقالات باللغة العربية حالياً.</p>
         {% endif %}
     </div>
 
-    <!-- DERNIÈRES MINUTES À GAUCHE -->
     <div class="lg:col-span-4">
         <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100">
-            <h3 class="text-xl font-black mb-6 flex items-center text-slate-900 uppercase tracking-tighter">
-                <span class="w-2 h-8 bg-blue-600 ml-3 rounded-full"></span>
-                {{ site.data.ui.ar.last_minutes }}
-            </h3>
+            <h3 class="text-xl font-black mb-6">{{ site.data.ui.ar.last_minutes }}</h3>
             <div class="space-y-6">
                 {% for post in posts_ar offset:1 %}
-                <div class="searchable-item border-b border-slate-50 pb-4 last:border-0" data-category="{{ post.category }}">
-                    <span class="text-blue-600 text-[10px] font-bold uppercase tracking-widest">{{ post.category }}</span>
-                    <a href="{{ post.url | prepend: site.baseurl }}" class="block text-slate-800 font-bold hover:text-blue-600 transition leading-snug mt-1">
-                        {{ post.title }}
-                    </a>
+                <div class="searchable-item border-b border-slate-50 pb-4" data-category="{{ post.category }}">
+                    <a href="{{ post.url | prepend: site.baseurl }}" class="block font-bold hover:text-blue-600">{{ post.title }}</a>
                 </div>
                 {% endfor %}
             </div>
