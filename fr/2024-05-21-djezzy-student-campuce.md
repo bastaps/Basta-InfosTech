@@ -2,6 +2,7 @@
 layout: article
 title: "Djezzy : De Telco à TechCo, la révolution Student Campuce est lancée"
 date: 2026-03-10 12:30:00 +0100
+lang: fr
 image: "/img/djezzy-student-campuce.jpg"
 category: "National"
 description: "Djezzy transforme son offre étudiante en un véritable écosystème numérique avec 15 partenaires stratégiques."
