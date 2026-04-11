@@ -1,5 +1,6 @@
 ---
 layout: article
+lang: fr
 title: "Ooredoo Algérie : Premier opérateur à couvrir les 58 wilayas en 5G"
 date: 2026-03-05 21:30:00 +0100
 image: "/img/ooredoo-5g-couverture.jpg"
