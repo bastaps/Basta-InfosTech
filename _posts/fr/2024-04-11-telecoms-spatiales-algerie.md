@@ -1,13 +1,17 @@
 ---
 layout: article
-title: "L'Algérie ouvre officiellement la concurrence dans les communications spatiales"
-date: 2026-04-11 10:30:00 +0100
+title: >-
+  L'Algérie ouvre officiellement la concurrence dans les communications
+  spatiales
+date: 2026-04-11T10:30:00+01:00
 lang: fr
-image: "/img/telecoms-spatiales-algerie.jpg"
-category: "Technologie"
-description: "Lancement d'un appel d'offres national pour l'attribution de deux licences satellites NGSO afin de mettre fin à la fracture numérique dans les zones reculées."
+image: /uploads/telecoms-spatiales-algerie-2.jpg
+category: Technologie
+description: >-
+  Lancement d'un appel d'offres national pour l'attribution de deux licences
+  satellites NGSO afin de mettre fin à la fracture numérique dans les zones
+  reculées.
 ---
-
 **« Internet haut débit pour tous, où qu'ils se trouvent. »**  
 C'est sous ce slogan que le **Ministère de la Poste et des Télécommunications**, en coordination avec l'Autorité de Régulation de la Poste et des Communications Électroniques (ARPCE), a annoncé l'ouverture à la concurrence du secteur des communications par satellites en orbite non géostationnaire (NGSO).  
 Cette initiative, placée sous le Haut Patronage du Président de la République, vise à attribuer **deux licences** pour l'établissement et l'exploitation de réseaux de communications électroniques ouverts au public, marquant un tournant décisif dans la souveraineté numérique nationale.
