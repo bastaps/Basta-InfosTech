@@ -3,7 +3,7 @@ layout: article
 title: "Xiaomi Box TV S (3rd Gen) : La solution ultime pour moderniser votre ancien téléviseur à moins de 12 000 DA"
 date: 2026-04-12 19:30:00 +0100
 lang: fr
-image: "/img/xiaomi-box-tv-s.jpg"
+image: "/img/xiaomi-box-tv-s-promo.jpg"
 category: "Tech"
 description: "Découvrez comment transformer n'importe quel écran en Smart TV 4K ultra-performante avec la nouvelle box Xiaomi à un prix imbattable en Algérie."
 ---
