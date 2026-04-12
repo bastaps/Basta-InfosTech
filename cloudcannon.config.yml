@@ -1,0 +1,34 @@
+# Configuration pour automatiser la rédaction
+_collections:
+  posts:
+    path: _posts
+    output: true
+    name: Mes Articles
+    icon: article
+
+# Ici on crée les cases automatiques pour ne plus copier le code
+_inputs:
+  layout:
+    type: hidden
+    default: article
+  title:
+    type: text
+    label: Titre de l'article
+  date:
+    type: date
+    label: Date de publication
+  lang:
+    type: select
+    label: Langue
+    options:
+      values: [ar, fr]
+  category:
+    type: text
+    label: Catégorie
+  description:
+    type: textarea
+    label: Résumé (Description)
+  image:
+    type: image
+    label: Photo de couverture
+    comment: "Téléchargez ou choisissez une image"
