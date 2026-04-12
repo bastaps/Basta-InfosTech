@@ -1,61 +1,33 @@
-source: /_posts/
-paths:
-  uploads:
-  uploads_filename:
-  uploads_use_relative_path:
-  static:
-  dam_uploads:
-  dam_uploads_filename:
-  dam_static:
-_inputs:
-  layout:
-    type: hidden
-    cascade: true
-    default: article
-  title:
-    type: text
-    label: Titre de l'article
-    cascade: true
-  date:
-    type: date
-    label: Date de publication
-    cascade: true
-  lang:
-    type: select
-    options:
-      allow_empty: true
-      values:
-        - ar
-        - fr
-      preview:
-        text:
-          - text:
-        subtext:
-        icon:
-        icon_color:
-        icon_background_color:
-        image:
-        metadata:
-        gallery:
-    label: Langue
-    cascade: true
-  category:
-    type: text
-    label: Catégorie
-    cascade: true
-  description:
-    type: textarea
-    label: Résumé (Description)
-    cascade: true
-  image:
-    type: image
-    label: Photo de couverture
-    comment: Téléchargez ou choisissez une image
-    cascade: true
-timezone: Etc/UTC
+# Configuration propre pour DIGITAL.DZ
 _collections:
   posts:
     path: _posts
     output: true
     name: Mes Articles
     icon: article
+    # On définit ici que tous les nouveaux articles utilisent le style "article"
+    _defaults:
+      layout: article
+
+# Voici les cases que vous verrez à gauche
+_inputs:
+  title:
+    type: text
+    label: Titre de l'article
+  date:
+    type: date
+    label: Date de publication
+  lang:
+    type: select
+    label: Langue
+    options:
+      values: [ar, fr]
+  category:
+    type: text
+    label: Catégorie
+  description:
+    type: textarea
+    label: Résumé (Description)
+  image:
+    type: image
+    label: Photo de couverture
