@@ -3,7 +3,7 @@ layout: article
 title: "جهاز Xiaomi Box TV S: الحل المثالي لتحويل تلفازك القديم إلى منصة ذكية فائقة الأداء بأقل من 12.000 دج"
 date: 2026-04-12 19:30:00 +0100
 lang: ar
-image: "/img/xiaomi-box-tv-s.jpg"
+image: "/img/xiaomi-box-tv-s-promo.jpg"
 category: "تكنولوجيا"
 description: "تعرف على كيفية ترقية شاشتك العادية إلى تلفاز ذكي يدعم تقنية 4K مع جهاز شاومي الجديد بسعر تنافسي في السوق الجزائرية."
 ---
