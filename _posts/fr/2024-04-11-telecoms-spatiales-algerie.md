@@ -5,7 +5,7 @@ title: >-
   spatiales
 date: 2026-04-11T10:30:00+01:00
 lang: fr
-image: /uploads/telecoms-spatiales-algerie-2.jpg
+image: /img/telecoms-spatiales-algerie.jpg
 category: Technologie
 description: >-
   Lancement d'un appel d'offres national pour l'attribution de deux licences
