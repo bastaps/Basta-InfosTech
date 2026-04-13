@@ -3,7 +3,7 @@ layout: article
 title: الجزائر تفتح رسميا مجال المنافسة في الاتصالات الفضائية
 date: 2026-04-11T10:30:00+01:00
 lang: ar
-image: /uploads/telecoms-spatiales-algerie.jpg
+image: /img/telecoms-spatiales-algerie.jpg
 category: تكنولوجيا
 description: >-
   إطلاق مزايدة وطنية لمنح رخصتين للأقمار الصناعية غير المستقرة بهدف إنهاء العزلة
