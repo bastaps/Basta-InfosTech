@@ -12,23 +12,21 @@ description: >-
   satellites NGSO afin de mettre fin à la fracture numérique dans les zones
   reculées.
 ---
-**« Internet haut débit pour tous, où qu'ils se trouvent. »**  
-C'est sous ce slogan que le **Ministère de la Poste et des Télécommunications**, en coordination avec l'Autorité de Régulation de la Poste et des Communications Électroniques (ARPCE), a annoncé l'ouverture à la concurrence du secteur des communications par satellites en orbite non géostationnaire (NGSO).  
-Cette initiative, placée sous le Haut Patronage du Président de la République, vise à attribuer **deux licences** pour l'établissement et l'exploitation de réseaux de communications électroniques ouverts au public, marquant un tournant décisif dans la souveraineté numérique nationale.
+![](/img/telecoms-spatiales-algerie.jpg)
+
+**« Internet haut débit pour tous, où qu'ils se trouvent. »**<br> C'est sous ce slogan que le **Ministère de la Poste et des Télécommunications**, en coordination avec l'Autorité de Régulation de la Poste et des Communications Électroniques (ARPCE), a annoncé l'ouverture à la concurrence du secteur des communications par satellites en orbite non géostationnaire (NGSO).<br> Cette initiative, placée sous le Haut Patronage du Président de la République, vise à attribuer **deux licences** pour l'établissement et l'exploitation de réseaux de communications électroniques ouverts au public, marquant un tournant décisif dans la souveraineté numérique nationale.
 
 ## Pourquoi cette étape est-elle stratégique et historique ?
 
-Face aux défis mondiaux de la couverture des zones isolées, l'Algérie, comme beaucoup de pays, rencontre des difficultés à connecter les régions montagneuses et sahariennes aux infrastructures terrestres classiques.  
-Cette mesure vise à réduire radicalement la fracture numérique et à garantir un accès équitable à Internet haut débit, en particulier dans les zones reculées longtemps privées de services.
+Face aux défis mondiaux de la couverture des zones isolées, l'Algérie, comme beaucoup de pays, rencontre des difficultés à connecter les régions montagneuses et sahariennes aux infrastructures terrestres classiques.<br> Cette mesure vise à réduire radicalement la fracture numérique et à garantir un accès équitable à Internet haut débit, en particulier dans les zones reculées longtemps privées de services.
 
 ## Le nouveau mécanisme : un appel d'offres transparent et des technologies de pointe
 
 Cette initiative repose sur une approche technologique intégrée via les satellites NGSO, permettant une couverture complète et des débits très élevés.
 
-*   **Licence 1 :** Dédiée à la couverture des régions du Sud et des Hauts Plateaux, avec un accent particulier sur le soutien aux projets agricoles et miniers.
-*   **Licence 2 :** Orientée vers la couverture des zones montagneuses du Nord et des forêts denses, pour connecter les villages isolés aux réseaux de fibre optique existants.
+* **Licence 1 :** Dédiée à la couverture des régions du Sud et des Hauts Plateaux, avec un accent particulier sur le soutien aux projets agricoles et miniers.
+* **Licence 2 :** Orientée vers la couverture des zones montagneuses du Nord et des forêts denses, pour connecter les villages isolés aux réseaux de fibre optique existants.
 
-<!-- Bloc de statistiques et objectifs -->
 <div class="my-12 border-y-2 border-black py-8">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
         <div>
@@ -56,18 +54,19 @@ Dans une déclaration exclusive à **DIGITAL.DZ**, M. **Sid Ali Zerrouki**, Mini
 
 Les bénéfices de ces licences ne se limitent pas à la simple connectivité, ils s'étendent à :
 
-1.  **La diversification de l'offre de services** de communications électroniques, offrant au citoyen algérien des choix plus larges à des prix compétitifs.
-2.  **La stimulation de la concurrence** entre les opérateurs traditionnels et les nouveaux entrants, conduisant à une amélioration de la qualité et à une baisse des coûts.
-3.  **Le soutien aux grands projets** dans les secteurs de l'agriculture (irrigation à distance, surveillance des cultures), des mines (gestion de flottes, sécurité) et des transports.
-4.  **La réduction définitive de la fracture numérique**, garantissant un accès équitable au savoir et aux services gouvernementaux en ligne.
+1. **La diversification de l'offre de services** de communications électroniques, offrant au citoyen algérien des choix plus larges à des prix compétitifs.
+2. **La stimulation de la concurrence** entre les opérateurs traditionnels et les nouveaux entrants, conduisant à une amélioration de la qualité et à une baisse des coûts.
+3. **Le soutien aux grands projets** dans les secteurs de l'agriculture (irrigation à distance, surveillance des cultures), des mines (gestion de flottes, sécurité) et des transports.
+4. **La réduction définitive de la fracture numérique**, garantissant un accès équitable au savoir et aux services gouvernementaux en ligne.
 
 ---
 
 ### Informations clés
-*   **Procédure :** Appel d'offres national ouvert.
-*   **Organisateur :** Autorité de Régulation de la Poste et des Communications Électroniques (ARPCE).
-*   **Nombre de licences :** Deux.
-*   **Technologie utilisée :** Satellites NGSO (orbite non géostationnaire).
-*   **Date limite de dépôt des dossiers :** 30 juin 2026.
+
+* **Procédure :** Appel d'offres national ouvert.
+* **Organisateur :** Autorité de Régulation de la Poste et des Communications Électroniques (ARPCE).
+* **Nombre de licences :** Deux.
+* **Technologie utilisée :** Satellites NGSO (orbite non géostationnaire).
+* **Date limite de dépôt des dossiers :** 30 juin 2026.
 
 🚀 *Suivez **DIGITAL.DZ** pour une couverture exclusive des résultats de l'appel d'offres et des noms des lauréats dès leur annonce officielle.*
