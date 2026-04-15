@@ -1,0 +1,34 @@
+backend:
+  name: github
+  repo: bastaps/Basta-InfosTech # Votre dépôt
+  branch: main
+
+media_folder: "img" # Où les images seront stockées
+public_folder: "/img"
+
+collections:
+  - name: "posts_fr"
+    label: "Articles Français"
+    folder: "_posts/fr"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Catégorie", name: "category", widget: "select", options: ["Actualités", "Algérie", "Télécoms", "Technologies"]}
+      - {label: "Image Couverture", name: "image", widget: "image"}
+      - {label: "Description Courte", name: "description", widget: "text"}
+      - {label: "Corps de l'article", name: "body", widget: "markdown"}
+
+  - name: "posts_ar"
+    label: "Articles Arabe"
+    folder: "_posts/ar"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "العنوان", name: "title", widget: "string"}
+      - {label: "التاريخ", name: "date", widget: "datetime"}
+      - {label: "الفئة", name: "category", widget: "select", options: ["أخبار", "الجزائر", "الاتصالات", "التقنيات"]}
+      - {label: "صورة الغلاف", name: "image", widget: "image"}
+      - {label: "وصف قصير", name: "description", widget: "text"}
+      - {label: "محتوى المقال", name: "body", widget: "markdown"}
